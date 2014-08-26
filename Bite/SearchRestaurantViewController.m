@@ -13,7 +13,7 @@
 @interface SearchRestaurantViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *restaurantSearchField;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property NSArray *restaurantSearchResult;
+@property NSMutableArray *restaurantSearchResult;
 
 @end
 
@@ -36,14 +36,23 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RestaurantSearchResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"restaurantCellID"];
-    cell.restaurantNameLabel.text = @"Union Sushi";
-    cell.cuisineLabel.text = @"Japanese";
-    cell.addressLabel.text = @"222 W Erie St Chicago IL 60654";
-    cell.addressLabel.text = @"12345678";
+    PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:indexPath.row];
+
+    PFFile *imageFile = [restaurant objectForKey:@"restaurantImage"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:data];
+            cell.RestaurantProfileImage.image = image;
+        }
+    }];
+
+    cell.restaurantNameLabel.text = [restaurant objectForKey:@"restaurantName"];
+    cell.cuisineLabel.text = [restaurant objectForKey:@"cuisine"];
+    cell.addressLabel.text = [restaurant objectForKey:@"restaurantAddress"];
+    cell.contactNumberLabel.text = [restaurant objectForKey:@"phoneNumber"];
     return cell;
 
 }
-
 
 
 - (IBAction)onLogOutButtonPressed:(id)sender {
@@ -52,28 +61,26 @@
 
 }
 
+
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    self.restaurantSearchResult = [NSMutableArray new];
+
+    PFQuery *restaurantQuery = [PFQuery queryWithClassName:@"Restaurant"];
+    [restaurantQuery whereKey:@"restaurantName" containsString:self.restaurantSearchField.text];
+    [restaurantQuery orderByAscending:@"restaurantName"];
+    [restaurantQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.restaurantSearchResult = [objects mutableCopy];
+        [self.tableView reloadData];
+    }];
     [self.restaurantSearchField resignFirstResponder];
+
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    PFQuery *restaurantQuery = [PFQuery queryWithClassName:@"Restaurant"];
-    [restaurantQuery whereKey:@"restaurantName" containsString:self.restaurantSearchField.text];
-    [restaurantQuery  findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"%@", [error userInfo]);
-        }
-        else {
-            self.restaurantSearchResult = restaurantQuery;
-        }
-
-    }];
-
     [self.tableView reloadData];
-
-
 }
 
 - (IBAction)unwindToSearch:(UIStoryboardSegue *)sender
