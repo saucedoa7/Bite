@@ -22,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property IBOutlet UIButton *doneButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *doneButton;
+
 @end
 
 @implementation UserProfileViewController
