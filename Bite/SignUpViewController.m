@@ -62,9 +62,9 @@
     } else {
 
         PFUser *newUser = [PFUser user];
+        newUser[FullName] = fullName;
         newUser.username = username;
         newUser.password = password;
-        newUser[FullName] = self.nameTextField.text;
         newUser.email = email;
 
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
