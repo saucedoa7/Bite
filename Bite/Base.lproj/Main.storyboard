@@ -170,14 +170,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sn-68-nCD">
-                                <rect key="frame" x="139" y="355" width="43" height="30"/>
+                                <rect key="frame" x="139" y="145" width="43" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onLogInButtonPressed:" destination="OpP-re-Ifc" eventType="touchUpInside" id="uSI-DV-mej"/>
-                                    <segue destination="Iw7-8h-Wkt" kind="modal" id="i4w-lO-VuI"/>
+                                    <segue destination="Iw7-8h-Wkt" kind="modal" identifier="logInSegue" id="i4w-lO-VuI"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEj-MB-UHd">
@@ -949,8 +949,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vii-Tr-Frz"/>
-        <segue reference="JKu-05-MBS"/>
+        <segue reference="i4w-lO-VuI"/>
+        <segue reference="iG5-oe-701"/>
         <segue reference="mkp-4O-B9X"/>
     </inferredMetricsTieBreakers>
 </document>
