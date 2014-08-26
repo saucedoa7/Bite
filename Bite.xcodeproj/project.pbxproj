@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E409994C19ABC750003CB4FF /* FriendsListViewController.m */; };
+		E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */; };
 		E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */; };
 		E438359119ABC81800AB2940 /* SearchRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */; };
 		E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */; };
@@ -64,6 +65,8 @@
 /* Begin PBXFileReference section */
 		E409994B19ABC750003CB4FF /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		E409994C19ABC750003CB4FF /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
+		E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantSearchResultTableViewCell.h; sourceTree = "<group>"; };
+		E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantSearchResultTableViewCell.m; sourceTree = "<group>"; };
 		E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchPageViewController.h; sourceTree = "<group>"; };
 		E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchPageViewController.m; sourceTree = "<group>"; };
 		E438358F19ABC81800AB2940 /* SearchRestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRestaurantViewController.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				E438358F19ABC81800AB2940 /* SearchRestaurantViewController.h */,
 				E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */,
 				E4DCCA3619ABC08300CE7E62 /* Main.storyboard */,
+				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
+				E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */,
 				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
 				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
 				E4EDF9FE19ABD3AB00F7E3DF /* CurrentBillViewController.h */,
@@ -394,6 +399,7 @@
 				E4DCCA3B19ABC08300CE7E62 /* LaunchViewController.m in Sources */,
 				E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */,
 				E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */,
+				E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */,
 				E4DCCA7919ABC6A700CE7E62 /* UserProfileViewController.m in Sources */,
 				E4943AC119ABCAC2005D6758 /* CheckInToTableViewController.m in Sources */,
 				E440BD6019ABD56B00D08726 /* ForgotPasswordViewController.m in Sources */,

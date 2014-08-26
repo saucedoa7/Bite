@@ -8,8 +8,12 @@
 
 #import "SearchRestaurantViewController.h"
 #import "LaunchPageViewController.h"
+#import "RestaurantSearchResultTableViewCell.h"
 
-@interface SearchRestaurantViewController ()
+@interface SearchRestaurantViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@property (strong, nonatomic) IBOutlet UISearchBar *restaurantSearchField;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property NSMutableArray *restaurantSearchResult;
 
 @end
 
@@ -18,14 +22,38 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
     [self showLaunchPageVC];
 }
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.restaurantSearchResult.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RestaurantSearchResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"restaurantCellID"];
+    cell.restaurantNameLabel.text = @"Union Sushi";
+    cell.cuisineLabel.text = @"Japanese";
+    cell.addressLabel.text = @"222 W Erie St Chicago IL 60654";
+    cell.addressLabel.text = @"12345678";
+    return cell;
+
+}
+
+
 
 - (IBAction)onLogOutButtonPressed:(id)sender {
     [PFUser logOut];
     [self showLaunchPageVC];
 
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.restaurantSearchField resignFirstResponder];
 }
 
 - (IBAction)unwindToSearch:(UIStoryboardSegue *)sender
