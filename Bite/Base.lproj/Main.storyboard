@@ -305,7 +305,7 @@
                                     <segue destination="A5J-mU-mdJ" kind="unwind" unwindAction="unwindToRoot:" id="Pcw-6x-8ed"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5R-m2-BZ5">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search For Restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="s5R-m2-BZ5">
                                 <rect key="frame" x="0.0" y="81" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -972,6 +972,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="TE9-Km-GRQ" id="kUz-f6-43P"/>
                         <outlet property="emailLabel" destination="BTk-d4-4O2" id="iAr-y7-9Da"/>
                         <outlet property="emailTextField" destination="Pna-Nl-yw9" id="eGD-Al-1A8"/>
                         <outlet property="nameLabel" destination="ar7-bJ-3ll" id="XkD-bB-Feo"/>

@@ -13,7 +13,7 @@
 @interface SearchRestaurantViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *restaurantSearchField;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property NSMutableArray *restaurantSearchResult;
+@property NSArray *restaurantSearchResult;
 
 @end
 
@@ -23,6 +23,7 @@
 {
     [super viewDidAppear:animated];
     [self showLaunchPageVC];
+
 }
 
 
@@ -54,6 +55,25 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self.restaurantSearchField resignFirstResponder];
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    PFQuery *restaurantQuery = [PFQuery queryWithClassName:@"Restaurant"];
+    [restaurantQuery whereKey:@"restaurantName" containsString:self.restaurantSearchField.text];
+    [restaurantQuery  findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"%@", [error userInfo]);
+        }
+        else {
+            self.restaurantSearchResult = restaurantQuery;
+        }
+
+    }];
+
+    [self.tableView reloadData];
+
+
 }
 
 - (IBAction)unwindToSearch:(UIStoryboardSegue *)sender
