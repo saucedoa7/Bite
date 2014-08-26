@@ -73,9 +73,6 @@
                 [alertView show];
             }
             else {
-                self.performSegueToMenu = YES;
-                [self performSegueWithIdentifier:@"signUpSegue" sender:self];
-//                [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
     }

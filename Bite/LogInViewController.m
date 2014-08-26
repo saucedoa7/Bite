@@ -15,7 +15,6 @@
 @interface LogInViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-@property BOOL performSegueToMenu;
 
 
 @end
@@ -26,9 +25,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.performSegueToMenu = NO;
     
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.usernameTextField.text = nil;
+    self.passwordTextField.text = nil;
 }
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)sender
@@ -44,45 +47,24 @@
     NSString *password = [self.passwordTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if ([username length] == 0 || [password length] == 0) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Make sure you enter a username, and password!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Make sure you enter a username, and password!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
+
     }
     else {
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
-            if (user)
+            if (error)
             {
-//                [self dismissViewControllerAnimated:YES completion:nil];
-                [self performSegueWithIdentifier:@"logInSegue" sender:self];
-            }
-            else
-            {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[[error.userInfo objectForKey:@"error"] capitalizedString] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[[error.userInfo objectForKey:@"error"] capitalizedString] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
+            } else {
+                id searchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchRestaurantViewController"];
+                [self presentViewController:searchVC animated:NO completion:nil];
             }
         }];
 
     }
 }
 
-#pragma mark - segue
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if ([identifier isEqualToString:@"logInSegue"])
-    {
-        if (self.performSegueToMenu)
-        {
-            return YES;
-        }
-        else
-        {
-            return NO;
-        }
-    }
-    else
-    {
-        return YES;
-    }
-}
 
 @end

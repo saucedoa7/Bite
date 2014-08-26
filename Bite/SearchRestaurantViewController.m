@@ -7,7 +7,7 @@
 //
 
 #import "SearchRestaurantViewController.h"
-#import "LogInViewController.h"
+#import "LaunchPageViewController.h"
 
 @interface SearchRestaurantViewController ()
 
@@ -15,28 +15,31 @@
 
 @implementation SearchRestaurantViewController
 
-
-
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
 
+    [self showLaunchPageVC];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    LogInViewController *loginVC;
-    if (![PFUser currentUser])
-    {
-        [self presentViewController:loginVC animated:YES completion:^{
-        }];
-    }
-    else {
-    }
+- (IBAction)onLogOutButtonPressed:(id)sender {
+    [PFUser logOut];
+    [self showLaunchPageVC];
+
 }
 
 - (IBAction)unwindToSearch:(UIStoryboardSegue *)sender
 {
+}
+
+- (void) showLaunchPageVC
+{
+    if (![PFUser currentUser])
+    {
+        id launchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LaunchPageViewController"];
+        [self presentViewController:launchVC animated:NO completion:nil];
+    }
+
 }
 
 @end

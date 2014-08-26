@@ -128,7 +128,7 @@
         <!--Launch Page View Controller-->
         <scene sceneID="nti-q3-89G">
             <objects>
-                <viewController id="cqF-ic-IsK" customClass="LaunchPageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cqF-ic-IsK" customClass="LaunchPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eWd-r3-F30"/>
                         <viewControllerLayoutGuide type="bottom" id="dgj-qS-t8k"/>
@@ -175,7 +175,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onLogInButtonPressed:" destination="OpP-re-Ifc" eventType="touchUpInside" id="uSI-DV-mej"/>
-                                    <segue destination="yld-RU-aDr" kind="unwind" unwindAction="unwindToSearch:" id="rEP-TL-D2o"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEj-MB-UHd">
@@ -219,7 +218,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2r-Vu-pkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="yld-RU-aDr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1821" y="-2050"/>
         </scene>
@@ -276,7 +274,7 @@
         <!--Search Restaurant View Controller-->
         <scene sceneID="loS-rs-fb2">
             <objects>
-                <viewController id="Iw7-8h-Wkt" customClass="SearchRestaurantViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchRestaurantViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Iw7-8h-Wkt" customClass="SearchRestaurantViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sRw-Tu-Bnw"/>
                         <viewControllerLayoutGuide type="bottom" id="ElK-vZ-ZwS"/>
@@ -302,6 +300,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="onLogOutButtonPressed:" destination="Iw7-8h-Wkt" eventType="touchUpInside" id="Wly-RI-BeX"/>
                                     <segue destination="A5J-mU-mdJ" kind="unwind" unwindAction="unwindToRoot:" id="Pcw-6x-8ed"/>
                                 </connections>
                             </button>

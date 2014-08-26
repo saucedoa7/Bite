@@ -10,4 +10,7 @@
 
 @interface LaunchPageViewController : LaunchViewController
 
++ (LaunchPageViewController *)newFromStoryboard;
+
+
 @end
