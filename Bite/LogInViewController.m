@@ -9,6 +9,8 @@
 #import "LogInViewController.h"
 
 @interface LogInViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
@@ -18,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)sender
@@ -26,5 +28,9 @@
 
 }
 
+- (IBAction)onLogInButtonPressed:(id)sender
+{
+
+}
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Bite. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LaunchViewController.h"
 
-@interface AddFriendsViewController : ViewController
+@interface AddFriendsViewController : LaunchViewController
 
 @end

@@ -25,7 +25,7 @@
 		E4DCCA3119ABC08300CE7E62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCA3019ABC08300CE7E62 /* main.m */; };
 		E4DCCA3519ABC08300CE7E62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */; };
 		E4DCCA3819ABC08300CE7E62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCA3619ABC08300CE7E62 /* Main.storyboard */; };
-		E4DCCA3B19ABC08300CE7E62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCA3A19ABC08300CE7E62 /* ViewController.m */; };
+		E4DCCA3B19ABC08300CE7E62 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */; };
 		E4DCCA3D19ABC08300CE7E62 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCA3C19ABC08300CE7E62 /* Images.xcassets */; };
 		E4DCCA4419ABC08300CE7E62 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4DCCA4319ABC08300CE7E62 /* XCTest.framework */; };
 		E4DCCA4519ABC08300CE7E62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4DCCA2419ABC08300CE7E62 /* Foundation.framework */; };
@@ -95,8 +95,8 @@
 		E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E4DCCA3719ABC08300CE7E62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E4DCCA3919ABC08300CE7E62 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E4DCCA3A19ABC08300CE7E62 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E4DCCA3919ABC08300CE7E62 /* LaunchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
+		E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		E4DCCA3C19ABC08300CE7E62 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E4DCCA4219ABC08300CE7E62 /* BiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DCCA4319ABC08300CE7E62 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -163,6 +163,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E41F68AE19ABF00600D8A57C /* Log In/Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				E4DCCA7419ABC68C00CE7E62 /* SignUpViewController.h */,
+				E4DCCA7519ABC68C00CE7E62 /* SignUpViewController.m */,
+				E4DCCA7119ABC67C00CE7E62 /* LogInViewController.h */,
+				E4DCCA7219ABC67C00CE7E62 /* LogInViewController.m */,
+			);
+			name = "Log In/Sign Up";
+			sourceTree = "<group>";
+		};
 		E4DCCA1819ABC08300CE7E62 = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +219,7 @@
 		E4DCCA2A19ABC08300CE7E62 /* Bite */ = {
 			isa = PBXGroup;
 			children = (
+				E41F68AE19ABF00600D8A57C /* Log In/Sign Up */,
 				E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */,
 				E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */,
 				E4DCCA3619ABC08300CE7E62 /* Main.storyboard */,
@@ -237,14 +249,10 @@
 				E409994C19ABC750003CB4FF /* FriendsListViewController.m */,
 				E4DCCA7A19ABC70300CE7E62 /* AddFriendsViewController.h */,
 				E4DCCA7B19ABC70300CE7E62 /* AddFriendsViewController.m */,
-				E4DCCA7419ABC68C00CE7E62 /* SignUpViewController.h */,
-				E4DCCA7519ABC68C00CE7E62 /* SignUpViewController.m */,
-				E4DCCA7119ABC67C00CE7E62 /* LogInViewController.h */,
-				E4DCCA7219ABC67C00CE7E62 /* LogInViewController.m */,
 				E4DCCA7719ABC6A700CE7E62 /* UserProfileViewController.h */,
 				E4DCCA7819ABC6A700CE7E62 /* UserProfileViewController.m */,
-				E4DCCA3919ABC08300CE7E62 /* ViewController.h */,
-				E4DCCA3A19ABC08300CE7E62 /* ViewController.m */,
+				E4DCCA3919ABC08300CE7E62 /* LaunchViewController.h */,
+				E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */,
 				E4DCCA3C19ABC08300CE7E62 /* Images.xcassets */,
 				E4DCCA2B19ABC08300CE7E62 /* Supporting Files */,
 			);
@@ -383,7 +391,7 @@
 				E4DCCA7319ABC67C00CE7E62 /* LogInViewController.m in Sources */,
 				E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */,
 				E4DCCA7619ABC68C00CE7E62 /* SignUpViewController.m in Sources */,
-				E4DCCA3B19ABC08300CE7E62 /* ViewController.m in Sources */,
+				E4DCCA3B19ABC08300CE7E62 /* LaunchViewController.m in Sources */,
 				E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */,
 				E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */,
 				E4DCCA7919ABC6A700CE7E62 /* UserProfileViewController.m in Sources */,
