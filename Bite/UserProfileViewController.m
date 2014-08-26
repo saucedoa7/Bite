@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
 
 @end
@@ -43,15 +42,8 @@
     [super viewDidLoad];
 
     [self hideTextFields];
-
+    [self showPFCurrentUser];
     self.doneButton.hidden = YES;
-
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        self.nameLabel.text = currentUser[FullName];
-        self.emailLabel.text = currentUser.email;
-        self.userNameLabel.text = currentUser.username;
-    }
 
 }
 
@@ -59,36 +51,38 @@
     [self showTextFields];
     [self hideLabels];
     self.doneButton.hidden = NO;
-
 }
 
 - (IBAction)onDoneButton:(UIButton *)sender {
-
-   // PFUser *updateUser = [PFUser user];
 
     NSString *userName = self.userNameTextField.text;
     NSString *password = self.passwordTextField.text;
     NSString *email = self.emailTextField.text;
 
     self.emailLabel.text = email;
-    self.passwordLabel.text = password;
     self.userNameLabel.text = userName;
 
     [[PFUser currentUser] setUsername:userName];
-    [[PFUser currentUser] setPassword:password];
     [[PFUser currentUser] setEmail:email];
+    [PFUser currentUser].password = password;
     [[PFUser currentUser] saveInBackground];
 
     [self hideTextFields];
     [self showLabels];
+
+    self.doneButton.hidden = YES;
 }
 
 #pragma mark - Hide/Show Textfields/Labels
 
 - (void)showTextFields {
+
     self.emailTextField.hidden = NO;
+    self.emailTextField.text = self.emailLabel.text;
     self.userNameTextField.hidden = NO;
+    self.userNameTextField.text = self.userNameLabel.text;
     self.passwordTextField.hidden = NO;
+    [self showPFCurrentUser];
 }
 
 - (void)hideTextFields
@@ -108,6 +102,17 @@
     self.userNameLabel.hidden = NO;
     self.emailLabel.hidden = NO;
     self.passwordLabel.hidden = NO;
+}
+
+#pragma mark PFUser
+
+-(void)showPFCurrentUser{
+
+    PFUser *currentUser = [PFUser currentUser];
+    self.nameLabel.text = currentUser[FullName];
+    self.emailLabel.text = currentUser.email;
+    self.userNameLabel.text = currentUser.username;
+    self.passwordLabel.text = @"*****";
 }
 
 -(IBAction)unwindToProfile:(UIStoryboardSegue *)sender
