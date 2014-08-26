@@ -136,7 +136,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="OpP-re-Ifc" kind="modal" id="21P-6J-Kw4"/>
+                                    <segue destination="OpP-re-Ifc" kind="modal" identifier="toLogInSegue" id="21P-6J-Kw4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jm6-HU-9jj">
@@ -146,7 +146,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="x9K-5J-QDt" kind="modal" id="JKu-05-MBS"/>
+                                    <segue destination="x9K-5J-QDt" kind="modal" identifier="toSignUpSegue" id="JKu-05-MBS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -184,7 +184,7 @@
                                 <rect key="frame" x="20" y="233" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-gn-9QG">
                                 <rect key="frame" x="20" y="183" width="280" height="30"/>
@@ -303,7 +303,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="A5J-mU-mdJ" kind="unwind" unwindAction="unwindToRoot:" id="EZx-eT-bRu"/>
+                                    <segue destination="A5J-mU-mdJ" kind="unwind" unwindAction="unwindToRoot:" id="Pcw-6x-8ed"/>
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5R-m2-BZ5">
@@ -618,13 +618,13 @@
                                 <rect key="frame" x="36" y="175" width="248" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qPy-10-5c8">
                                 <rect key="frame" x="36" y="213" width="248" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xCP-pk-h5S">
                                 <rect key="frame" x="36" y="273" width="248" height="30"/>
@@ -949,8 +949,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="i4w-lO-VuI"/>
-        <segue reference="iG5-oe-701"/>
+        <segue reference="vii-Tr-Frz"/>
+        <segue reference="JKu-05-MBS"/>
         <segue reference="mkp-4O-B9X"/>
     </inferredMetricsTieBreakers>
 </document>

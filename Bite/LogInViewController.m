@@ -17,8 +17,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property BOOL performSegueToMenu;
 
-@property PFUser *user;
-@property NSArray *personArray;
 
 @end
 
@@ -28,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.performSegueToMenu = NO;
+    
     
 }
 
@@ -38,15 +38,7 @@
 
 - (IBAction)onLogInButtonPressed:(id)sender
 {
-//    for (PFUser *currentUser in self.personArray) {
-//        NSString *userName = currentUser[Username];
-//        NSString *password = currentUser[Password];
-//        
-//        if ([userName isEqualToString:self.usernameTextField.text] && [password isEqualToString:self.passwordTextField.text]) {
-//            self.user = currentUser;
-//            [self performSegueWithIdentifier:@"logInSegue" sender:self];
-//        }
-//    }
+
 
     NSString *username = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -58,15 +50,18 @@
     }
     else {
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
-            if (error) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:[error.userInfo objectForKey:@"error"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            if (user)
+            {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self performSegueWithIdentifier:@"logInSegue" sender:self];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[[error.userInfo objectForKey:@"error"] capitalizedString] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
             }
-            else {
-                [self performSegueWithIdentifier:@"logInSegue" sender:self];
-                NSLog(@"pass");
-            }
         }];
+
     }
 }
 

@@ -35,8 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.isSignIn = YES;
-    [self refreshDisplay];
+    self.performSegueToMenu = NO;
 
 
 }
@@ -48,60 +47,36 @@
 }
 
 
-- (void) refreshDisplay
-{
-    PFQuery *query = [PFQuery queryWithClassName:PersonClass];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"%@", [error userInfo]);
-        }
-        else {
-            self.personsArray = objects;
-        }
-    }];
-}
-
 #pragma mark - sign up
 - (void) signUp {
-    if (![self.usernameTextField.text isEqualToString:@""] && ![self.passwordTextField.text isEqualToString:@""] && ![self.usernameTextField.text isEqualToString:@""] && ![self.emailTextField.text isEqualToString:@""]) {
-        PFUser *user = [PFUser objectWithClassName:PersonClass];
-        user[Username] = self.usernameTextField.text;
-        user[Password] = self.passwordTextField.text;
-        user[FullName] = self.nameTextField.text;
-        user[Email] = self.emailTextField.text;
-        [self.passwordTextField resignFirstResponder];
 
-        BOOL taken = NO;
+    NSString *username = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *password = [self.passwordTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *email = [self.emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *fullName = self.nameTextField.text;
 
-        for (PFUser *newUser in self.personsArray) {
-            if ([newUser[Username] isEqualToString:user[Username]] || [newUser[Email] isEqualToString:user[Email]]) {
-                taken = YES;
-                UIAlertView *takeAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"The email and/or username is already taken" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [takeAlert show];
-                break;
+    if ([username length] == 0 || [password length] == 0 || [email length] == 0 || [fullName length] == 0) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter a valid username, password, and email address!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+
+    } else {
+
+        PFUser *newUser = [PFUser user];
+        newUser.username = username;
+        newUser.password = password;
+        newUser[FullName] = self.nameTextField.text;
+        newUser.email = email;
+
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:[error.userInfo objectForKey:@"error"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
             }
-
-        }
-
-        if (!taken) {
-            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (error)
-                {
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:[error.userInfo objectForKey:@"error"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    [alertView show];
-                    NSLog(@"%@", [error userInfo]);
-                }
-                else
-                {
-                    [self refreshDisplay];
-                }
-
-            }];
-        }
-    }
-    else {
-        UIAlertView *emptyTextFieldAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"One or more fields are missing" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [emptyTextFieldAlert show];
+            else {
+                self.performSegueToMenu = YES;
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
     }
     
 }
