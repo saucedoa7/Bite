@@ -52,7 +52,7 @@
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
             if (user)
             {
-                [self dismissViewControllerAnimated:YES completion:nil];
+//                [self dismissViewControllerAnimated:YES completion:nil];
                 [self performSegueWithIdentifier:@"logInSegue" sender:self];
             }
             else
