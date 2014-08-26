@@ -74,33 +74,12 @@
             }
             else {
                 self.performSegueToMenu = YES;
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self performSegueWithIdentifier:@"signUpSegue" sender:self];
+//                [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
     }
     
 }
-
-
-#pragma mark - segue
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if ([identifier isEqualToString:@"signUpSegue"])
-    {
-        if (self.performSegueToMenu)
-        {
-            return YES;
-        }
-        else
-        {
-            return NO;
-        }
-    }
-    else
-    {
-        return YES;
-    }
-}
-
 
 @end

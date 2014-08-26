@@ -7,6 +7,7 @@
 //
 
 #import "SearchRestaurantViewController.h"
+#import "LogInViewController.h"
 
 @interface SearchRestaurantViewController ()
 
@@ -14,19 +15,24 @@
 
 @implementation SearchRestaurantViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    LogInViewController *loginVC;
+    if (![PFUser currentUser])
+    {
+        [self presentViewController:loginVC animated:YES completion:^{
+        }];
+    }
+    else {
+    }
 }
 
 - (IBAction)unwindToSearch:(UIStoryboardSegue *)sender
