@@ -12,7 +12,7 @@
 #define Username @"username"
 #define Password @"password"
 
-@interface LogInViewController ()
+@interface LogInViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
@@ -25,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.passwordTextField.delegate = self;
     
 }
 
@@ -32,6 +33,13 @@
 {
     self.usernameTextField.text = nil;
     self.passwordTextField.text = nil;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.passwordTextField resignFirstResponder];
+    return YES;
+
 }
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)sender
