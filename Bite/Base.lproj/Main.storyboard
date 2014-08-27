@@ -47,6 +47,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xn4-4b-YKB"/>
+                    <connections>
+                        <outlet property="searchFriends" destination="k8h-8R-9Yg" id="KcR-KM-Fou"/>
+                        <outlet property="tableView" destination="Ygs-H0-63u" id="U6W-qG-Zpl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -405,6 +409,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="g4N-yg-n3J" id="tC7-lr-dAt"/>
+                                    <outlet property="delegate" destination="g4N-yg-n3J" id="gtk-nq-Tjw"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

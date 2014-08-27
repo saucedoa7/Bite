@@ -9,11 +9,13 @@
 #import "SearchRestaurantViewController.h"
 #import "LaunchPageViewController.h"
 #import "RestaurantSearchResultTableViewCell.h"
+#import "CheckInToTableViewController.h"
 
 @interface SearchRestaurantViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *restaurantSearchField;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *restaurantSearchResult;
+@property NSNumber *numberOfTables;
 
 @end
 
@@ -51,7 +53,6 @@
     cell.addressLabel.text = [restaurant objectForKey:@"restaurantAddress"];
     cell.contactNumberLabel.text = [restaurant objectForKey:@"phoneNumber"];
     return cell;
-
 }
 
 - (IBAction)onLogOutButtonPressed:(id)sender {
@@ -91,7 +92,14 @@
         id launchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LaunchPageViewController"];
         [self presentViewController:launchVC animated:NO completion:nil];
     }
+}
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    CheckInToTableViewController *checkInVC = segue.destinationViewController;
+    PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+
+    checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
 }
 
 @end
