@@ -106,7 +106,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="push" id="PYe-ry-XK7"/>
+                                    <segue destination="vXZ-lx-hvc" kind="push" identifier="viewFriendsSegue" id="PYe-ry-XK7"/>
                                 </connections>
                             </button>
                         </barButtonItem>

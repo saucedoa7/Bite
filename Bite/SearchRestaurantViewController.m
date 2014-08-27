@@ -28,8 +28,6 @@
 
 }
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.restaurantSearchResult.count;
