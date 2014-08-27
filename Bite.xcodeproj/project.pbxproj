@@ -180,6 +180,19 @@
 			name = "Log In/Sign Up";
 			sourceTree = "<group>";
 		};
+		E4330D9B19AE2E8F0099174B /* Search/Check In/Type Code */ = {
+			isa = PBXGroup;
+			children = (
+				E438358F19ABC81800AB2940 /* SearchRestaurantViewController.h */,
+				E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */,
+				E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */,
+				E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */,
+				E4943AC219ABCADE005D6758 /* TableCheckInCodeViewController.h */,
+				E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */,
+			);
+			name = "Search/Check In/Type Code";
+			sourceTree = "<group>";
+		};
 		E4DCCA1819ABC08300CE7E62 = {
 			isa = PBXGroup;
 			children = (
@@ -227,17 +240,14 @@
 			isa = PBXGroup;
 			children = (
 				E41F68AE19ABF00600D8A57C /* Log In/Sign Up */,
+				E4330D9B19AE2E8F0099174B /* Search/Check In/Type Code */,
 				E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */,
 				E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */,
 				E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */,
 				E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */,
-				E438358F19ABC81800AB2940 /* SearchRestaurantViewController.h */,
-				E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */,
-				E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */,
-				E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */,
-				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
 				50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */,
 				50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */,
+				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
 				E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */,
 				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
 				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
@@ -251,8 +261,6 @@
 				E4943ACF19ABCB8D005D6758 /* FoodDetailsViewController.m */,
 				E4943AC519ABCB06005D6758 /* GuestsAtTableViewController.h */,
 				E4943AC619ABCB06005D6758 /* GuestsAtTableViewController.m */,
-				E4943AC219ABCADE005D6758 /* TableCheckInCodeViewController.h */,
-				E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */,
 				E438359219ABCA2A00AB2940 /* InviteFriendsViewController.h */,
 				E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */,
 				E409994B19ABC750003CB4FF /* FriendsListViewController.h */,

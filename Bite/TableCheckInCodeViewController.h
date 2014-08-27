@@ -10,4 +10,6 @@
 
 @interface TableCheckInCodeViewController : LaunchViewController
 
+@property NSString *tableCode;
+
 @end

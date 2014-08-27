@@ -7,6 +7,7 @@
 //
 
 #import "CheckInToTableViewController.h"
+#import "TableCheckInCodeViewController.h"
 
 @interface CheckInToTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -37,6 +38,13 @@
 
     cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    TableCheckInCodeViewController *tableCheckInVC = segue.destinationViewController;
+    tableCheckInVC.tableCode = self.tableCode;
+    
 }
 
 
