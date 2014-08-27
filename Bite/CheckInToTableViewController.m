@@ -24,7 +24,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -35,8 +34,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", self.numberOfTables.intValue];
 
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
     return cell;
 }
 
