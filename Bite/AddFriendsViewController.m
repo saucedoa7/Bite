@@ -36,9 +36,6 @@ FriendsListViewController *friendList;
     friendList.friendUsername = cell.textLabel.text;
     NSLog(@"%@", friendList.friendUsername);
     return cell;
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 

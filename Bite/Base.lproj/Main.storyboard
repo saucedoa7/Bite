@@ -126,6 +126,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="friendTableView" destination="amq-Yg-LsT" id="mOG-J8-Xtl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zH5-qW-Ghl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
