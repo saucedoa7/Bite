@@ -9,41 +9,51 @@
 #import "TableCheckInCodeViewController.h"
 
 @interface TableCheckInCodeViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *codeTextField;
+@property BOOL performSegue;
 
 @end
 
 @implementation TableCheckInCodeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.performSegue = NO;
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)onNextButtonPressed:(id)sender {
+
+    if ([self.codeTextField.text length] == 0 || ![self.codeTextField.text isEqualToString: self.tableCode]) {
+        UIAlertView *inputCodeAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid code, please try again or use a different code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [inputCodeAlert show];
+    }
+    else {
+        self.performSegue = YES;
+
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([identifier isEqualToString:@"codeEnteredSegue"])
+    {
+        if (self.performSegue)
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    else
+    {
+        return YES;
+    }
+
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

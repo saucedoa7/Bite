@@ -99,6 +99,7 @@
         PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 
         checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
+        checkInVC.tableCode = [restaurant objectForKey:@"tableCode"];
     }
 
 }
