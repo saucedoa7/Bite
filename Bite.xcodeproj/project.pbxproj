@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */; };
 		E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E409994C19ABC750003CB4FF /* FriendsListViewController.m */; };
 		E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */; };
 		E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */; };
@@ -63,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsTableViewCell.h; sourceTree = "<group>"; };
+		50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewCell.m; sourceTree = "<group>"; };
 		E409994B19ABC750003CB4FF /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		E409994C19ABC750003CB4FF /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
 		E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantSearchResultTableViewCell.h; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */,
 				E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */,
 				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
+				50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */,
+				50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */,
 				E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */,
 				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
 				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
@@ -409,6 +414,7 @@
 				E4943AC719ABCB06005D6758 /* GuestsAtTableViewController.m in Sources */,
 				E4EDFA0019ABD3AB00F7E3DF /* CurrentBillViewController.m in Sources */,
 				E4943AC419ABCADE005D6758 /* TableCheckInCodeViewController.m in Sources */,
+				50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */,
 				E4DCCA3119ABC08300CE7E62 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

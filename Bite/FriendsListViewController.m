@@ -8,7 +8,7 @@
 
 #import "FriendsListViewController.h"
 
-@interface FriendsListViewController ()
+@interface FriendsListViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -27,6 +27,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
 }
 
 -(IBAction)unwindToFriendsList:(UIStoryboardSegue *)sender{

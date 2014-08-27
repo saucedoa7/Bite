@@ -7,8 +7,12 @@
 //
 
 #import "AddFriendsViewController.h"
+#import "AddFriendsTableViewCell.h"
 
-@interface AddFriendsViewController ()
+#define Username @"username"
+
+@interface AddFriendsViewController ()<UITableViewDataSource, UITableViewDelegate>
+@property NSMutableArray *friends;
 
 @end
 
@@ -27,6 +31,40 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    AddFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
+    PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
+
+    cell.textLabel.text = [friend objectForKey:Username];
+    return cell;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return  self.friends.count;
+}
+
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    self.friends = [NSMutableArray new];
+
+    PFQuery *restaurantQuery = [PFQuery queryWithClassName:@"Restaurant"];
+    [restaurantQuery whereKey:@"restaurantName" containsString:self.restaurantSearchField.text];
+    [restaurantQuery orderByAscending:@"restaurantName"];
+    [restaurantQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.friends = [objects mutableCopy];
+        [self.tableView reloadData];
+    }];
+    [self.restaurantSearchField resignFirstResponder];
+
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self.tableView reloadData];
 }
 
 -(IBAction)unwindToAddFriends:(UIStoryboardSegue*)sender

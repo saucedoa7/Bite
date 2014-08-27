@@ -54,14 +54,11 @@
 
 }
 
-
 - (IBAction)onLogOutButtonPressed:(id)sender {
     [PFUser logOut];
     [self showLaunchPageVC];
 
 }
-
-
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
