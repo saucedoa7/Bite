@@ -8,6 +8,7 @@
 
 #import "AddFriendsViewController.h"
 #import "AddFriendsTableViewCell.h"
+#import "FriendsListViewController.h"
 
 #define Username @"username"
 #define UserClass @"User"
@@ -19,7 +20,7 @@
 @end
 
 @implementation AddFriendsViewController
-
+FriendsListViewController *friendList;
 
 - (void)viewDidLoad
 {
@@ -31,7 +32,13 @@
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
 
     cell.textLabel.text = [friend objectForKey:Username];
+
+    friendList.friendUsername = cell.textLabel.text;
+    NSLog(@"%@", friendList.friendUsername);
     return cell;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 
@@ -45,7 +52,21 @@
 
     cell.textLabel.text = [friend objectForKey:Username];
 
-    NSLog(@"%@", cell.textLabel.text);
+    PFUser *currentUser = [PFUser currentUser];
+    PFRelation *friendsRelation = [currentUser relationForKey:@"friendsRelation"];
+    PFUser *user = [self.friends objectAtIndex:indexPath.row];
+    [friendsRelation addObject:user];
+    NSLog(@" did User %@", user.username);
+
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error.userInfo objectForKey:@"error"] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            [alertView show];
+        } else{
+
+        }
+    }];
+
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -58,7 +79,7 @@
     [findFriendQuery whereKey:Username containsString:self.searchFriends.text];
     [findFriendQuery orderByAscending:Username];
     [findFriendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"%@", objects);
+        NSLog(@"objects %@", objects);
         self.friends = [objects mutableCopy];
         [self.tableView reloadData];
     }];
@@ -78,10 +99,14 @@
     
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@""]) {
-        //as
-    }
-}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    if ([segue.identifier isEqualToString:@"viewFriendsSegue"]) {
+//
+//        FriendsListViewController *viewFriendsVC = segue.sourceViewController;
+//        PFUser *friend = [viewFriendsVC.usernames objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+//        viewFriendsVC.friendUsername = [friend objectForKey:@"username"];
+//        NSLog(@"didselect %@", friendList.friendUsername);
+//    }
+//}
 
 @end

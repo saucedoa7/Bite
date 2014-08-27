@@ -35,7 +35,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
     return cell;
 }
 

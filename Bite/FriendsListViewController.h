@@ -10,4 +10,7 @@
 
 @interface FriendsListViewController : LaunchViewController
 
+@property (nonatomic, copy) NSString *friendUsername;
+@property NSArray *usernames;
+
 @end
