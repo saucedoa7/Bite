@@ -29,13 +29,18 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.numberOfTables.intValue;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
+    int x;
+    for (x = 0; x < self.numberOfTables.intValue; x++) {
+        cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", x];
+    }
 
-    return nil;
+    return cell;
 }
 
 

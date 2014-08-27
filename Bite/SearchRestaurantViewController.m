@@ -55,12 +55,6 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
-
-
 - (IBAction)onLogOutButtonPressed:(id)sender {
     [PFUser logOut];
     [self showLaunchPageVC];
@@ -105,9 +99,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     CheckInToTableViewController *checkInVC = segue.destinationViewController;
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 
-
+    checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
 }
 
 @end
