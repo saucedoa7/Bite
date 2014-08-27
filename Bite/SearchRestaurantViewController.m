@@ -98,10 +98,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CheckInToTableViewController *checkInVC = segue.destinationViewController;
-    PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    if ([segue.identifier isEqualToString:@"checkInSegue"]) {
+        CheckInToTableViewController *checkInVC = segue.destinationViewController;
+        PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 
-    checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
+        checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
+    }
+
 }
 
 @end
