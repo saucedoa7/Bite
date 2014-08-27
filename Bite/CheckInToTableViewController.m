@@ -35,10 +35,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
-    int x;
-    for (x = 0; x < self.numberOfTables.intValue; x++) {
-        cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", x];
-    }
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", self.numberOfTables.intValue];
 
     return cell;
 }
