@@ -53,11 +53,16 @@ FriendsListViewController *friendList;
     PFRelation *friendsRelation = [currentUser relationForKey:@"friendsRelation"];
     PFUser *user = [self.friends objectAtIndex:indexPath.row];
     [friendsRelation addObject:user];
+
     NSLog(@" did User %@", user.username);
 
     [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error.userInfo objectForKey:@"error"] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:[error.userInfo objectForKey:@"error"]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:nil];
             [alertView show];
         } else{
 
@@ -75,6 +80,7 @@ FriendsListViewController *friendList;
 
     [findFriendQuery whereKey:Username containsString:self.searchFriends.text];
     [findFriendQuery orderByAscending:Username];
+
     [findFriendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSLog(@"objects %@", objects);
         self.friends = [objects mutableCopy];

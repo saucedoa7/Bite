@@ -41,41 +41,8 @@ FriendsListViewController *friendList;
     }];
 }
 
-/*-(void)viewWillAppear:(BOOL)animated{
-
-    self.relationOfFriends = [[PFUser currentUser]objectForKey:@"friendsRelation"];
-
-    PFQuery *query = [PFUser query];
-
-    [query orderByAscending:@"username"];
-
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-
-        if (error) {
-            NSLog(@"%@", [error userInfo]);
-        } else {
-            self.friends = objects;
-            PFQuery *queryForFriends = [[[PFUser currentUser] relationForKey:@"friendsRelation"] query];
-            [queryForFriends orderByAscending:@"username"];
-            [queryForFriends findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (error) {
-                    NSLog(@"%@", [error userInfo]);
-                } else {
-
-
-                }
-            }];
-        }
-
-        NSLog(@"objects %@", objects);
-        self.friends = [objects mutableCopy];
-        [self.friendTableView reloadData];
-    }];
-
-}*/
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return self.friends.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,7 +51,6 @@ FriendsListViewController *friendList;
 
     cell.textLabel.text = [friend objectForKey: @"username"];
     NSLog(@"%@", friend);
-    [tableView reloadData];
     return cell;
 
 }
