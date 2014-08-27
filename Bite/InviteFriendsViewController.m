@@ -8,20 +8,15 @@
 
 #import "InviteFriendsViewController.h"
 
-@interface InviteFriendsViewController ()
+@interface InviteFriendsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *friendTableView;
+@property NSArray *friends;
+@property PFRelation *relationOfFriends;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfGuestLabel;
 
 @end
 
 @implementation InviteFriendsViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -29,21 +24,41 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:YES];
+
+    PFQuery *queryForFriends = [[[PFUser currentUser] relationForKey:@"friendsRelation"] query];
+    [queryForFriends orderByAscending:@"username"];
+    [queryForFriends findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"%@", [error userInfo]);
+        } else {
+            self.friends = objects;
+            [self.friendTableView reloadData];
+            NSLog(@"username gf%@", self.friends);
+            NSString *test = [self.friends objectAtIndex:0];
+            NSLog(@"%@", test);
+        }
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.friends.count;
 }
-*/
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
+    PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
+
+    cell.textLabel.text = [friend objectForKey: @"username"];
+    NSLog(@"%@", friend);
+    return cell;
+}
+- (IBAction)onAddRemoveGuestButton:(UIStepper *)sender {
+}
+
+-(IBAction)unwindToInviteFrinds:(UIStoryboardSegue*)sender{
+
+}
 @end

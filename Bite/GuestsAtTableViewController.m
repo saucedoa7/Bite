@@ -9,6 +9,7 @@
 #import "GuestsAtTableViewController.h"
 
 @interface GuestsAtTableViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *guestAtTableView;
 
 @end
 

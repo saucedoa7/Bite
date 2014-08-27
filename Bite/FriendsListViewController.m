@@ -35,8 +35,6 @@ FriendsListViewController *friendList;
             self.friends = objects;
             [self.friendTableView reloadData];
             NSLog(@"username gf%@", self.friends);
-            NSString *test = [self.friends objectAtIndex:0];
-            NSLog(@"%@", test);
         }
     }];
 }
@@ -50,7 +48,6 @@ FriendsListViewController *friendList;
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
 
     cell.textLabel.text = [friend objectForKey: @"username"];
-    NSLog(@"%@", friend);
     return cell;
 
 }
