@@ -8,7 +8,7 @@
 
 #import "CheckInToTableViewController.h"
 
-@interface CheckInToTableViewController ()
+@interface CheckInToTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -19,6 +19,23 @@
 {
     [super viewDidLoad];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+}
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    return nil;
 }
 
 

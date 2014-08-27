@@ -9,6 +9,8 @@
 #import "AddFriendsViewController.h"
 
 @interface AddFriendsViewController ()
+@property (strong, nonatomic) IBOutlet UISearchBar *searchFriends;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

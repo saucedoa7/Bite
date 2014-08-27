@@ -10,4 +10,6 @@
 
 @interface CheckInToTableViewController : LaunchViewController
 
+@property NSNumber *numberOfTables;
+
 @end
