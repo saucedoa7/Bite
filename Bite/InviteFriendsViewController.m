@@ -37,8 +37,7 @@
             self.friends = objects;
             [self.friendTableView reloadData];
             NSLog(@"username gf%@", self.friends);
-            NSString *test = [self.friends objectAtIndex:0];
-            NSLog(@"%@", test);
+
         }
     }];
 }
