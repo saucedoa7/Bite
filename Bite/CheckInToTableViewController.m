@@ -36,8 +36,17 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+
+    self.tableNumber = cell.textLabel.text;
+    NSLog(@"%@", self.tableNumber);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -13,4 +13,6 @@
 @property NSNumber *numberOfTables;
 @property NSString *tableCode;
 
+@property NSString *tableNumber;
+
 @end
