@@ -30,6 +30,7 @@
     self.restaurantDetailArray = [NSMutableArray new];
 
     PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Food"];
+    [categoryQuery whereKey:@"restaurant" equalTo:@"K14KGXcEzH"];
     [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
             self.restaurantDetailArray = [objects mutableCopy];
@@ -55,7 +56,6 @@
 //        [self.menuCategory addObject:category];
 //    }
 //
-
     cell.courseName.text = self.menuCategory [indexPath.row];
 
     return cell;

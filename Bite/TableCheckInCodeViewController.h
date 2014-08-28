@@ -10,6 +10,6 @@
 
 @interface TableCheckInCodeViewController : LaunchViewController
 
-@property NSString *tableCode;
+@property PFObject *restaurantObject;
 
 @end

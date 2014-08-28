@@ -10,6 +10,8 @@
 #import "TableCheckInCodeViewController.h"
 
 @interface CheckInToTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@property NSNumber *numberOfTables;
+@property NSString *tableCode;
 
 @end
 
@@ -25,6 +27,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    self.numberOfTables = [self.restaurantObject objectForKey:@"numberOfTables"];
+
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -36,15 +40,16 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %li", indexPath.row + 1];
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     TableCheckInCodeViewController *tableCheckInVC = segue.destinationViewController;
-    tableCheckInVC.tableCode = self.tableCode;
-    
+//    tableCheckInVC.tableCode = self.tableCode;
+    tableCheckInVC.restaurantObject = self.restaurantObject;
+
 }
 
 

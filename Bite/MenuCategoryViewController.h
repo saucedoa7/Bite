@@ -10,5 +10,4 @@
 
 @interface MenuCategoryViewController : LaunchViewController
 
-
 @end

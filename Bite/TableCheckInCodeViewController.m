@@ -7,10 +7,14 @@
 //
 
 #import "TableCheckInCodeViewController.h"
+#import "MenuCategoryViewController.h"
 
 @interface TableCheckInCodeViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
 @property BOOL performSegue;
+
+@property NSString *tableCode;
+
 
 @end
 
@@ -21,6 +25,11 @@
     [super viewDidLoad];
     self.performSegue = NO;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.tableCode = [self.restaurantObject objectForKey:@"tableCode"];
 }
 
 - (IBAction)onNextButtonPressed:(id)sender {
@@ -52,6 +61,12 @@
     {
         return YES;
     }
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+
 
 }
 

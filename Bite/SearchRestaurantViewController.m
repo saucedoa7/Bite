@@ -98,8 +98,10 @@
         CheckInToTableViewController *checkInVC = segue.destinationViewController;
         PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 
-        checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
-        checkInVC.tableCode = [restaurant objectForKey:@"tableCode"];
+        checkInVC.restaurantObject = restaurant;
+        
+//        checkInVC.numberOfTables = [restaurant objectForKey:@"numberOfTables"];
+//        checkInVC.tableCode = [restaurant objectForKey:@"tableCode"];
     }
 
 }
