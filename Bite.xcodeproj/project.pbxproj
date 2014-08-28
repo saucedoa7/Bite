@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */; };
+		50E445F819AF809800183C88 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E445F719AF809800183C88 /* TabBarController.m */; };
 		E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E409994C19ABC750003CB4FF /* FriendsListViewController.m */; };
 		E4265CB019AE83F100C9D3CE /* MenuCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4265CAF19AE83F100C9D3CE /* MenuCategoryTableViewCell.m */; };
 		E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsTableViewCell.h; sourceTree = "<group>"; };
 		50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewCell.m; sourceTree = "<group>"; };
+		50E445F619AF809800183C88 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		50E445F719AF809800183C88 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		E409994B19ABC750003CB4FF /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		E409994C19ABC750003CB4FF /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
 		E4265CAE19AE83F100C9D3CE /* MenuCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCategoryTableViewCell.h; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */,
 				E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */,
 				E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */,
+				50E445F619AF809800183C88 /* TabBarController.h */,
+				50E445F719AF809800183C88 /* TabBarController.m */,
 				E4943AC219ABCADE005D6758 /* TableCheckInCodeViewController.h */,
 				E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */,
 			);
@@ -419,6 +424,7 @@
 				E4943ACD19ABCB69005D6758 /* CategoryListViewController.m in Sources */,
 				E4943AD019ABCB8D005D6758 /* FoodDetailsViewController.m in Sources */,
 				E4DCCA7C19ABC70300CE7E62 /* AddFriendsViewController.m in Sources */,
+				50E445F819AF809800183C88 /* TabBarController.m in Sources */,
 				E4DCCA7319ABC67C00CE7E62 /* LogInViewController.m in Sources */,
 				E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */,
 				E4DCCA7619ABC68C00CE7E62 /* SignUpViewController.m in Sources */,

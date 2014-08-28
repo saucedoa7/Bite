@@ -8,9 +8,11 @@
 
 #import "CheckInToTableViewController.h"
 #import "TableCheckInCodeViewController.h"
+#import "CurrentBillViewController.h"
+#import "TabBarController.h"
 
 @interface CheckInToTableViewController () <UITableViewDataSource, UITableViewDelegate>
-
+@property NSString *tableString;
 @end
 
 @implementation CheckInToTableViewController
@@ -45,12 +47,22 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
     cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
 
-    self.tableNumber = cell.textLabel.text;
-    NSLog(@"%@", self.tableNumber);
+    CurrentBillViewController *VCBill = [[CurrentBillViewController alloc] initWithNibName:@"CurrentBillViewController" bundle:nil];
+
+    VCBill.oneTableNumber = cell.textLabel.text;
+    self.tableString = VCBill.oneTableNumber;
+
+    NSLog(@"%@", VCBill.oneTableNumber);
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([[segue identifier] isEqualToString:@"codeEnteredSegue"]) {
+        TabBarController *VCBillPass = [segue destinationViewController];
+       // [VCBillPass ]
+    }
+
     TableCheckInCodeViewController *tableCheckInVC = segue.destinationViewController;
     tableCheckInVC.tableCode = self.tableCode;
     
