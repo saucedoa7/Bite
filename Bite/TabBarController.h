@@ -10,5 +10,6 @@
 
 @interface TabBarController : UITabBarController
 @property NSString *tableNumber;
+@property PFObject *restaurantObject;
 
 @end

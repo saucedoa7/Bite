@@ -7,7 +7,7 @@
 //
 
 #import "TableCheckInCodeViewController.h"
-#import "MenuCategoryViewController.h"
+#import "TabBarController.h"
 
 @interface TableCheckInCodeViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
@@ -66,7 +66,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-
+    TabBarController *tabVC = segue.destinationViewController;
+    tabVC.restaurantObject = self.restaurantObject;
 
 }
 

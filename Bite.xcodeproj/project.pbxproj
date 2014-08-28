@@ -206,10 +206,10 @@
 				E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */,
 				E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */,
 				E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */,
-				50E445F619AF809800183C88 /* TabBarController.h */,
-				50E445F719AF809800183C88 /* TabBarController.m */,
 				E4943AC219ABCADE005D6758 /* TableCheckInCodeViewController.h */,
 				E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */,
+				50E445F619AF809800183C88 /* TabBarController.h */,
+				50E445F719AF809800183C88 /* TabBarController.m */,
 			);
 			name = "Search/Check In/Type Code";
 			sourceTree = "<group>";
