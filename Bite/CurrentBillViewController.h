@@ -9,5 +9,6 @@
 #import "LaunchViewController.h"
 
 @interface CurrentBillViewController : LaunchViewController
+@property NSString *oneTableNumber;
 
 @end
