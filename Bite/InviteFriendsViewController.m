@@ -10,10 +10,13 @@
 
 @interface InviteFriendsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *friendTableView;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfGuestLabel;
+@property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
+@property NSMutableArray *selectedRows;
 @property NSArray *friends;
 @property PFRelation *relationOfFriends;
-@property (weak, nonatomic) IBOutlet UILabel *numberOfGuestLabel;
-
+@property double selectedGuestcounter;
+@property double stepperGuestcounter;
 @end
 
 @implementation InviteFriendsViewController
@@ -21,12 +24,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [NSMutableArray new];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
+
 
     PFQuery *queryForFriends = [[[PFUser currentUser] relationForKey:@"friendsRelation"] query];
     [queryForFriends orderByAscending:@"username"];
@@ -36,9 +40,6 @@
         } else {
             self.friends = objects;
             [self.friendTableView reloadData];
-            NSLog(@"username gf%@", self.friends);
-            NSString *test = [self.friends objectAtIndex:0];
-            NSLog(@"%@", test);
         }
     }];
 }
@@ -50,15 +51,36 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
-
     cell.textLabel.text = [friend objectForKey: @"username"];
-    NSLog(@"%@", friend);
     return cell;
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    UITableViewCell *cell = [self.friendTableView cellForRowAtIndexPath:indexPath];
+    if(![self.selectedRows containsObject:indexPath])
+    {
+        if (cell.accessoryType == UITableViewCellAccessoryNone) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            self.selectedGuestcounter++;
+
+        } else{
+            if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                self.selectedGuestcounter--;
+        }
+
+    }
+
+    self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+}
+}
 - (IBAction)onAddRemoveGuestButton:(UIStepper *)sender {
+    self.stepperGuestcounter = [sender value];
+    self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
 }
 
 -(IBAction)unwindToInviteFrinds:(UIStoryboardSegue*)sender{
-
+    
 }
 @end
