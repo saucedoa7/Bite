@@ -69,8 +69,8 @@
 		50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewCell.m; sourceTree = "<group>"; };
 		E409994B19ABC750003CB4FF /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		E409994C19ABC750003CB4FF /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
-		E4265CAE19AE83F100C9D3CE /* MenuCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuCategoryTableViewCell.h; path = Bite/MenuCategoryTableViewCell.h; sourceTree = "<group>"; };
-		E4265CAF19AE83F100C9D3CE /* MenuCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuCategoryTableViewCell.m; path = Bite/MenuCategoryTableViewCell.m; sourceTree = "<group>"; };
+		E4265CAE19AE83F100C9D3CE /* MenuCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCategoryTableViewCell.h; sourceTree = "<group>"; };
+		E4265CAF19AE83F100C9D3CE /* MenuCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCategoryTableViewCell.m; sourceTree = "<group>"; };
 		E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantSearchResultTableViewCell.h; sourceTree = "<group>"; };
 		E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantSearchResultTableViewCell.m; sourceTree = "<group>"; };
 		E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchPageViewController.h; sourceTree = "<group>"; };
@@ -101,8 +101,8 @@
 		E4DCCA2E19ABC08300CE7E62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E4DCCA3019ABC08300CE7E62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4DCCA3219ABC08300CE7E62 /* Bite-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bite-Prefix.pch"; sourceTree = "<group>"; };
-		E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Bite/AppDelegate.h; sourceTree = "<group>"; };
+		E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Bite/AppDelegate.m; sourceTree = "<group>"; };
 		E4DCCA3719ABC08300CE7E62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4DCCA3919ABC08300CE7E62 /* LaunchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
 		E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
@@ -183,6 +183,19 @@
 			name = "Log In/Sign Up";
 			sourceTree = "<group>";
 		};
+		E4265CB119AEAB5300C9D3CE /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */,
+				50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */,
+				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
+				E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */,
+				E4265CAE19AE83F100C9D3CE /* MenuCategoryTableViewCell.h */,
+				E4265CAF19AE83F100C9D3CE /* MenuCategoryTableViewCell.m */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		E4330D9B19AE2E8F0099174B /* Search/Check In/Type Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,9 +212,9 @@
 		E4DCCA1819ABC08300CE7E62 = {
 			isa = PBXGroup;
 			children = (
+				E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */,
+				E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */,
 				E4DCCA3619ABC08300CE7E62 /* Main.storyboard */,
-				E4265CAE19AE83F100C9D3CE /* MenuCategoryTableViewCell.h */,
-				E4265CAF19AE83F100C9D3CE /* MenuCategoryTableViewCell.m */,
 				E4DCCA2A19ABC08300CE7E62 /* Bite */,
 				E4DCCA4919ABC08300CE7E62 /* BiteTests */,
 				E4DCCA2319ABC08300CE7E62 /* Frameworks */,
@@ -244,22 +257,17 @@
 		E4DCCA2A19ABC08300CE7E62 /* Bite */ = {
 			isa = PBXGroup;
 			children = (
+				E4265CB119AEAB5300C9D3CE /* Custom Cells */,
 				E41F68AE19ABF00600D8A57C /* Log In/Sign Up */,
 				E4330D9B19AE2E8F0099174B /* Search/Check In/Type Code */,
-				E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */,
-				E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */,
+				E4943AC819ABCB5A005D6758 /* MenuCategoryViewController.h */,
+				E4943AC919ABCB5A005D6758 /* MenuCategoryViewController.m */,
 				E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */,
 				E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */,
-				50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */,
-				50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */,
-				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
-				E4308B4319ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m */,
 				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
 				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
 				E4EDF9FE19ABD3AB00F7E3DF /* CurrentBillViewController.h */,
 				E4EDF9FF19ABD3AB00F7E3DF /* CurrentBillViewController.m */,
-				E4943AC819ABCB5A005D6758 /* MenuCategoryViewController.h */,
-				E4943AC919ABCB5A005D6758 /* MenuCategoryViewController.m */,
 				E4943ACB19ABCB69005D6758 /* CategoryListViewController.h */,
 				E4943ACC19ABCB69005D6758 /* CategoryListViewController.m */,
 				E4943ACE19ABCB8D005D6758 /* FoodDetailsViewController.h */,
