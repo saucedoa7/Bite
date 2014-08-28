@@ -12,6 +12,7 @@
 @interface CurrentBillViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (weak, nonatomic) IBOutlet UITableView *billTableView;
 
 @end
 

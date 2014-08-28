@@ -1027,6 +1027,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="My Bill" id="eWa-yc-C9y"/>
                     <connections>
+                        <outlet property="billTableView" destination="CXD-BL-9NP" id="9cq-7g-Nza"/>
                         <outlet property="tableLabel" destination="cod-T0-FCf" id="Rpk-OE-zFW"/>
                         <outlet property="totalPriceLabel" destination="au9-kO-guH" id="npv-bH-dsC"/>
                     </connections>
