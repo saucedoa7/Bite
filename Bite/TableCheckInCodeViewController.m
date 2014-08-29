@@ -68,7 +68,11 @@
 {
     TabBarController *tabVC = segue.destinationViewController;
     tabVC.restaurantObject = self.restaurantObject;
+    tabVC.tableNumber = self.tableNumber;
+    NSLog(@"self.tablecheckin %d", self.tableNumber);
+    NSLog(@"tabVC.tablecheckin %d", self.tableNumber);
 
+    
 }
 
 

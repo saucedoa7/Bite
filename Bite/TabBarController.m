@@ -8,6 +8,7 @@
 
 #import "TabBarController.h"
 #import "MenuCategoryViewController.h"
+#import "CurrentBillViewController.h"
 
 @interface TabBarController ()
 
@@ -29,6 +30,9 @@
     [super viewWillAppear:animated];
     MenuCategoryViewController *categoryVC = self.viewControllers[1];
     categoryVC.resaurantObject = self.restaurantObject;
+
+        CurrentBillViewController *currentBillVC = self.viewControllers[2];
+        currentBillVC.tableNumber = self.tableNumber;
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {

@@ -11,5 +11,6 @@
 @interface TableCheckInCodeViewController : LaunchViewController
 
 @property PFObject *restaurantObject;
+@property int tableNumber;
 
 @end

@@ -23,8 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  self.tableLabel.text = self.oneTableNumber;
-    NSLog(@"tableLabel %@", self.tableLabel.text);
 }
 
 - (IBAction)onPaidButton:(id)sender {
@@ -32,6 +30,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    NSString *tableNumberString  = [NSString stringWithFormat:@"T:%d", self.tableNumber];
+    self.tableLabel.text = tableNumberString;
+    NSLog(@"tableLabel %@", self.tableLabel.text);
 }
 
 

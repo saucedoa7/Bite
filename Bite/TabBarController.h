@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TabBarController : UITabBarController
-@property NSString *tableNumber;
+@property int tableNumber;
 @property PFObject *restaurantObject;
 
 @end

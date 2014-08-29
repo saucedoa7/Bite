@@ -10,5 +10,6 @@
 
 @interface CurrentBillViewController : LaunchViewController
 @property NSString *oneTableNumber;
+@property int tableNumber;
 
 @end
