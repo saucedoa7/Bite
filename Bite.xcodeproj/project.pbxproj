@@ -262,31 +262,15 @@
 		E4DCCA2A19ABC08300CE7E62 /* Bite */ = {
 			isa = PBXGroup;
 			children = (
+				E4F6127619AFBB6500F0540E /* Profile/Friends */,
 				E4265CB119AEAB5300C9D3CE /* Custom Cells */,
 				E41F68AE19ABF00600D8A57C /* Log In/Sign Up */,
 				E4330D9B19AE2E8F0099174B /* Search/Check In/Type Code */,
-				E4943AC819ABCB5A005D6758 /* MenuCategoryViewController.h */,
-				E4943AC919ABCB5A005D6758 /* MenuCategoryViewController.m */,
-				E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */,
-				E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */,
-				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
-				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
-				E4EDF9FE19ABD3AB00F7E3DF /* CurrentBillViewController.h */,
-				E4EDF9FF19ABD3AB00F7E3DF /* CurrentBillViewController.m */,
-				E4943ACB19ABCB69005D6758 /* CategoryListViewController.h */,
-				E4943ACC19ABCB69005D6758 /* CategoryListViewController.m */,
-				E4943ACE19ABCB8D005D6758 /* FoodDetailsViewController.h */,
-				E4943ACF19ABCB8D005D6758 /* FoodDetailsViewController.m */,
+				E4F6127719AFBBA400F0540E /* Menu Categories & Items */,
 				E4943AC519ABCB06005D6758 /* GuestsAtTableViewController.h */,
 				E4943AC619ABCB06005D6758 /* GuestsAtTableViewController.m */,
-				E438359219ABCA2A00AB2940 /* InviteFriendsViewController.h */,
-				E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */,
-				E409994B19ABC750003CB4FF /* FriendsListViewController.h */,
-				E409994C19ABC750003CB4FF /* FriendsListViewController.m */,
-				E4DCCA7A19ABC70300CE7E62 /* AddFriendsViewController.h */,
-				E4DCCA7B19ABC70300CE7E62 /* AddFriendsViewController.m */,
-				E4DCCA7719ABC6A700CE7E62 /* UserProfileViewController.h */,
-				E4DCCA7819ABC6A700CE7E62 /* UserProfileViewController.m */,
+				E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */,
+				E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */,
 				E4DCCA3919ABC08300CE7E62 /* LaunchViewController.h */,
 				E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */,
 				E4DCCA3C19ABC08300CE7E62 /* Images.xcassets */,
@@ -322,6 +306,38 @@
 				E4DCCA4C19ABC08300CE7E62 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E4F6127619AFBB6500F0540E /* Profile/Friends */ = {
+			isa = PBXGroup;
+			children = (
+				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
+				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
+				E438359219ABCA2A00AB2940 /* InviteFriendsViewController.h */,
+				E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */,
+				E409994B19ABC750003CB4FF /* FriendsListViewController.h */,
+				E409994C19ABC750003CB4FF /* FriendsListViewController.m */,
+				E4DCCA7A19ABC70300CE7E62 /* AddFriendsViewController.h */,
+				E4DCCA7B19ABC70300CE7E62 /* AddFriendsViewController.m */,
+				E4DCCA7719ABC6A700CE7E62 /* UserProfileViewController.h */,
+				E4DCCA7819ABC6A700CE7E62 /* UserProfileViewController.m */,
+			);
+			name = Profile/Friends;
+			sourceTree = "<group>";
+		};
+		E4F6127719AFBBA400F0540E /* Menu Categories & Items */ = {
+			isa = PBXGroup;
+			children = (
+				E4943AC819ABCB5A005D6758 /* MenuCategoryViewController.h */,
+				E4943AC919ABCB5A005D6758 /* MenuCategoryViewController.m */,
+				E4943ACB19ABCB69005D6758 /* CategoryListViewController.h */,
+				E4943ACC19ABCB69005D6758 /* CategoryListViewController.m */,
+				E4943ACE19ABCB8D005D6758 /* FoodDetailsViewController.h */,
+				E4943ACF19ABCB8D005D6758 /* FoodDetailsViewController.m */,
+				E4EDF9FE19ABD3AB00F7E3DF /* CurrentBillViewController.h */,
+				E4EDF9FF19ABD3AB00F7E3DF /* CurrentBillViewController.m */,
+			);
+			name = "Menu Categories & Items";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -9,41 +9,32 @@
 #import "FoodDetailsViewController.h"
 
 @interface FoodDetailsViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
+@property (strong, nonatomic) IBOutlet UITextView *itemDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *itemPriceLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *itemImage;
 
 @end
 
 @implementation FoodDetailsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.itemNameLabel.text = self.itemName;
+    self.itemDescriptionLabel.text = self.itemDescription;
+
+    PFFile *foodImageFile = self.foodImage;
+    [foodImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        if (!error) {
+            self.itemImage.image = [UIImage imageWithData:imageData];
+        }
+    }];
+
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

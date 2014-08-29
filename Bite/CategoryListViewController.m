@@ -7,8 +7,12 @@
 //
 
 #import "CategoryListViewController.h"
+#import "FoodDetailsViewController.h"
 
 @interface CategoryListViewController () <UITableViewDataSource, UITableViewDelegate>
+@property NSMutableArray *categoryList;
+@property NSArray *foodItems;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -18,17 +22,52 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.categoryList = [NSMutableArray new];
+    PFQuery *foodListQuery = [PFQuery queryWithClassName:@"Food"];
+    [foodListQuery whereKey:@"category" equalTo:self.categorySelected];
+    [foodListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"%@", objects);
+        self.categoryList = [objects mutableCopy];
+        self.foodItems = [self.categoryList valueForKey:@"foodItem"];
+        [self.tableView reloadData];
+
+    }];
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
+    cell.textLabel.text = self.foodItems [indexPath.row];
+
+    return cell;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.foodItems.count;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PFObject *object = [self.categoryList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    FoodDetailsViewController *foodDetailVC = segue.destinationViewController;
+    foodDetailVC.itemName = [object objectForKey:@"foodItem"];
+    foodDetailVC.itemDescription = [object objectForKey:@"itemDescription"];
+    foodDetailVC.itemPrice = [object objectForKey:@"price"];
+    foodDetailVC.foodImage = [object objectForKey:@"foodImage"];
+
 }
 
 

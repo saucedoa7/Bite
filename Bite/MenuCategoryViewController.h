@@ -7,7 +7,9 @@
 //
 
 #import "LaunchViewController.h"
+#import "MenuCategoryViewController.h"
 
 @interface MenuCategoryViewController : LaunchViewController
+@property PFObject *resaurantObject;
 
 @end

@@ -24,7 +24,12 @@
     // Do any additional setup after loading the view.
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    MenuCategoryViewController *categoryVC = self.viewControllers[1];
+    categoryVC.resaurantObject = self.restaurantObject;
+}
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     // If selected tab is 2
@@ -39,6 +44,10 @@
 //    MenuCategoryViewController *categoryVC = segue.destinationViewController;
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+
+    MenuCategoryViewController *menuVC = segue.destinationViewController;
+    menuVC.resaurantObject = self.restaurantObject;
+    NSLog(@"asdfaf::: %@", menuVC.resaurantObject);
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MenuCategoryViewController.h"
 #import "MenuCategoryTableViewCell.h"
+#import "CategoryListViewController.h"
 
 @interface MenuCategoryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property NSMutableArray *restaurantDetailArray;
@@ -29,8 +30,9 @@
     [super viewWillAppear:YES];
     self.restaurantDetailArray = [NSMutableArray new];
 
+
     PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Food"];
-    [categoryQuery whereKey:@"restaurant" equalTo:@"K14KGXcEzH"];
+    [categoryQuery whereKey:@"restaurant" equalTo:self.resaurantObject];
     [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
             self.restaurantDetailArray = [objects mutableCopy];
@@ -51,11 +53,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MenuCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCategoryCellID"];
-//    PFObject *restaurant = [self.restaurantDetailArray objectAtIndex:indexPath.row];
-//    for (NSString *category in [restaurant objectForKey:@"category"]) {
-//        [self.menuCategory addObject:category];
-//    }
-//
     cell.courseName.text = self.menuCategory [indexPath.row];
 
     return cell;
@@ -63,7 +60,13 @@
 
 -(IBAction)unwindToMenuCatagory:(UIStoryboardSegue*)sender
 {
-
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    CategoryListViewController *categoryVC = segue.destinationViewController;
+    categoryVC.categorySelected = [self.menuCategory objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+
+
+}
 @end
