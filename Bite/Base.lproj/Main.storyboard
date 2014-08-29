@@ -482,7 +482,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="xcE-kH-bHH" kind="push" id="KX3-r6-QWu"/>
+                                            <segue destination="xcE-kH-bHH" kind="push" identifier="tableCheckInSegue" id="KX3-r6-QWu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

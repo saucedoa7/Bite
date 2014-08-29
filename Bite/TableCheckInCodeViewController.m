@@ -29,6 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
     self.tableCode = [self.restaurantObject objectForKey:@"tableCode"];
 }
 
@@ -68,10 +69,8 @@
 {
     TabBarController *tabVC = segue.destinationViewController;
     tabVC.restaurantObject = self.restaurantObject;
-    tabVC.tableNumber = self.tableNumber;
-    NSLog(@"self.tablecheckin %d", self.tableNumber);
-    NSLog(@"tabVC.tablecheckin %d", self.tableNumber);
-
+//    tabVC.tableNumber = self.tableNumber;
+    NSLog(@"NEXT VC TABLE: %d", self.tableNumber);
     
 }
 

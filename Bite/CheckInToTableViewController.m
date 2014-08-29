@@ -15,6 +15,8 @@
 @property NSNumber *numberOfTables;
 @property (weak, nonatomic) IBOutlet UITableView *checkInTableView;
 @property NSString *tableCode;
+@property int tableNumber;
+
 @end
 
 @implementation CheckInToTableViewController
@@ -39,7 +41,6 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
     cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
-    self.tableNumber = indexPath.row +1;
     NSLog(@"cell for row %d", self.tableNumber);
     return cell;
 }
@@ -47,11 +48,24 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.tableNumber = indexPath.row +1;
+    NSLog(@"did select  %d", self.tableNumber);
+    [self performSegueWithIdentifier:@"tableCheckInSegue" sender:self];
+
 }
+
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    self.tableNumber = indexPath.row +1;
+//    return indexPath.row;
+//
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     TableCheckInCodeViewController *tableCheckInVC = segue.destinationViewController;
+    int index = [self.checkInTableView indexPathForSelectedRow].row;
+    tableCheckInVC.tableNumber = index;
     tableCheckInVC.restaurantObject = self.restaurantObject;
     tableCheckInVC.tableNumber = self.tableNumber;
     NSLog(@"tableCheckinVC %d", tableCheckInVC.tableNumber);
@@ -62,8 +76,6 @@
     NSLog(@"SENDER %@", sender);
 
     //assign that indexpath.row +1 to self.tablenumber
-
-    
 
     //    TableCheckInCodeViewController *tableCheckInVCC = [[TableCheckInCodeViewController alloc] initWithNibName:@"TableCheckInCodeViewController" bundle:nil];
     //    tableCheckInVCC.tableNumber = self.tableNumber;
