@@ -25,6 +25,7 @@
     [super viewDidLoad];
     self.itemNameLabel.text = self.itemName;
     self.itemDescriptionLabel.text = self.itemDescription;
+    self.itemPriceLabel.text = [NSString stringWithFormat:@"$%@.00", self.itemPrice];
 
     PFFile *foodImageFile = self.foodImage;
     [foodImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
