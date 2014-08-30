@@ -50,8 +50,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.tableNumber = indexPath.row +1;
     NSLog(@"did select  %d", self.tableNumber);
-    [self performSegueWithIdentifier:@"tableCheckInSegue" sender:self];
-
 }
 
 //- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
