@@ -40,7 +40,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
     NSLog(@"cell for row %d", self.tableNumber);
     return cell;
 }

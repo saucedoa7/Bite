@@ -9,9 +9,6 @@
 #import "LaunchViewController.h"
 
 @interface FoodDetailsViewController : LaunchViewController
-@property NSString *itemName;
-@property NSString *itemDescription;
-@property NSNumber *itemPrice;
-@property PFFile *foodImage;
+@property PFObject *foodItemSelected;
 
 @end
