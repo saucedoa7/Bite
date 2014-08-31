@@ -7,9 +7,12 @@
 //
 
 #import "LaunchViewController.h"
+#import "CurrentBillViewController.h"
 
 @interface CurrentBillViewController : LaunchViewController
 @property NSString *oneTableNumber;
 @property int tableNumber;
+@property PFObject *resaurantObject;
+
 
 @end

@@ -19,7 +19,6 @@
 
 @implementation MenuCategoryViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,7 +28,6 @@
 {
     [super viewWillAppear:YES];
     self.restaurantDetailArray = [NSMutableArray new];
-
 
     PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Food"];
     [categoryQuery whereKey:@"restaurant" equalTo:self.resaurantObject];
@@ -41,8 +39,6 @@
         }
 
     }];
-
-
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,7 +50,6 @@
 {
     MenuCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCategoryCellID"];
     cell.courseName.text = self.menuCategory [indexPath.row];
-
     return cell;
 }
 
@@ -66,7 +61,5 @@
 {
     CategoryListViewController *categoryVC = segue.destinationViewController;
     categoryVC.categorySelected = [self.menuCategory objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-
-
 }
 @end
