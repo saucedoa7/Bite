@@ -9,7 +9,7 @@
 #import "CurrentBillViewController.h"
 #import "CheckInToTableViewController.h"
 
-@interface CurrentBillViewController ()
+@interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (weak, nonatomic) IBOutlet UITableView *billTableView;
@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *currentBillTable;
 @property NSMutableArray *restaurantNames;
 @property NSString *nameOfRest;
+@property NSMutableArray *tableBill;
+
 @end
 
 
@@ -38,6 +40,17 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 
+    NSString *tableNumberString  = [NSString stringWithFormat:@"T:%d", self.tableNumber];
+    self.tableLabel.text = tableNumberString;
+    NSLog(@"tableLabel %@", self.tableLabel.text);
+
+    self.tableBill = [NSMutableArray new];
+    PFQuery *query = [PFQuery queryWithClassName:@"Table"];
+    [query whereKey:@"tableNumber" equalTo:@"2"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.tableBill = [objects mutableCopy];
+    }];
+
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
     [restaurantNameQuery whereKey:@"restaurantPointer" equalTo:self.resaurantObject];
     [restaurantNameQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -49,4 +62,16 @@
         }
     }];
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+
 @end

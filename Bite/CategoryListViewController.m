@@ -31,7 +31,6 @@
     PFQuery *foodListQuery = [PFQuery queryWithClassName:@"Food"];
     [foodListQuery whereKey:@"category" equalTo:self.categorySelected];
     [foodListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"%@", objects);
         self.categoryList = [objects mutableCopy];
         self.foodItems = [self.categoryList valueForKey:@"foodItem"];
         [self.tableView reloadData];
@@ -63,10 +62,8 @@
 {
     PFObject *object = [self.categoryList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     FoodDetailsViewController *foodDetailVC = segue.destinationViewController;
-    foodDetailVC.itemName = [object objectForKey:@"foodItem"];
-    foodDetailVC.itemDescription = [object objectForKey:@"itemDescription"];
-    foodDetailVC.itemPrice = [object objectForKey:@"price"];
-    foodDetailVC.foodImage = [object objectForKey:@"foodImage"];
+    foodDetailVC.foodItemSelected = object;
+
 
 }
 
