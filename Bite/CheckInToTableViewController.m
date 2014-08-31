@@ -41,42 +41,18 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
     cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
-    NSLog(@"cell for row %d", self.tableNumber);
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.tableNumber = indexPath.row +1;
-    NSLog(@"did select  %d", self.tableNumber);
-}
-
-//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    self.tableNumber = indexPath.row +1;
-//    return indexPath.row;
-//
-//}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
 {
     TableCheckInCodeViewController *tableCheckInVC = segue.destinationViewController;
-    int index = [self.checkInTableView indexPathForSelectedRow].row;
+    int index = [self.checkInTableView indexPathForSelectedRow].row + 1;
     tableCheckInVC.tableNumber = index;
     tableCheckInVC.restaurantObject = self.restaurantObject;
-    tableCheckInVC.tableNumber = self.tableNumber;
-    NSLog(@"tableCheckinVC %d", tableCheckInVC.tableNumber);
-
-    //Grab the indexpath of sender, by asking the self.tableview
 
     [self.checkInTableView indexPathForCell:sender];
-    NSLog(@"SENDER %@", sender);
 
-    //assign that indexpath.row +1 to self.tablenumber
-
-    //    TableCheckInCodeViewController *tableCheckInVCC = [[TableCheckInCodeViewController alloc] initWithNibName:@"TableCheckInCodeViewController" bundle:nil];
-    //    tableCheckInVCC.tableNumber = self.tableNumber;
 }
 
 @end

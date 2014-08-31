@@ -33,6 +33,7 @@
 
     CurrentBillViewController *currentBillVC = self.viewControllers[2];
     currentBillVC.tableNumber = self.tableNumber;
+    currentBillVC.resaurantObject = self.restaurantObject;
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
@@ -45,13 +46,16 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+
 //    MenuCategoryViewController *categoryVC = segue.destinationViewController;
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 
     MenuCategoryViewController *menuVC = segue.destinationViewController;
     menuVC.resaurantObject = self.restaurantObject;
-    NSLog(@"asdfaf::: %@", menuVC.resaurantObject);
+
+    CurrentBillViewController *currentBillVC = segue.destinationViewController;
+    currentBillVC.resaurantObject = self.restaurantObject;
 }
 
 @end

@@ -36,7 +36,10 @@
 - (IBAction)onNextButtonPressed:(id)sender {
 
     if ([self.codeTextField.text length] == 0 || ![self.codeTextField.text isEqualToString: self.tableCode]) {
-        UIAlertView *inputCodeAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid code, please try again or use a different code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *inputCodeAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:@"Invalid code, please try again or use a different code"
+                                                                delegate:self cancelButtonTitle:@"OK"
+                                                       otherButtonTitles: nil];
         [inputCodeAlert show];
     }
     else {
@@ -69,10 +72,8 @@
 {
     TabBarController *tabVC = segue.destinationViewController;
     tabVC.restaurantObject = self.restaurantObject;
-//    tabVC.tableNumber = self.tableNumber;
-    NSLog(@"NEXT VC TABLE: %d", self.tableNumber);
+    tabVC.tableNumber = self.tableNumber;
     
 }
-
 
 @end
