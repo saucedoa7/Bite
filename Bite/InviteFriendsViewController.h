@@ -9,5 +9,6 @@
 #import "LaunchViewController.h"
 
 @interface InviteFriendsViewController : LaunchViewController
+@property NSMutableArray *listOfFriends;
 
 @end

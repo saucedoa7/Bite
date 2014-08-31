@@ -7,6 +7,7 @@
 //
 
 #import "InviteFriendsViewController.h"
+#import "CurrentBillViewController.h"
 
 @interface InviteFriendsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *friendTableView;
@@ -24,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [NSMutableArray new];
+    self.listOfFriends = [NSMutableArray new];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -62,18 +63,23 @@
     {
         if (cell.accessoryType == UITableViewCellAccessoryNone) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [self.listOfFriends addObject:cell.textLabel.text];
+
             self.selectedGuestcounter++;
 
         } else{
             if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
                 cell.accessoryType = UITableViewCellAccessoryNone;
+                [self.listOfFriends removeObject:cell.textLabel.text];
+
                 self.selectedGuestcounter--;
+            }
         }
+        //12347890
+        NSLog(@"List of Friends from Array %@", self.listOfFriends);
 
+        self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
     }
-
-    self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
-}
 }
 - (IBAction)onAddRemoveGuestButton:(UIStepper *)sender {
     self.stepperGuestcounter = [sender value];
