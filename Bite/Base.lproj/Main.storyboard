@@ -494,7 +494,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Nhc-p5-wpR"/>
+                    <navigationItem key="navigationItem" id="Nhc-p5-wpR">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="VYH-3R-nJY">
+                            <connections>
+                                <action selector="onEditButton:" destination="g4N-yg-n3J" id="nrp-nb-PGU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="checkInTableView" destination="sS7-jr-iOQ" id="Tf8-ux-bte"/>
                     </connections>
@@ -1046,10 +1052,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ou-fj-Zex">
+                                <rect key="frame" x="270" y="66" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onEditButton:" destination="Ufq-KR-aF5" eventType="touchUpInside" id="ZQW-4N-WU3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Bill" id="eWa-yc-C9y"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="billTableView" destination="CXD-BL-9NP" id="9cq-7g-Nza"/>
                         <outlet property="currentBillTable" destination="CXD-BL-9NP" id="RHc-hV-q8I"/>
