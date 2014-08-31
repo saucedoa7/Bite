@@ -18,6 +18,7 @@
 @property NSMutableArray *restaurantNames;
 @property NSString *nameOfRest;
 @property NSMutableArray *tableBill;
+@property NSMutableArray* sectionsArray;
 
 @end
 
@@ -37,8 +38,18 @@
 - (IBAction)onPaidButton:(id)sender {
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+
+    self.sectionsArray = [NSMutableArray new];
+    [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %d", self.sectionsArray.count + 1]];
+
+#pragma mark CheckinTableView Data
+
+    [[self billTableView] setDelegate:self];
+    [[self billTableView] setDataSource:self];
+    [[self billTableView] reloadData];
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table :%d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
@@ -70,8 +81,61 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+
+    //Change Cell ID!!!!
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
+
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];
+    }
+
+    return cell;
 }
 
+
+#pragma mark Drag Cells
+
+//Drag Cells 1
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+//Drag Cells 2
+- (IBAction)onEditButton:(UIButton *)sender {
+    if(self.editing)
+    {
+        [super setEditing:NO animated:NO];
+        [self.currentBillTable setEditing:NO animated:NO];
+        [self.currentBillTable reloadData];
+        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
+    }
+    else
+    {
+        [super setEditing:YES animated:YES];
+        [self.currentBillTable setEditing:YES animated:YES];
+        [self.currentBillTable reloadData];
+        [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
+        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
+    }
+}
+
+#pragma mark Add Section
+
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [self.sectionsArray count];
+}
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [self.sectionsArray objectAtIndex:section];
+}
+
+#pragma mark Remove delete button
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleNone;
+}
 
 @end
