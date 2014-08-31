@@ -37,7 +37,6 @@
 
     self.tableBill = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Table"];
-    [query whereKey:@"tableNumber" equalTo:@"2"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
     }];
