@@ -19,6 +19,7 @@
 @property NSMutableArray *restaurantNames;
 @property NSString *nameOfRest;
 @property NSMutableArray *tableBill;
+@property NSNumber *tableNumberIntVal;
 @property NSMutableArray* sectionsArray;
 @end
 
@@ -34,6 +35,8 @@
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
+    self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
+
 }
 
 - (IBAction)onPaidButton:(id)sender {
@@ -65,9 +68,11 @@
 
     self.tableBill = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Table"];
-    [query whereKey:@"tableNumber" equalTo:@"2"];
+    [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
+//        PFQuery *queryClass = [PFQuery queryWithClassName:@"Food"];
+//        [queryClass whereKey:@"itemsOrdered" equalTo:[PFObject objectWithClassName:@"Food"]];
     }];
 
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
@@ -84,15 +89,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.tableBill.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
-
     cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
