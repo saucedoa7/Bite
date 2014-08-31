@@ -872,6 +872,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="onAddGuestButton:" destination="NcF-jY-qoq" eventType="touchUpInside" id="RbC-UE-8BU"/>
                                     <segue destination="aDb-BZ-Z8T" kind="modal" id="C22-N4-XeZ"/>
                                 </connections>
                             </button>
@@ -1051,6 +1052,8 @@
                     <tabBarItem key="tabBarItem" title="My Bill" id="eWa-yc-C9y"/>
                     <connections>
                         <outlet property="billTableView" destination="CXD-BL-9NP" id="9cq-7g-Nza"/>
+                        <outlet property="currentBillTable" destination="CXD-BL-9NP" id="RHc-hV-q8I"/>
+                        <outlet property="restaurantNameLabel" destination="23N-3u-LzM" id="eoF-t4-Pvf"/>
                         <outlet property="tableLabel" destination="cod-T0-FCf" id="Rpk-OE-zFW"/>
                         <outlet property="totalPriceLabel" destination="au9-kO-guH" id="npv-bH-dsC"/>
                     </connections>

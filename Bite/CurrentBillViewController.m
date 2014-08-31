@@ -40,7 +40,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 
-    NSString *tableNumberString  = [NSString stringWithFormat:@"T:%d", self.tableNumber];
+    NSString *tableNumberString  = [NSString stringWithFormat:@"Table :%d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     NSLog(@"tableLabel %@", self.tableLabel.text);
 

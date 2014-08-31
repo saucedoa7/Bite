@@ -79,6 +79,8 @@
     self.stepperGuestcounter = [sender value];
     self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
 }
+- (IBAction)onAddGuestButton:(UIButton *)sender {
+}
 
 -(IBAction)unwindToInviteFrinds:(UIStoryboardSegue*)sender{
     
