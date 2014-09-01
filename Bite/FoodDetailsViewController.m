@@ -13,7 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *itemDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *itemPriceLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *itemImage;
-@property NSMutableArray *foodItemOrdered;
+@property PFObject *foodItemOrdered;
 
 
 @end
@@ -39,10 +39,9 @@
 }
 
 - (IBAction)onAddButtonPressed:(id)sender {
-    self.foodItemOrdered = [NSMutableArray new];
-    [self.foodItemOrdered addObject:self.foodItemSelected];
+    self.foodItemOrdered =self.foodItemSelected;
     PFObject *saveOrder = [PFObject objectWithClassName:@"Table"];
-    [saveOrder setObject:self.foodItemOrdered forKey:@"itemsOrdered"];
+    [saveOrder setObject:self.foodItemOrdered forKey:@"itemOrdered"];
     [saveOrder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"%@", [error userInfo]);

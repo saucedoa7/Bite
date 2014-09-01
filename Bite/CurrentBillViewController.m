@@ -18,6 +18,7 @@
 @property NSMutableArray *restaurantNames;
 @property NSString *nameOfRest;
 @property NSMutableArray *tableBill;
+@property NSMutableArray *getBill;
 @property NSNumber *tableNumberIntVal;
 @property NSMutableArray* sectionsArray;
 
@@ -45,7 +46,7 @@
     [super viewWillAppear:YES];
 
     self.sectionsArray = [NSMutableArray new];
-    [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %d", self.sectionsArray.count + 1]];
+    [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %lu", self.sectionsArray.count + 1]];
 
 #pragma mark CheckinTableView Data
 
@@ -53,7 +54,7 @@
     [[self billTableView] setDataSource:self];
     [[self billTableView] reloadData];
 
-    NSString *tableNumberString  = [NSString stringWithFormat:@"Table :%d", self.tableNumber];
+    NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     NSLog(@"tableLabel %@", self.tableLabel.text);
 
@@ -62,8 +63,7 @@
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
-//        PFQuery *queryClass = [PFQuery queryWithClassName:@"Food"];
-//        [queryClass whereKey:@"itemsOrdered" equalTo:[PFObject objectWithClassName:@"Food"]];
+
     }];
 
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
@@ -87,7 +87,12 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
+    PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
+    PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
+    [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        cell.textLabel.text = [object objectForKey:@"foodItem"];
+    }];
+
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];
