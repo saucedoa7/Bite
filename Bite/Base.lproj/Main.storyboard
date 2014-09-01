@@ -657,6 +657,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onAddButtonPressed:" destination="g2g-2c-MOS" eventType="touchUpInside" id="HYu-P0-Pu9"/>
+                                    <segue destination="zfi-fG-Gs0" kind="unwind" unwindAction="unwindToCategoryVC:" id="rQn-mj-ar9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -670,6 +671,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04l-ZO-7GW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zfi-fG-Gs0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2441" y="14"/>
         </scene>
@@ -1023,6 +1025,7 @@
                                                     <rect key="frame" x="15" y="28" width="32" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
+
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1076,7 +1079,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="billTableView" destination="CXD-BL-9NP" id="9cq-7g-Nza"/>
-                        <outlet property="currentBillTable" destination="CXD-BL-9NP" id="RHc-hV-q8I"/>
                         <outlet property="restaurantNameLabel" destination="23N-3u-LzM" id="eoF-t4-Pvf"/>
                         <outlet property="tableLabel" destination="cod-T0-FCf" id="Rpk-OE-zFW"/>
                         <outlet property="totalPriceLabel" destination="au9-kO-guH" id="npv-bH-dsC"/>

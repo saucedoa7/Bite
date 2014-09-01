@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -61,5 +62,6 @@
 {
     CategoryListViewController *categoryVC = segue.destinationViewController;
     categoryVC.categorySelected = [self.menuCategory objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    categoryVC.tableNumber = self.tableNumber;
 }
 @end

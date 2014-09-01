@@ -10,5 +10,6 @@
 
 @interface FoodDetailsViewController : LaunchViewController
 @property PFObject *foodItemSelected;
+@property int tableNumber;
 
 @end

@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *itemPriceLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *itemImage;
 @property PFObject *foodItemOrdered;
+@property NSNumber *tableNumberIntVal;
 
 
 @end
@@ -25,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
     self.itemNameLabel.text = [self.foodItemSelected objectForKey:@"foodItem"];
     self.itemDescriptionLabel.text = [self.foodItemSelected objectForKey:@"itemDescription"];
     self.itemPriceLabel.text = [NSString stringWithFormat:@"$%@.00", [self.foodItemSelected objectForKey:@"price"]];
@@ -42,10 +44,9 @@
     self.foodItemOrdered =self.foodItemSelected;
     PFObject *saveOrder = [PFObject objectWithClassName:@"Table"];
     [saveOrder setObject:self.foodItemOrdered forKey:@"itemOrdered"];
+    [saveOrder setObject:self.tableNumberIntVal forKey:@"tableNumber"];
+    [saveOrder setObject:[self.foodItemOrdered objectForKey:@"restaurant"] forKey:@"restaurantName"];
     [saveOrder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error) {
-            NSLog(@"%@", [error userInfo]);
-        }
     }];
 
 }
