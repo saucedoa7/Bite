@@ -23,6 +23,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -30,10 +31,12 @@
     [super viewWillAppear:animated];
     MenuCategoryViewController *categoryVC = self.viewControllers[1];
     categoryVC.resaurantObject = self.restaurantObject;
+    categoryVC.tableNumber = self.tableNumber;
 
     CurrentBillViewController *currentBillVC = self.viewControllers[2];
     currentBillVC.tableNumber = self.tableNumber;
     currentBillVC.resaurantObject = self.restaurantObject;
+
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
@@ -42,8 +45,6 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 
@@ -56,6 +57,8 @@
 
     CurrentBillViewController *currentBillVC = segue.destinationViewController;
     currentBillVC.resaurantObject = self.restaurantObject;
+
+
 }
 
 @end

@@ -54,8 +54,12 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 
+}
+
+- (IBAction)unwindToCategoryVC:(UIStoryboardSegue *)sender
+{
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -63,6 +67,7 @@
     PFObject *object = [self.categoryList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     FoodDetailsViewController *foodDetailVC = segue.destinationViewController;
     foodDetailVC.foodItemSelected = object;
+    foodDetailVC.tableNumber = self.tableNumber;
 
 
 }

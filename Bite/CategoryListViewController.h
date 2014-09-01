@@ -12,5 +12,6 @@
 
 @property PFObject *foodList;
 @property NSString *categorySelected;
+@property int tableNumber;
 
 @end

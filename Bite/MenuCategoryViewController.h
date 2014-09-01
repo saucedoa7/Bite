@@ -11,5 +11,6 @@
 
 @interface MenuCategoryViewController : LaunchViewController
 @property PFObject *resaurantObject;
+@property int tableNumber;
 
 @end
