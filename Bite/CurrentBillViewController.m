@@ -8,6 +8,7 @@
 
 #import "CurrentBillViewController.h"
 #import "CheckInToTableViewController.h"
+#import "InviteFriendsViewController.h"
 
 @interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;
@@ -21,7 +22,6 @@
 @property NSMutableArray *getBill;
 @property NSNumber *tableNumberIntVal;
 @property NSMutableArray* sectionsArray;
-
 @end
 
 
@@ -31,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.listOfFriends = [NSMutableArray new];
+    NSLog(@"List of Friends from Array VDL %@", self.listOfFriends);
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
@@ -44,9 +46,17 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    self.listOfFriends = [NSMutableArray new];
+
+    //get data from other child tab bar
+    InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+    self.listOfFriends = IVC.listOfFriends;
+
+    NSLog(@"List of Friends from Array VWA %@", IVC.listOfFriends);
 
     self.sectionsArray = [NSMutableArray new];
     [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %lu", self.sectionsArray.count + 1]];
+    [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %@", self.listOfFriends]];
 
 #pragma mark CheckinTableView Data
 
@@ -86,6 +96,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
 
     PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
@@ -93,9 +104,8 @@
         cell.textLabel.text = [object objectForKey:@"foodItem"];
     }];
 
-
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
     }
 
     return cell;
@@ -133,10 +143,10 @@
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.sectionsArray count];
+    return [self.listOfFriends count];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.sectionsArray objectAtIndex:section];
+    return [self.listOfFriends objectAtIndex:section];
 }
 
 #pragma mark Remove delete button

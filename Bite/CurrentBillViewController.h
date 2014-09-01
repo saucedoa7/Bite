@@ -13,6 +13,5 @@
 @property NSString *oneTableNumber;
 @property int tableNumber;
 @property PFObject *resaurantObject;
-
-
+@property NSMutableArray *listOfFriends;
 @end
