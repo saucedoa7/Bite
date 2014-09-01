@@ -10,5 +10,6 @@
 
 @interface InviteFriendsViewController : LaunchViewController
 @property NSMutableArray *listOfFriends;
-
+@property int listOfStepperFriends;
+@property NSArray *mergeArrays;
 @end
