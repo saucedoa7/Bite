@@ -13,29 +13,40 @@
 @property (weak, nonatomic) IBOutlet UITableView *friendTableView;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfGuestLabel;
 @property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
+@property NSMutableArray *theNewListOfStepperFriends;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper;
 @property NSMutableArray *selectedRows;
 @property NSArray *friends;
 @property PFRelation *relationOfFriends;
 @property double selectedGuestcounter;
 @property double stepperGuestcounter;
-@property NSMutableArray *theNewListOfStepperFriends;
-
 @end
 
 @implementation InviteFriendsViewController
+
+#pragma mark View Did's
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.listOfFriends = [NSMutableArray new];
+    self.theNewListOfStepperFriends = [NSMutableArray new];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
 
-    self.theNewListOfStepperFriends = [NSMutableArray new];
+    UITableViewCell *cell;
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
+    self.stepper.value = 0;
+    self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter];
+    self.listOfStepperFriends = 0;
+    self.mergeArrays = NULL;
+    NSLog(@"MergeCells in ViewWillAppear %@", self.mergeArrays);
 
     PFQuery *queryForFriends = [[[PFUser currentUser] relationForKey:@"friendsRelation"] query];
     [queryForFriends orderByAscending:@"username"];
@@ -49,9 +60,12 @@
     }];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.friends.count;
+-(void)viewDidDisappear:(BOOL)animated{
+    //self.listOfStepperFriends = self.listOfStepperFriends;
+    NSLog(@"IVC Did DisAppear %d", self.listOfStepperFriends);
 }
+
+#pragma mark TableViews Methods
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
@@ -62,13 +76,14 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    NSLog(@"SelectforRow");
+
     UITableViewCell *cell = [self.friendTableView cellForRowAtIndexPath:indexPath];
     if(![self.selectedRows containsObject:indexPath])
     {
         if (cell.accessoryType == UITableViewCellAccessoryNone) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [self.listOfFriends addObject:cell.textLabel.text];
-
             self.selectedGuestcounter++;
 
         } else{
@@ -79,33 +94,33 @@
                 self.selectedGuestcounter--;
             }
         }
-        //12347890
-        NSLog(@"List of Friends from Array %@", self.listOfFriends);
-
         self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+
+        self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
+        NSLog(@"Show Merge Guest after Sectected Cell: %@\n", self.mergeArrays);
+        NSLog(@"List of Friends from Array %@", self.listOfFriends);
     }
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    self.numberOfGuestLabel.text = @"";
-    self.listOfStepperFriends = 0;
-    self.selectedGuestcounter = 0;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.friends.count;
 }
+
+#pragma mark IBActions
 
 - (IBAction)onAddRemoveGuestButton:(UIStepper *)sender {
     self.stepperGuestcounter = [sender value];
+
     self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
     self.listOfStepperFriends = (int) self.stepperGuestcounter;
 
     NSLog(@"Steppers in IVC %d\n", self.listOfStepperFriends);
 
-    ///
-
     if (self.listOfStepperFriends > 0) {
 
-        for (int i = 0; i < self.listOfStepperFriends; i++){
+        for (int i = self.listOfStepperFriends ; i == self.listOfStepperFriends; i++){
 
-            NSString *str = [NSString stringWithFormat:@"Guest %d", (int)i+1];
+            NSString *str = [NSString stringWithFormat:@"Guest %d", (int)i];
             NSLog(@"Stepper Guest %@", str);
 
             [self.theNewListOfStepperFriends addObject:str];
@@ -113,11 +128,10 @@
 
             self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
             NSLog(@"Show Merge Guest after Steppers: %@\n", self.mergeArrays);
-
         }
     }
-
 }
+
 - (IBAction)onAddGuestButton:(UIButton *)sender {
 }
 
