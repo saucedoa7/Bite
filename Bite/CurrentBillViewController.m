@@ -55,9 +55,9 @@
 
     [self.sectionsArray addObject:[NSString stringWithFormat:@"Merged Guests: %@", self.mergeArrays]];
 
-    [[self billTableView] setDelegate:self];
-    [[self billTableView] setDataSource:self];
-    [[self billTableView] reloadData];
+    //[[self billTableView] setDelegate:self];
+    //[[self billTableView] setDataSource:self];
+//    [[self billTableView] reloadData];
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
@@ -67,9 +67,6 @@
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
-        //        PFQuery *queryClass = [PFQuery queryWithClassName:@"Food"];
-        //        [queryClass whereKey:@"itemsOrdered" equalTo:[PFObject objectWithClassName:@"Food"]];
-
     }];
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
     [restaurantNameQuery whereKey:@"restaurantPointer" equalTo:self.resaurantObject];
@@ -81,6 +78,8 @@
             [self.billTableView reloadData];
         }
     }];
+    [[self billTableView] reloadData];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -108,8 +107,8 @@
 
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSLog(@"%@ %@",[object objectForKey:@"foodItem"],[object objectForKey:@"price"]);
         cell.textLabel.text = [object objectForKey:@"foodItem"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
     }];
  */
 

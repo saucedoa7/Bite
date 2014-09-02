@@ -35,6 +35,8 @@
     [foodImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
             self.itemImage.image = [UIImage imageWithData:imageData];
+            self.itemImage.layer.cornerRadius = self.itemImage.frame.size.width / 2;
+            self.itemImage.clipsToBounds = YES;
         }
     }];
 
@@ -50,6 +52,8 @@
     }];
 
 }
+
+
 
 
 @end
