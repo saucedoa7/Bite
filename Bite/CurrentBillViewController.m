@@ -20,42 +20,40 @@
 @property NSMutableArray *tableBill;
 @property NSMutableArray *getBill;
 @property NSNumber *tableNumberIntVal;
-@property NSMutableArray* sectionsArray;
+@property NSMutableArray *sectionsArray;
 @end
 
-
 @implementation CurrentBillViewController
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.listOfFriends = [NSMutableArray new];
+    NSLog(@"List of Friends from Array VDL %@", self.listOfFriends);
+
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
-
-
-
 
 }
 
 - (IBAction)onPaidButton:(id)sender {
 }
 
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     self.listOfFriends = [NSMutableArray new];
+    self.sectionsArray = [NSMutableArray new];
 
     //get data from other child tab bar
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
     self.listOfFriends = IVC.listOfFriends;
+    self.mergeArrays = IVC.mergeArrays;
+    NSLog(@"Steppers CBillVC %@\n", self.mergeArrays);
 
-    self.sectionsArray = [NSMutableArray new];
-    [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %lu", self.sectionsArray.count + 1]];
-    [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %@", self.listOfFriends]];
+
+    [self.sectionsArray addObject:[NSString stringWithFormat:@"Merged Guests: %@", self.mergeArrays]];
 
     //[[self billTableView] setDelegate:self];
     //[[self billTableView] setDataSource:self];
@@ -63,15 +61,12 @@
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
-    NSLog(@"tableLabel %@", self.tableLabel.text);
 
     self.tableBill = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Table"];
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
-        [self.billTableView reloadData];
-        NSLog(@"%@",self.tableBill);
     }];
 
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];

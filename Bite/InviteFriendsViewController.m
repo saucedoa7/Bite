@@ -18,6 +18,8 @@
 @property PFRelation *relationOfFriends;
 @property double selectedGuestcounter;
 @property double stepperGuestcounter;
+@property NSMutableArray *theNewListOfStepperFriends;
+
 @end
 
 @implementation InviteFriendsViewController
@@ -31,6 +33,8 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
+
+    self.theNewListOfStepperFriends = [NSMutableArray new];
 
 
     PFQuery *queryForFriends = [[[PFUser currentUser] relationForKey:@"friendsRelation"] query];
@@ -81,9 +85,38 @@
         self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
     }
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    self.numberOfGuestLabel.text = @"";
+    self.listOfStepperFriends = 0;
+    self.selectedGuestcounter = 0;
+}
+
 - (IBAction)onAddRemoveGuestButton:(UIStepper *)sender {
     self.stepperGuestcounter = [sender value];
     self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+    self.listOfStepperFriends = (int) self.stepperGuestcounter;
+
+    NSLog(@"Steppers in IVC %d\n", self.listOfStepperFriends);
+
+    ///
+
+    if (self.listOfStepperFriends > 0) {
+
+        for (int i = 0; i < self.listOfStepperFriends; i++){
+
+            NSString *str = [NSString stringWithFormat:@"Guest %d", (int)i+1];
+            NSLog(@"Stepper Guest %@", str);
+
+            [self.theNewListOfStepperFriends addObject:str];
+            NSLog(@"New Stepper Guest %@", str);
+
+            self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
+            NSLog(@"Show Merge Guest after Steppers: %@\n", self.mergeArrays);
+
+        }
+    }
+
 }
 - (IBAction)onAddGuestButton:(UIButton *)sender {
 }

@@ -14,4 +14,6 @@
 @property int tableNumber;
 @property PFObject *resaurantObject;
 @property NSMutableArray *listOfFriends;
+@property int listOfStepperFriends;
+@property NSArray *mergeArrays;
 @end
