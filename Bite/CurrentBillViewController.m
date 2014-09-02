@@ -37,6 +37,8 @@
     self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
 
 
+
+
 }
 
 - (IBAction)onPaidButton:(id)sender {
@@ -55,9 +57,9 @@
     [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %lu", self.sectionsArray.count + 1]];
     [self.sectionsArray addObject:[NSString stringWithFormat:@"Guest: %@", self.listOfFriends]];
 
-    [[self billTableView] setDelegate:self];
-    [[self billTableView] setDataSource:self];
-    [[self billTableView] reloadData];
+    //[[self billTableView] setDelegate:self];
+    //[[self billTableView] setDataSource:self];
+//    [[self billTableView] reloadData];
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
@@ -68,7 +70,8 @@
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
-
+        [self.billTableView reloadData];
+        NSLog(@"%@",self.tableBill);
     }];
 
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
@@ -81,6 +84,8 @@
             [self.billTableView reloadData];
         }
     }];
+    [[self billTableView] reloadData];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -95,8 +100,8 @@
     PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSLog(@"%@ %@",[object objectForKey:@"foodItem"],[object objectForKey:@"price"]);
         cell.textLabel.text = [object objectForKey:@"foodItem"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
     }];
 
     if (!cell) {
@@ -137,12 +142,12 @@
 #pragma mark Add Section
 
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.listOfFriends count];
-}
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.listOfFriends objectAtIndex:section];
-}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return [self.listOfFriends count];
+//}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return [self.listOfFriends objectAtIndex:section];
+//}
 
 #pragma mark Remove delete button
 

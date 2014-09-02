@@ -20,7 +20,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
 @property BOOL performSegueToMenu;
 
 @property NSArray *personsArray;
@@ -36,6 +35,15 @@
 {
     [super viewDidLoad];
     self.performSegueToMenu = NO;
+    self.usernameTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.passwordTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.nameTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.emailTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    [self.usernameTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.passwordTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.nameTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
 
 }

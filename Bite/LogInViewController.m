@@ -26,11 +26,16 @@
 {
     [super viewDidLoad];
     self.passwordTextField.delegate = self;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.usernameTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.passwordTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    [self.usernameTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.passwordTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     self.usernameTextField.text = nil;
     self.passwordTextField.text = nil;
 }
@@ -73,6 +78,7 @@
 
     }
 }
+
 
 
 @end

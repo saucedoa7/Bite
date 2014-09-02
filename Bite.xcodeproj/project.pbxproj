@@ -16,6 +16,7 @@
 		E438359119ABC81800AB2940 /* SearchRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */; };
 		E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */; };
 		E440BD6019ABD56B00D08726 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */; };
+		E48F7F7119B58420009474DC /* CheckInToTableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */; };
 		E4943AC119ABCAC2005D6758 /* CheckInToTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */; };
 		E4943AC419ABCADE005D6758 /* TableCheckInCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */; };
 		E4943AC719ABCB06005D6758 /* GuestsAtTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC619ABCB06005D6758 /* GuestsAtTableViewController.m */; };
@@ -84,6 +85,8 @@
 		E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
 		E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		E48F7F6F19B58420009474DC /* CheckInToTableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckInToTableTableViewCell.h; path = ../CheckInToTableTableViewCell.h; sourceTree = "<group>"; };
+		E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckInToTableTableViewCell.m; path = ../CheckInToTableTableViewCell.m; sourceTree = "<group>"; };
 		E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInToTableViewController.h; sourceTree = "<group>"; };
 		E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInToTableViewController.m; sourceTree = "<group>"; };
 		E4943AC219ABCADE005D6758 /* TableCheckInCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCheckInCodeViewController.h; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 		E41F68AE19ABF00600D8A57C /* Log In/Sign Up */ = {
 			isa = PBXGroup;
 			children = (
+				E4DCCA3919ABC08300CE7E62 /* LaunchViewController.h */,
+				E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */,
 				E4DCCA7419ABC68C00CE7E62 /* SignUpViewController.h */,
 				E4DCCA7519ABC68C00CE7E62 /* SignUpViewController.m */,
 				E4DCCA7119ABC67C00CE7E62 /* LogInViewController.h */,
@@ -189,6 +194,8 @@
 		E4265CB119AEAB5300C9D3CE /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E48F7F6F19B58420009474DC /* CheckInToTableTableViewCell.h */,
+				E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */,
 				50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */,
 				50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */,
 				E4308B4219ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.h */,
@@ -271,8 +278,6 @@
 				E4943AC619ABCB06005D6758 /* GuestsAtTableViewController.m */,
 				E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */,
 				E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */,
-				E4DCCA3919ABC08300CE7E62 /* LaunchViewController.h */,
-				E4DCCA3A19ABC08300CE7E62 /* LaunchViewController.m */,
 				E4DCCA3C19ABC08300CE7E62 /* Images.xcassets */,
 				E4DCCA2B19ABC08300CE7E62 /* Supporting Files */,
 			);
@@ -456,6 +461,7 @@
 				E4943ACA19ABCB5A005D6758 /* MenuCategoryViewController.m in Sources */,
 				E4943AC719ABCB06005D6758 /* GuestsAtTableViewController.m in Sources */,
 				E4EDFA0019ABD3AB00F7E3DF /* CurrentBillViewController.m in Sources */,
+				E48F7F7119B58420009474DC /* CheckInToTableTableViewCell.m in Sources */,
 				E4943AC419ABCADE005D6758 /* TableCheckInCodeViewController.m in Sources */,
 				50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */,
 				E4265CB019AE83F100C9D3CE /* MenuCategoryTableViewCell.m in Sources */,

@@ -10,6 +10,7 @@
 #import "TableCheckInCodeViewController.h"
 #import "CurrentBillViewController.h"
 #import "TabBarController.h"
+#import "CheckInToTableTableViewCell.h"
 
 @interface CheckInToTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *checkInTableView;
@@ -25,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"Select Your Table";
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKey:NSForegroundColorAttributeName];
 
 }
 
@@ -53,9 +56,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
+    CheckInToTableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+    cell.tableLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];

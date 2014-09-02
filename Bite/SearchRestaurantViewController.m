@@ -16,11 +16,17 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *restaurantSearchResult;
 @property NSNumber *numberOfTables;
+@property (strong, nonatomic) IBOutlet UIImageView *cellBackground;
 
 @end
 
 @implementation SearchRestaurantViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -37,12 +43,15 @@
 {
     RestaurantSearchResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"restaurantCellID"];
     PFObject *restaurant = [self.restaurantSearchResult objectAtIndex:indexPath.row];
+    cell.cellBackground.layer.cornerRadius = 8.0;
 
     PFFile *imageFile = [restaurant objectForKey:@"restaurantImage"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
-            cell.RestaurantProfileImage.image = image;
+            cell.restaurantProfileImage.image = image;
+            cell.restaurantProfileImage.layer.cornerRadius = cell.restaurantProfileImage.frame.size.height / 2;
+            cell.restaurantProfileImage.clipsToBounds = YES;
         }
     }];
 
@@ -105,5 +114,7 @@
     }
 
 }
+
+
 
 @end

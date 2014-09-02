@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface RestaurantSearchResultTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *RestaurantProfileImage;
+@property (strong, nonatomic) IBOutlet UIImageView *restaurantProfileImage;
 @property (strong, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *cuisineLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UILabel *contactNumberLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *cellBackground;
 
 @end
