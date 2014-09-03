@@ -57,6 +57,8 @@
 
     CurrentBillViewController *currentBillVC = segue.destinationViewController;
     currentBillVC.resaurantObject = self.restaurantObject;
+    currentBillVC.tableNumber = self.tableNumber;
+
 
 
 }

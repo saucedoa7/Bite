@@ -27,7 +27,10 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"Select Your Table";
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0.6
+                                                                                                                     green:0.6
+                                                                                                                      blue:0.6
+                                                                                                                     alpha:1] forKey:NSForegroundColorAttributeName];
 
 }
 
@@ -61,7 +64,7 @@
     cell.tableLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
 
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];
+        cell = [[CheckInToTableTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];
     }
 
     return cell;

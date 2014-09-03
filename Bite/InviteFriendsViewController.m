@@ -9,12 +9,12 @@
 #import "InviteFriendsViewController.h"
 #import "CurrentBillViewController.h"
 
-@interface InviteFriendsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface InviteFriendsViewController ()<UITableViewDelegate, UITableViewDataSource, UITabBarDelegate, UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *friendTableView;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfGuestLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper;
 @property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
 @property NSMutableArray *theNewListOfStepperFriends;
-@property (weak, nonatomic) IBOutlet UIStepper *stepper;
 @property NSMutableArray *selectedRows;
 @property NSArray *friends;
 @property PFRelation *relationOfFriends;
@@ -33,19 +33,34 @@
     self.theNewListOfStepperFriends = [NSMutableArray new];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
+
+    self.listOfFriends = [NSMutableArray new];
+    self.theNewListOfStepperFriends = [NSMutableArray new];
+
+    self.selectedGuestcounter = 0;
+
 
     [super viewWillAppear:YES];
 
-    UITableViewCell *cell;
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    [self.theNewListOfStepperFriends removeAllObjects];
+    [self.listOfFriends removeAllObjects];
+
+    NSLog(@"12345678 %@", self.friendTableView);
+    [self.friendTableView deselectRowAtIndexPath:[self.friendTableView indexPathForSelectedRow] animated:YES];
+    NSLog(@"abcdefg %@", self.friendTableView);
+
+    NSLog(@"The new list of steppers should be cleared %@", self.theNewListOfStepperFriends);
 
     self.stepper.value = 0;
-    self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter];
-    self.listOfStepperFriends = 0;
-    self.mergeArrays = NULL;
+
+    NSLog(@"Stepper.Value %f", self.stepper.value);
+
     NSLog(@"MergeCells in ViewWillAppear %@", self.mergeArrays);
 
     PFQuery *queryForFriends = [[[PFUser currentUser] relationForKey:@"friendsRelation"] query];
@@ -60,15 +75,30 @@
     }];
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    //self.listOfStepperFriends = self.listOfStepperFriends;
-    NSLog(@"IVC Did DisAppear %d", self.listOfStepperFriends);
+-(void)viewWillDisappear:(BOOL)animated{
+
+    NSLog(@"Will DISS list of selected should be cleared %@", self.theNewListOfStepperFriends);
+
+    NSLog(@"WILL DISS The new list of steppers should be cleared %@", self.theNewListOfStepperFriends);
+
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    [viewController.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 #pragma mark TableViews Methods
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [self.listOfFriends removeObject:cell.textLabel.text];
+        self.numberOfGuestLabel.text = @"0";
+    }
+
+
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
     cell.textLabel.text = [friend objectForKey: @"username"];
     return cell;
@@ -78,7 +108,11 @@
 
     NSLog(@"SelectforRow");
 
+    [self.friendTableView deselectRowAtIndexPath:[self.friendTableView indexPathForSelectedRow] animated:YES];
+
+
     UITableViewCell *cell = [self.friendTableView cellForRowAtIndexPath:indexPath];
+
     if(![self.selectedRows containsObject:indexPath])
     {
         if (cell.accessoryType == UITableViewCellAccessoryNone) {
@@ -90,16 +124,15 @@
             if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 [self.listOfFriends removeObject:cell.textLabel.text];
-
                 self.selectedGuestcounter--;
             }
         }
-        self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
-
-        self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
-        NSLog(@"Show Merge Guest after Sectected Cell: %@\n", self.mergeArrays);
-        NSLog(@"List of Friends from Array %@", self.listOfFriends);
+            self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
     }
+
+    self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
+    NSLog(@"Show Merge Guest after Sectected Cell: %@\n", self.mergeArrays);
+    NSLog(@"List of Friends from Array %@", self.listOfFriends);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -110,8 +143,9 @@
 
 - (IBAction)onAddRemoveGuestButton:(UIStepper *)sender {
     self.stepperGuestcounter = [sender value];
-
+    self.listOfStepperFriends = 0;
     self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+
     self.listOfStepperFriends = (int) self.stepperGuestcounter;
 
     NSLog(@"Steppers in IVC %d\n", self.listOfStepperFriends);
@@ -121,10 +155,10 @@
         for (int i = self.listOfStepperFriends ; i == self.listOfStepperFriends; i++){
 
             NSString *str = [NSString stringWithFormat:@"Guest %d", (int)i];
-            NSLog(@"Stepper Guest %@", str);
+            NSLog(@"Stepper String Guest %@", str);
 
             [self.theNewListOfStepperFriends addObject:str];
-            NSLog(@"New Stepper Guest %@", str);
+            NSLog(@"The New List of Stepper Guest %@", str);
 
             self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
             NSLog(@"Show Merge Guest after Steppers: %@\n", self.mergeArrays);

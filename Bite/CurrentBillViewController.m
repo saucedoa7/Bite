@@ -28,12 +28,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.listOfFriends = [NSMutableArray new];
-    NSLog(@"List of Friends from Array VDL %@", self.listOfFriends);
+    self.sectionsArray = [NSMutableArray new];
+    self.mergeArrays = [NSMutableArray new];
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+
 }
 
 - (IBAction)onPaidButton:(id)sender {
@@ -41,23 +46,24 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    self.listOfFriends = [NSMutableArray new];
-    self.sectionsArray = [NSMutableArray new];
-    self.mergeArrays = [NSMutableArray new];
+
+
 
     //get data from other child tab bar
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         NSLog(@"0 Steppers CBillVC %@\n", IVC.mergeArrays);
-
-        self.listOfFriends = IVC.listOfFriends;
         self.mergeArrays = IVC.mergeArrays;
         NSLog(@"1 Steppers CBillVC %@\n", IVC.mergeArrays);
 
+
+    [self.sectionsArray removeAllObjects];
+    NSLog(@"ViewWillAppear %@", self.sectionsArray);
+
     [self.sectionsArray addObject:[NSString stringWithFormat:@"Merged Guests: %@", self.mergeArrays]];
 
-    //[[self billTableView] setDelegate:self];
-    //[[self billTableView] setDataSource:self];
-//    [[self billTableView] reloadData];
+    [[self billTableView] setDelegate:self];
+    [[self billTableView] setDataSource:self];
+    [[self billTableView] reloadData];
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
@@ -79,16 +85,10 @@
         }
     }];
     [[self billTableView] reloadData];
-
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:YES];
-
-//    self.sectionsArray = nil;
-//    self.mergeArrays = nil;
-
-    NSLog(@"CBView Did DisAppear %@", self.sectionsArray);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -100,8 +100,6 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
 
-//BUG!!!!!!
-/*
     PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
     NSLog(@"billItem %@", billItem);
 
@@ -110,11 +108,11 @@
         cell.textLabel.text = [object objectForKey:@"foodItem"];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
     }];
- */
 
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
-//    }
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
+    }
 
     return cell;
 }
@@ -126,7 +124,7 @@
 }
 
 //Drag Cells 2
-- (IBAction)onEditButton:(UIButton *)sender {
+- (IBAction)onEditButton:(UIBarButtonItem *)sender {
     if(self.editing)
     {
         [super setEditing:NO animated:NO];
@@ -152,6 +150,10 @@
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [self.mergeArrays objectAtIndex:section];
+    if ([self.billTableView isEditing]) {
+        return @"End of Group";
+    }
+    return nil;
 }
 
 #pragma mark Remove delete button
@@ -159,5 +161,4 @@
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleInsert;
 }
-
 @end
