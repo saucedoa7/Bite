@@ -9,7 +9,7 @@
 #import "TableCheckInCodeViewController.h"
 #import "TabBarController.h"
 
-@interface TableCheckInCodeViewController ()
+@interface TableCheckInCodeViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
 @property BOOL performSegue;
 
@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     self.performSegue = NO;
+    self.codeTextField.delegate = self;
     
 }
 
@@ -65,6 +66,13 @@
     {
         return YES;
     }
+
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.codeTextField resignFirstResponder];
+    return YES;
 
 }
 
