@@ -89,7 +89,6 @@
     {
         [super setEditing:NO animated:NO];
         [self.checkInTableView setEditing:NO animated:NO];
-        [self.checkInTableView reloadData];
         [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
     }
@@ -97,7 +96,6 @@
     {
         [super setEditing:YES animated:YES];
         [self.checkInTableView setEditing:YES animated:YES];
-        [self.checkInTableView reloadData];
         [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
     }
