@@ -97,37 +97,45 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count0 = 0;
-    int count1 = 0;
-    int count2 = 0;
-    int count3 = 0;
-    for (NSNumber *number in self.owners) {
-        if([number isEqualToNumber:@0]) {
-            count0++;
-        }
-        if([number isEqualToNumber:@1]) {
-            count1++;
-        }
-        if([number isEqualToNumber:@2]) {
-            count2++;
-        }
-        if([number isEqualToNumber:@0]) {
-            count3++;
+    int count = 0;
+    for (NSNumber *owner in self.owners) {
+        if (owner.intValue == section) {
+            count++;
         }
     }
-    if (section == 0) {
-        return count0;
-    }
-    if (section == 1) {
-        return count1;
-    }
-    if (section == 2) {
-        return count2;
-    }
-    if (section == 3) {
-        return count3;
-    }
-    return self.tableBill.count;
+    NSLog(@"rows %d in section %d",count, section);
+    return count;
+//    int count0 = 0;
+//    int count1 = 0;
+//    int count2 = 0;
+//    int count3 = 0;
+//    for (NSNumber *number in self.owners) {
+//        if([number isEqualToNumber:@0]) {
+//            count0++;
+//        }
+//        if([number isEqualToNumber:@1]) {
+//            count1++;
+//        }
+//        if([number isEqualToNumber:@2]) {
+//            count2++;
+//        }
+//        if([number isEqualToNumber:@0]) {
+//            count3++;
+//        }
+//    }
+//    if (section == 0) {
+//        return count0;
+//    }
+//    if (section == 1) {
+//        return count1;
+//    }
+//    if (section == 2) {
+//        return count2;
+//    }
+//    if (section == 3) {
+//        return count3;
+//    }
+//    return self.tableBill.count;
 //NSLog(@"table bill %@", self.tableBill.count);
 
 }
@@ -135,15 +143,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
-
     NSMutableArray *myArray = [NSMutableArray new];
-    for (NSNumber *owner in self.owners) {
-        if ([@(indexPath.section) isEqualToNumber:owner]) {
+    NSLog(@"section %d row %d",indexPath.section, indexPath.row);
+    for (PFObject *bill in self.tableBill) {
+        int index = [self.tableBill indexOfObject:bill];
+        NSNumber *owner = [self.owners objectAtIndex:index];
+        if (indexPath.section == owner.intValue) {
             [myArray addObject:[self.tableBill objectAtIndex:indexPath.row]];
+
         }
     }
     PFObject *billItem = [myArray objectAtIndex:indexPath.row];
-    NSLog(@"billItem %@", billItem);
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
@@ -162,7 +172,9 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [self.owners replaceObjectAtIndex:sourceIndexPath.row withObject:@(destinationIndexPath.section)];
+    int test = [self.tableBill indexOfObject:[self.tableBill objectAtIndex:sourceIndexPath.row]];
+    [self.owners replaceObjectAtIndex:test withObject:@(destinationIndexPath.section)];
+    NSLog(@"AFTER %@",self.owners);
     [self.billTableView reloadData];
 //    PFObject *sourceBillItem = [self.tableBill objectAtIndex:sourceIndexPath.row];
 //    PFObject *dstBillItem = [self.tableBill objectAtIndex:destinationIndexPath.row];
