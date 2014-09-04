@@ -31,7 +31,6 @@
                                                                                                                      green:0.6
                                                                                                                       blue:0.6
                                                                                                                      alpha:1] forKey:NSForegroundColorAttributeName];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,7 +60,7 @@
 {
     CheckInToTableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.tableLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
 
     if (!cell) {
         cell = [[CheckInToTableTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];

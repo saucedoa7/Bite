@@ -44,18 +44,16 @@
     self.theNewListOfStepperFriends = [NSMutableArray new];
 
     self.selectedGuestcounter = 0;
-
-
-    [super viewWillAppear:YES];
-
     [self.theNewListOfStepperFriends removeAllObjects];
     [self.listOfFriends removeAllObjects];
 
-    NSLog(@"12345678 %@", self.friendTableView);
-    [self.friendTableView deselectRowAtIndexPath:[self.friendTableView indexPathForSelectedRow] animated:YES];
-    NSLog(@"abcdefg %@", self.friendTableView);
+    [[self friendTableView] setDelegate:self];
+    [[self friendTableView] setDataSource:self];
+    [[self friendTableView] reloadData];
 
-    NSLog(@"The new list of steppers should be cleared %@", self.theNewListOfStepperFriends);
+    [super viewWillAppear:YES];
+
+    [self.friendTableView deselectRowAtIndexPath:[self.friendTableView indexPathForSelectedRow] animated:YES];
 
     self.stepper.value = 0;
 
@@ -96,6 +94,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         [self.listOfFriends removeObject:cell.textLabel.text];
         self.numberOfGuestLabel.text = @"0";
+        NSLog(@"number of guest label 1 %@", self.numberOfGuestLabel.text);
     }
 
 
@@ -128,6 +127,8 @@
             }
         }
             self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+        NSLog(@"number of guest label 2 %@", self.numberOfGuestLabel.text);
+
     }
 
     self.mergeArrays = [self.listOfFriends arrayByAddingObjectsFromArray:self.theNewListOfStepperFriends];
@@ -145,6 +146,7 @@
     self.stepperGuestcounter = [sender value];
     self.listOfStepperFriends = 0;
     self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+    NSLog(@"number of guest label 3 %@", self.numberOfGuestLabel.text);
 
     self.listOfStepperFriends = (int) self.stepperGuestcounter;
 

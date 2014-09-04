@@ -21,6 +21,7 @@
 @property NSMutableArray *getBill;
 @property NSNumber *tableNumberIntVal;
 @property NSMutableArray *sectionsArray;
+@property NSMutableArray *numberOfTablesMute;
 @end
 
 @implementation CurrentBillViewController
@@ -46,9 +47,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-
-
-
     //get data from other child tab bar
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         NSLog(@"0 Steppers CBillVC %@\n", IVC.mergeArrays);
@@ -103,19 +101,23 @@
     PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
     NSLog(@"billItem %@", billItem);
 
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
+
+    }
+
+
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.textLabel.text = [object objectForKey:@"foodItem"];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
     }];
 
-
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
-    }
-
     return cell;
+
 }
+
+
 #pragma mark Drag Cells
 
 //Drag Cells 1
@@ -124,7 +126,7 @@
 }
 
 //Drag Cells 2
-- (IBAction)onEditButton:(UIBarButtonItem *)sender {
+- (IBAction)onEditButton:(UIButton *)sender {
     if(self.editing)
     {
         [super setEditing:NO animated:NO];
@@ -143,22 +145,31 @@
     }
 }
 
+//Drag Cells 3
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSString *stringToMove = self.numberOfTablesMute [sourceIndexPath.row];
+    [self.numberOfTablesMute removeObjectAtIndex:sourceIndexPath.row];
+    [self.numberOfTablesMute insertObject:stringToMove atIndex:destinationIndexPath.row];
+}
+
 #pragma mark Add Section
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.mergeArrays count];
 }
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [self.mergeArrays objectAtIndex:section];
-    if ([self.billTableView isEditing]) {
-        return @"End of Group";
-    }
-    return nil;
+//    if ([self.billTableView isEditing]) {
+//        return @"End of Group";
+//    }
+//    return nil;
 }
 
 #pragma mark Remove delete button
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleInsert;
+    return UITableViewCellEditingStyleNone;
 }
 @end
