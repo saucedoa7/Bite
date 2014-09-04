@@ -23,6 +23,8 @@
 @property NSNumber *tableNumberIntVal;
 @property NSMutableArray *sectionsArray;
 @property NSMutableArray *numberOfTablesMute;
+
+@property NSMutableArray *owners;
 @end
 
 @implementation CurrentBillViewController
@@ -76,6 +78,10 @@
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
+        self.owners = [[NSMutableArray alloc] initWithCapacity:self.tableBill.count];
+        for (NSString *item in self.tableBill) {
+            [self.owners addObject:@0];
+        }
     }];
     PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
     [restaurantNameQuery whereKey:@"restaurantPointer" equalTo:self.resaurantObject];
@@ -95,21 +101,69 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.tableBill.count;
+    int count = 0;
+    for (NSNumber *owner in self.owners) {
+        if (owner.intValue == section) {
+            count++;
+        }
+    }
+    NSLog(@"rows %d in section %d",count, section);
+    return count;
+//    int count0 = 0;
+//    int count1 = 0;
+//    int count2 = 0;
+//    int count3 = 0;
+//    for (NSNumber *number in self.owners) {
+//        if([number isEqualToNumber:@0]) {
+//            count0++;
+//        }
+//        if([number isEqualToNumber:@1]) {
+//            count1++;
+//        }
+//        if([number isEqualToNumber:@2]) {
+//            count2++;
+//        }
+//        if([number isEqualToNumber:@0]) {
+//            count3++;
+//        }
+//    }
+//    if (section == 0) {
+//        return count0;
+//    }
+//    if (section == 1) {
+//        return count1;
+//    }
+//    if (section == 2) {
+//        return count2;
+//    }
+//    if (section == 3) {
+//        return count3;
+//    }
+//    return self.tableBill.count;
+//NSLog(@"table bill %@", self.tableBill.count);
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BillTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
 
-    PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
-    NSLog(@"billItem %@", billItem);
+    NSMutableArray *myArray = [NSMutableArray new];
+    NSLog(@"section %d row %d",indexPath.section, indexPath.row);
+    for (PFObject *bill in self.tableBill) {
+        int index = [self.tableBill indexOfObject:bill];
+        NSNumber *owner = [self.owners objectAtIndex:index];
+        if (indexPath.section == owner.intValue) {
+            [myArray addObject:[self.tableBill objectAtIndex:indexPath.row]];
+
+        }
+    }
+    PFObject *billItem = [myArray objectAtIndex:indexPath.row];
 
 //    if (!cell) {
 //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
 //
 //    }
-
 
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -121,6 +175,16 @@
 
 }
 
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    int test = [self.tableBill indexOfObject:[self.tableBill objectAtIndex:sourceIndexPath.row]];
+    [self.owners replaceObjectAtIndex:test withObject:@(destinationIndexPath.section)];
+    NSLog(@"AFTER %@",self.owners);
+    [self.billTableView reloadData];
+//    PFObject *sourceBillItem = [self.tableBill objectAtIndex:sourceIndexPath.row];
+//    PFObject *dstBillItem = [self.tableBill objectAtIndex:destinationIndexPath.row];
+//    self.tableBill replaceObjectAtIndex:sourceIndexPath.row withObject:<#(id)#>
+}
 
 #pragma mark Drag Cells
 
@@ -130,12 +194,11 @@
 }
 
 //Drag Cells 2
-- (IBAction)onEditButton:(UIButton *)sender {
+- (IBAction)onEditButton:(UIBarButtonItem *)sender {
     if(self.editing)
     {
         [super setEditing:NO animated:NO];
         [self.billTableView setEditing:NO animated:NO];
-        [self.billTableView reloadData];
         [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
     }
@@ -143,7 +206,6 @@
     {
         [super setEditing:YES animated:YES];
         [self.billTableView setEditing:YES animated:YES];
-        [self.billTableView reloadData];
         [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
     }
@@ -176,4 +238,27 @@
 //-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    return UITableViewCellEditingStyleNone;
 //}
+
+#pragma mark Add Section
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [self.mergeArrays count] + 1;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return @"WITHOUT OWNER";
+    }
+    return [self.mergeArrays objectAtIndex:section-1];
+//    if ([self.billTableView isEditing]) {
+//        return @"End of Group";
+//    }
+//    return nil;
+}
+
+#pragma mark Remove delete button
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleNone;
+}
 @end
