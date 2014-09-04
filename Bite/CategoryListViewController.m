@@ -8,6 +8,7 @@
 
 #import "CategoryListViewController.h"
 #import "FoodDetailsViewController.h"
+#import "CategoryListTableViewCell.h"
 
 @interface CategoryListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property NSMutableArray *categoryList;
@@ -41,8 +42,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
-    cell.textLabel.text = self.foodItems [indexPath.row];
+    CategoryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
+    cell.itemName.text = self.foodItems [indexPath.row];
+    cell.itemDescription.text = [self.categoryList valueForKey:@"itemDescription"][indexPath.row];
+    cell.itemPrice.text =[NSString stringWithFormat:@"%@", [self.categoryList valueForKey:@"price"][indexPath.row]];
+
 
     return cell;
 }

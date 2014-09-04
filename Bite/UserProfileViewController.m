@@ -14,7 +14,7 @@
 #define FullName @"fullName"
 #define Email @"email"
 
-@interface UserProfileViewController ()
+@interface UserProfileViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -44,6 +44,17 @@
     [self hideTextFields];
     [self showPFCurrentUser];
     self.doneButton.hidden = YES;
+    self.nameLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.emailLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.userNameLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.passwordLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.passwordTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.emailTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.userNameTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    self.passwordTextField.delegate = self;
 
 }
 
@@ -71,6 +82,14 @@
     [self showLabels];
 
     self.doneButton.hidden = YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.emailTextField resignFirstResponder];
+    [self.userNameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    return YES;
+
 }
 
 #pragma mark - Hide/Show Textfields/Labels

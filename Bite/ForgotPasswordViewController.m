@@ -8,7 +8,7 @@
 
 #import "ForgotPasswordViewController.h"
 
-@interface ForgotPasswordViewController ()
+@interface ForgotPasswordViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @end
@@ -19,19 +19,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.emailTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+     [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    self.emailTextField.delegate = self;
 
 
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.emailTextField resignFirstResponder];
+    return YES;
 }
+
 - (IBAction)onRequestButton:(UIButton *)sender {
-    NSString *email = self.emailTextField.text;
-    NSLog(@"My email is: %@", email);
-    [PFUser requestPasswordResetForEmailInBackground:email];
+    if ([self.emailTextField.text isEqualToString: @""]) {
+        UIAlertView *emailAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter a valid email address to proceed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [emailAlertView show];
+    }
+    else {
+        NSString *email = self.emailTextField.text;
+        NSLog(@"My email is: %@", email);
+        [PFUser requestPasswordResetForEmailInBackground:email];
+    }
 }
 
 

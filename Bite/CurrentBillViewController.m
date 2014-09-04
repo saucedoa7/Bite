@@ -9,6 +9,7 @@
 #import "CurrentBillViewController.h"
 #import "CheckInToTableViewController.h"
 #import "InviteFriendsViewController.h"
+#import "BillTableViewCell.h"
 
 @interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;
@@ -35,6 +36,7 @@
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -47,6 +49,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    
+    [self.billTableView reloadData];
+
     //get data from other child tab bar
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         NSLog(@"0 Steppers CBillVC %@\n", IVC.mergeArrays);
@@ -82,7 +87,6 @@
             [self.billTableView reloadData];
         }
     }];
-    [[self billTableView] reloadData];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -96,21 +100,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
+    BillTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
 
     PFObject *billItem = [self.tableBill objectAtIndex:indexPath.row];
     NSLog(@"billItem %@", billItem);
 
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
-
-    }
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
+//
+//    }
 
 
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        cell.textLabel.text = [object objectForKey:@"foodItem"];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
+        cell.billItem.text = [object objectForKey:@"foodItem"];
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
     }];
 
     return cell;
@@ -145,31 +149,31 @@
     }
 }
 
-//Drag Cells 3
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    NSString *stringToMove = self.numberOfTablesMute [sourceIndexPath.row];
-    [self.numberOfTablesMute removeObjectAtIndex:sourceIndexPath.row];
-    [self.numberOfTablesMute insertObject:stringToMove atIndex:destinationIndexPath.row];
-}
-
-#pragma mark Add Section
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.mergeArrays count];
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.mergeArrays objectAtIndex:section];
-//    if ([self.billTableView isEditing]) {
-//        return @"End of Group";
-//    }
-//    return nil;
-}
-
-#pragma mark Remove delete button
-
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleNone;
-}
+////Drag Cells 3
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+//{
+//    NSString *stringToMove = self.numberOfTablesMute [sourceIndexPath.row];
+//    [self.numberOfTablesMute removeObjectAtIndex:sourceIndexPath.row];
+//    [self.numberOfTablesMute insertObject:stringToMove atIndex:destinationIndexPath.row];
+//}
+//
+//#pragma mark Add Section
+//
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return [self.mergeArrays count];
+//}
+//
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return [self.mergeArrays objectAtIndex:section];
+////    if ([self.billTableView isEditing]) {
+////        return @"End of Group";
+////    }
+////    return nil;
+//}
+//
+//#pragma mark Remove delete button
+//
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewCellEditingStyleNone;
+//}
 @end
