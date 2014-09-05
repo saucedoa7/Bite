@@ -31,4 +31,13 @@
     // Configure the view for the selected state
 }
 
+
+// Cell Spacing
+
+- (void)setFrame:(CGRect)frame {
+    frame.origin.y += 4;
+    frame.size.height -= 1 * 2;
+    [super setFrame:frame];
+}
+
 @end
