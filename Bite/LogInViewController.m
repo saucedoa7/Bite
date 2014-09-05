@@ -26,8 +26,6 @@
 {
     [super viewDidLoad];
     self.passwordTextField.delegate = self;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,7 +42,6 @@
 {
     [self.passwordTextField resignFirstResponder];
     return YES;
-
 }
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)sender
@@ -54,15 +51,12 @@
 
 - (IBAction)onLogInButtonPressed:(id)sender
 {
-
-
     NSString *username = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if ([username length] == 0 || [password length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Make sure you enter a username, and password!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-
     }
     else {
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
@@ -71,11 +65,9 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[[error.userInfo objectForKey:@"error"] capitalizedString] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
             } else {
-                id searchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchRestaurantViewController"];
-                [self presentViewController:searchVC animated:NO completion:nil];
+                [self performSegueWithIdentifier:@"VikSegue" sender:self];
             }
         }];
-
     }
 }
 

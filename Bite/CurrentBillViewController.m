@@ -181,9 +181,11 @@
     [self.owners replaceObjectAtIndex:test withObject:@(destinationIndexPath.section)];
     NSLog(@"AFTER %@",self.owners);
     [self.billTableView reloadData];
+
 //    PFObject *sourceBillItem = [self.tableBill objectAtIndex:sourceIndexPath.row];
 //    PFObject *dstBillItem = [self.tableBill objectAtIndex:destinationIndexPath.row];
 //    self.tableBill replaceObjectAtIndex:sourceIndexPath.row withObject:<#(id)#>
+    
 }
 
 #pragma mark Drag Cells

@@ -8,14 +8,13 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "SearchRestaurantViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Parse setApplicationId:@"xCzAhwsiXtJiCrZpoC5GuIK6NhUC6lPUTSqzWGIU" clientKey:@"8rVmyLiHOGeCGKPO9rbnKXyWBbYKz0ps5S2yi1KA"];
-
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 							

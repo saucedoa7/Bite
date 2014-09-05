@@ -76,46 +76,6 @@
     [self.numberOfTablesMute insertObject:stringToMove atIndex:destinationIndexPath.row];
 }
 
-#pragma mark Drag Cells
-
-//Drag Cells 1
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-//Drag Cells 2
-- (IBAction)onEditButton:(UIBarButtonItem *)sender {
-    if(self.editing)
-    {
-        [super setEditing:NO animated:NO];
-        [self.checkInTableView setEditing:NO animated:NO];
-        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
-        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
-    }
-    else
-    {
-        [super setEditing:YES animated:YES];
-        [self.checkInTableView setEditing:YES animated:YES];
-        [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
-        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
-    }
-}
-
-#pragma mark Add Section
-
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.sectionsArray count];
-}
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.sectionsArray objectAtIndex:section];
-}
-
-#pragma mark Remove delete button
-
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleNone;
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
 {
