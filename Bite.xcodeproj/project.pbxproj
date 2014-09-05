@@ -15,7 +15,9 @@
 		E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */; };
 		E438359119ABC81800AB2940 /* SearchRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */; };
 		E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */; };
+		E43B72A219B86C25000F932C /* CategoryListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E43B72A119B86C25000F932C /* CategoryListTableViewCell.m */; };
 		E440BD6019ABD56B00D08726 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */; };
+		E46503FC19B864000011A32A /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E46503FB19B864000011A32A /* BillTableViewCell.m */; };
 		E48F7F7119B58420009474DC /* CheckInToTableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */; };
 		E4943AC119ABCAC2005D6758 /* CheckInToTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */; };
 		E4943AC419ABCADE005D6758 /* TableCheckInCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */; };
@@ -83,8 +85,12 @@
 		E438359019ABC81800AB2940 /* SearchRestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRestaurantViewController.m; sourceTree = "<group>"; };
 		E438359219ABCA2A00AB2940 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
 		E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
+		E43B72A019B86C25000F932C /* CategoryListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryListTableViewCell.h; path = ../CategoryListTableViewCell.h; sourceTree = "<group>"; };
+		E43B72A119B86C25000F932C /* CategoryListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryListTableViewCell.m; path = ../CategoryListTableViewCell.m; sourceTree = "<group>"; };
 		E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		E46503FA19B864000011A32A /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BillTableViewCell.h; path = ../BillTableViewCell.h; sourceTree = "<group>"; };
+		E46503FB19B864000011A32A /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BillTableViewCell.m; path = ../BillTableViewCell.m; sourceTree = "<group>"; };
 		E48F7F6F19B58420009474DC /* CheckInToTableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckInToTableTableViewCell.h; path = ../CheckInToTableTableViewCell.h; sourceTree = "<group>"; };
 		E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckInToTableTableViewCell.m; path = ../CheckInToTableTableViewCell.m; sourceTree = "<group>"; };
 		E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInToTableViewController.h; sourceTree = "<group>"; };
@@ -194,6 +200,10 @@
 		E4265CB119AEAB5300C9D3CE /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E43B72A019B86C25000F932C /* CategoryListTableViewCell.h */,
+				E43B72A119B86C25000F932C /* CategoryListTableViewCell.m */,
+				E46503FA19B864000011A32A /* BillTableViewCell.h */,
+				E46503FB19B864000011A32A /* BillTableViewCell.m */,
 				E48F7F6F19B58420009474DC /* CheckInToTableTableViewCell.h */,
 				E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */,
 				50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */,
@@ -443,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4943ACD19ABCB69005D6758 /* CategoryListViewController.m in Sources */,
+				E46503FC19B864000011A32A /* BillTableViewCell.m in Sources */,
 				E4943AD019ABCB8D005D6758 /* FoodDetailsViewController.m in Sources */,
 				E4DCCA7C19ABC70300CE7E62 /* AddFriendsViewController.m in Sources */,
 				50E445F819AF809800183C88 /* TabBarController.m in Sources */,
@@ -450,6 +461,7 @@
 				E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */,
 				E4DCCA7619ABC68C00CE7E62 /* SignUpViewController.m in Sources */,
 				E4DCCA3B19ABC08300CE7E62 /* LaunchViewController.m in Sources */,
+				E43B72A219B86C25000F932C /* CategoryListTableViewCell.m in Sources */,
 				E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */,
 				E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */,
 				E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */,
