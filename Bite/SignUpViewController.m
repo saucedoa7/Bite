@@ -15,7 +15,7 @@
 #define FullName @"fullName"
 #define Email @"email"
 
-@interface SignUpViewController ()
+@interface SignUpViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -44,8 +44,7 @@
     [self.nameTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
-
+    self.passwordTextField.delegate = self;
 }
 
 - (IBAction)onSignUpButtonPressed:(id)sender
@@ -54,6 +53,11 @@
 
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.passwordTextField resignFirstResponder];
+    return YES;
+}
 
 #pragma mark - sign up
 - (void) signUp {
@@ -81,6 +85,8 @@
                 [alertView show];
             }
             else {
+                [self dismissViewControllerAnimated:YES completion:nil];
+//            [self performSegueWithIdentifier:@"signUpSegue" sender:self];
             }
         }];
     }

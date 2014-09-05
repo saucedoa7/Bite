@@ -25,7 +25,7 @@
 -(void)viewDidLoad{
 
     [super viewDidLoad];
-    //[self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 -(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
