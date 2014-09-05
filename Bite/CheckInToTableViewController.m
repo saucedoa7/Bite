@@ -39,7 +39,7 @@
     self.numberOfTables = [self.restaurantObject objectForKey:@"numberOfTables"];
 
     self.sectionsArray = [NSMutableArray new];
-    [self.sectionsArray addObject:[NSString stringWithFormat:@"Section: %d", self.sectionsArray.count]];
+    [self.sectionsArray addObject:[NSString stringWithFormat:@"Section: %lu", (unsigned long)self.sectionsArray.count]];
 
 #pragma mark CheckinTableView Data
 
@@ -60,7 +60,7 @@
 {
     CheckInToTableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
+    cell.tableLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
 
     if (!cell) {
         cell = [[CheckInToTableTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];

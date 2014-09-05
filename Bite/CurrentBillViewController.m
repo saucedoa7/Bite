@@ -107,7 +107,7 @@
             count++;
         }
     }
-    NSLog(@"rows %d in section %d",count, section);
+    NSLog(@"rows %d in section %ld",count, (long)section);
     return count;
 //    int count0 = 0;
 //    int count1 = 0;
@@ -149,7 +149,7 @@
     BillTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCellID"];
 
     NSMutableArray *myArray = [NSMutableArray new];
-    NSLog(@"section %d row %d",indexPath.section, indexPath.row);
+    NSLog(@"section %ld row %ld",(long)indexPath.section, (long)indexPath.row);
     for (PFObject *bill in self.tableBill) {
         int index = [self.tableBill indexOfObject:bill];
         NSNumber *owner = [self.owners objectAtIndex:index];
@@ -247,7 +247,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return @"WITHOUT OWNER";
+        return @"Guests";
     }
     return [self.mergeArrays objectAtIndex:section-1];
 //    if ([self.billTableView isEditing]) {
