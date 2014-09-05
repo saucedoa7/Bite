@@ -22,16 +22,27 @@
 
 @implementation SearchRestaurantViewController
 
+-(void)viewDidLoad{
+
+    [super viewDidLoad];
+    //[self.navigationController.navigationBar setHidden:NO];
+}
+
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self showLaunchPageVC];
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -65,7 +76,6 @@
 - (IBAction)onLogOutButtonPressed:(id)sender {
     [PFUser logOut];
     [self showLaunchPageVC];
-
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

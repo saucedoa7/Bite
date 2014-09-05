@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="448-Y0-Tga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1974" y="-2018"/>
+            <point key="canvasLocation" x="-2420" y="-1522"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="0uP-lG-G45">
@@ -274,11 +274,12 @@
                     <connections>
                         <outlet property="passwordTextField" destination="GEj-MB-UHd" id="Rv8-Id-oFJ"/>
                         <outlet property="usernameTextField" destination="RVW-gn-9QG" id="RTe-bN-K70"/>
+                        <segue destination="PB9-pr-f0y" kind="modal" identifier="VikSegue" modalTransitionStyle="crossDissolve" id="hSz-km-fQp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2r-Vu-pkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1108" y="-2018"/>
+            <point key="canvasLocation" x="-1956" y="-1522"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="Ixx-Aw-lwh">
@@ -360,7 +361,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jn9-bK-fjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6GY-Df-XNw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-244" y="-2406"/>
+            <point key="canvasLocation" x="-1332" y="-1910"/>
         </scene>
         <!--Search Restaurant View Controller-->
         <scene sceneID="loS-rs-fb2">
@@ -477,6 +478,8 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="restaurantSearchField" destination="s5R-m2-BZ5" id="WEV-gq-5nq"/>
                         <outlet property="tableView" destination="Fr4-Fh-Ao3" id="0yd-k1-e6d"/>
@@ -485,7 +488,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZR-Qb-izX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="A5J-mU-mdJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1108" y="-346"/>
+            <point key="canvasLocation" x="-868" y="-346"/>
         </scene>
         <!--Check In To Table View Controller-->
         <scene sceneID="171-8o-vzp">
@@ -538,13 +541,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Nhc-p5-wpR">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="VYH-3R-nJY">
-                            <connections>
-                                <action selector="onEditButton:" destination="g4N-yg-n3J" id="nrp-nb-PGU"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Nhc-p5-wpR"/>
                     <connections>
                         <outlet property="checkInTableView" destination="sS7-jr-iOQ" id="Tf8-ux-bte"/>
                     </connections>
@@ -663,6 +660,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="cj2-BK-iL0"/>
                     <connections>
                         <outlet property="codeTextField" destination="bUZ-lX-wsL" id="mwo-2G-wPK"/>
                     </connections>
@@ -723,6 +721,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YHQ-AP-AXC"/>
                     <connections>
                         <outlet property="itemDescriptionLabel" destination="6Zf-7L-8d9" id="kMn-ov-Mgb"/>
                         <outlet property="itemImage" destination="gup-BR-tMW" id="SZW-H0-166"/>
@@ -903,7 +902,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bz-wP-pcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FYi-Bs-0JJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-244" y="-1614"/>
+            <point key="canvasLocation" x="-1332" y="-1118"/>
         </scene>
         <!--Invite Friends View Controller - Friends-->
         <scene sceneID="v6X-oE-ly5">
@@ -985,6 +984,7 @@
         <scene sceneID="FqD-kz-daZ">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="eBC-qj-Ff8" customClass="TabBarController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="03o-HG-Vwh"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="aci-SY-wwj">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -1281,8 +1281,10 @@
         <!--Navigation Controller-->
         <scene sceneID="G9D-aL-cfW">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvI-Iz-r9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PB9-pr-f0y" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="rtx-di-WE8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y8l-fc-QM6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1295,9 +1297,8 @@
                         <segue destination="Iw7-8h-Wkt" kind="relationship" relationship="rootViewController" id="Y5s-34-neM"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bvI-Iz-r9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1980" y="-346"/>
+            <point key="canvasLocation" x="-1332" y="-346"/>
         </scene>
     </scenes>
     <resources>
