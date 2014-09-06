@@ -31,7 +31,6 @@
     // Configure the view for the selected state
 }
 
-
 // Cell Spacing
 
 - (void)setFrame:(CGRect)frame {
