@@ -17,6 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(IBAction)unwindToRoot:(UIStoryboardSegue *)sender

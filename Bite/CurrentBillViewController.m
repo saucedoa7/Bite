@@ -168,6 +168,7 @@
     PFObject *itemOrdered = [billItem objectForKey:@"itemOrdered"];
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.billItem.text = [object objectForKey:@"foodItem"];
+        cell.itemPrice.text = [NSString stringWithFormat:@"$%@", [object objectForKey:@"price"]];
 //        cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
     }];
 
@@ -249,7 +250,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return @"Guests";
+        return @"Items on the table";
     }
     return [self.mergeArrays objectAtIndex:section-1];
 //    if ([self.billTableView isEditing]) {

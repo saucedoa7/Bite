@@ -36,6 +36,8 @@
     [self.passwordTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     self.usernameTextField.text = nil;
     self.passwordTextField.text = nil;
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
