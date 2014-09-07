@@ -43,6 +43,7 @@
     [self.passwordTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [self.nameTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.passwordTextField.delegate = self;
 }

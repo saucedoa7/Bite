@@ -553,7 +553,7 @@ for the account</string>
                         <viewControllerLayoutGuide type="top" id="n0o-IF-yMr"/>
                         <viewControllerLayoutGuide type="bottom" id="Ioq-XY-jvL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Y2Z-vB-cR9">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Y2Z-vB-cR9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -846,6 +846,7 @@ for the account</string>
                                 </state>
                                 <connections>
                                     <action selector="onSignUpButtonPressed:" destination="x9K-5J-QDt" eventType="touchUpInside" id="LnC-kI-Ygy"/>
+                                    <segue destination="FYi-Bs-0JJ" kind="unwind" unwindAction="unwindToSearch:" id="89a-Vq-XJH"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ypu-Ac-4qd">
@@ -959,16 +960,6 @@ for the account</string>
                                             <action selector="onAddRemoveGuestButton:" destination="NcF-jY-qoq" eventType="valueChanged" id="tfp-zL-DoD"/>
                                         </connections>
                                     </stepper>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXM-Eo-THV">
-                                        <rect key="frame" x="122" y="358" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onAddGuestButton:" destination="NcF-jY-qoq" eventType="touchUpInside" id="RbC-UE-8BU"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dee-Ic-cjE">
                                         <rect key="frame" x="118" y="317" width="41" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1159,9 +1150,11 @@ for the account</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ou-fj-Zex">
-                                <rect key="frame" x="145" y="77" width="30" height="30"/>
+                                <rect key="frame" x="32" y="343" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="Edit">
+                                    <color key="titleColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1187,11 +1180,19 @@ for the account</string>
                                                     <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce8-9L-sCl">
+                                                    <rect key="frame" x="209" y="0.0" width="51" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="billItem" destination="4GV-59-9Ya" id="Qhz-uu-hdb"/>
+                                            <outlet property="itemPrice" destination="Ce8-9L-sCl" id="vyQ-MI-K0r"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1410,7 +1411,6 @@ for the account</string>
         <!--Navigation Controller-->
         <scene sceneID="G9D-aL-cfW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bvI-Iz-r9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PB9-pr-f0y" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="rtx-di-WE8"/>
@@ -1426,6 +1426,7 @@ for the account</string>
                         <segue destination="Iw7-8h-Wkt" kind="relationship" relationship="rootViewController" id="Y5s-34-neM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvI-Iz-r9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1332" y="-346"/>
         </scene>

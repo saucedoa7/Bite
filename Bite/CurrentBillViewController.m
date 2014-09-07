@@ -113,6 +113,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     NSMutableArray *array = [self.owners objectAtIndex:section];
     return array.count;
 }
@@ -130,7 +131,8 @@
     NSLog(@"itemOrdered %@", itemOrdered);
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.billItem.text = [object objectForKey:@"foodItem"];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Price: $%@.00",[object objectForKey:@"price"]];
+        cell.itemPrice.text = [NSString stringWithFormat:@"$%@", [object objectForKey:@"price"]];
+
     }];
     return cell;
 }

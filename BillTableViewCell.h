@@ -10,5 +10,6 @@
 
 @interface BillTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *billItem;
+@property (strong, nonatomic) IBOutlet UILabel *itemPrice;
 
 @end
