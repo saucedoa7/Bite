@@ -64,7 +64,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 
-
     [self.billTableView reloadData];
 
     //get data from other child tab bar
@@ -126,12 +125,13 @@
         cell = [[BillTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"billCellID"];
 
     }
+
     NSMutableArray *array = [self.owners objectAtIndex:indexPath.section];
     PFObject *itemOrdered = [[array objectAtIndex:indexPath.row] objectForKey:@"itemOrdered"];
     NSLog(@"itemOrdered %@", itemOrdered);
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.billItem.text = [object objectForKey:@"foodItem"];
-        cell.itemPrice.text = [NSString stringWithFormat:@"$%@", [object objectForKey:@"price"]];
+        cell.itemPrice.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"price"]];
 
     }];
     return cell;
@@ -174,15 +174,17 @@
 
 #pragma mark Add Section
 
+// The list works perfectly and displays ALL guest the first time you view the bill. After that if you want to select just ONE other guest (you + 1 Stepper Guest) it crashes at L183.
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return @"Me";
-    } else{
-        return [self.mergeArrays objectAtIndex:section-1];
+    } else if (section > 0){
+        NSLog(@"Sections!!! %ld", (long)section);
+        return [self.mergeArrays objectAtIndex:section - 1];
     }
     [self.billTableView reloadData];
-
+    return @"";
 }
 
 #pragma mark Remove delete button
