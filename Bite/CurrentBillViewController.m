@@ -51,22 +51,18 @@
 
 - (void)createArrays
 {
-    if (!self.owners) {
         self.owners = [NSMutableArray new];
         [self.owners addObject:self.tableBill];
         for (NSString *string in self.mergeArrays) {
             NSLog(@"owner %@", string);
             [self.owners addObject:[NSMutableArray new]];
         }
-    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 
-    [self.billTableView reloadData];
-
-    //get data from other child tab bar
+    self.owners = [NSMutableArray new];
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         NSLog(@"0 Steppers CBillVC %@\n", IVC.mergeArrays);
         self.mergeArrays = IVC.mergeArrays;
@@ -80,7 +76,6 @@
 
     [[self billTableView] setDelegate:self];
     [[self billTableView] setDataSource:self];
-    [[self billTableView] reloadData];
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
