@@ -169,7 +169,7 @@
     NSMutableArray *destinyArray = [self.owners objectAtIndex:destinationIndexPath.section];
     [destinyArray addObject:[originArray objectAtIndex:sourceIndexPath.row]];
     [originArray removeObjectAtIndex:sourceIndexPath.row];
-    //[self.billTableView reloadData];
+    [self.billTableView reloadData];
 }
 
 #pragma mark Add Section
@@ -178,8 +178,11 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return @"Me";
+    } else{
+        return [self.mergeArrays objectAtIndex:section-1];
     }
-    return [self.mergeArrays objectAtIndex:section-1];
+    [self.billTableView reloadData];
+
 }
 
 #pragma mark Remove delete button

@@ -44,6 +44,7 @@
     self.theNewListOfStepperFriends = [NSMutableArray new];
 
     self.selectedGuestcounter = 0;
+    self.numberOfGuestLabel.text = @"0";
     [self.theNewListOfStepperFriends removeAllObjects];
     [self.listOfFriends removeAllObjects];
 
