@@ -23,7 +23,6 @@
 @property NSNumber *tableNumberIntVal;
 @property NSMutableArray *sectionsArray;
 @property NSMutableArray *numberOfTablesMute;
-
 @property NSMutableArray *owners;
 @end
 
@@ -38,12 +37,10 @@
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
-
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-
 }
 
 - (IBAction)onPaidButton:(id)sender {
@@ -51,12 +48,12 @@
 
 - (void)createArrays
 {
-        self.owners = [NSMutableArray new];
-        [self.owners addObject:self.tableBill];
-        for (NSString *string in self.mergeArrays) {
-            NSLog(@"owner %@", string);
-            [self.owners addObject:[NSMutableArray new]];
-        }
+    self.owners = [NSMutableArray new];
+    [self.owners addObject:self.tableBill];
+    for (NSString *string in self.mergeArrays) {
+        NSLog(@"owner %@", string);
+        [self.owners addObject:[NSMutableArray new]];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -64,9 +61,9 @@
 
     self.owners = [NSMutableArray new];
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-        NSLog(@"0 Steppers CBillVC %@\n", IVC.mergeArrays);
-        self.mergeArrays = IVC.mergeArrays;
-        NSLog(@"1 Steppers CBillVC %@\n", IVC.mergeArrays);
+    NSLog(@"0 Steppers CBillVC %@\n", IVC.mergeArrays);
+    self.mergeArrays = IVC.mergeArrays;
+    NSLog(@"1 Steppers CBillVC %@\n", IVC.mergeArrays);
 
 
     [self.sectionsArray removeAllObjects];
@@ -168,8 +165,6 @@
 }
 
 #pragma mark Add Section
-
-// The list works perfectly and displays ALL guest the first time you view the bill. After that if you want to select just ONE other guest (you + 1 Stepper Guest) it crashes at L183.
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
