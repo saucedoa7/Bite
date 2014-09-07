@@ -60,7 +60,7 @@
 {
     CheckInToTableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkInTableCellID"];
 
-    cell.tableLabel.text = [NSString stringWithFormat:@"Table Number: %ld", indexPath.row + 1];
+    cell.tableLabel.text = [NSString stringWithFormat:@"Table Number: %d", indexPath.row + 1];
 
     if (!cell) {
         cell = [[CheckInToTableTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkInTableCellID"];
