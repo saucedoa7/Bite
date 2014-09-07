@@ -169,9 +169,6 @@
     }
 }
 
-- (IBAction)onAddGuestButton:(UIButton *)sender {
-}
-
 -(IBAction)unwindToInviteFrinds:(UIStoryboardSegue*)sender{
     
 }
