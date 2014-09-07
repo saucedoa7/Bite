@@ -175,7 +175,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return @"WITHOUT OWNER";
+        return @"Me";
     }
     return [self.mergeArrays objectAtIndex:section-1];
 }
