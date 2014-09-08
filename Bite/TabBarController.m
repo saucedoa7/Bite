@@ -37,6 +37,8 @@
     CurrentBillViewController *currentBillVC = self.viewControllers[2];
     currentBillVC.tableNumber = self.tableNumber;
     currentBillVC.resaurantObject = self.restaurantObject;
+    self.navigationItem.hidesBackButton = YES;
+
 
 
 }

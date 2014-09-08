@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
+@property (strong, nonatomic) IBOutlet UIButton *editProfileButton;
+@property (strong, nonatomic) IBOutlet UIButton *doneProfileButton;
 
 @end
 
@@ -56,12 +58,14 @@
     self.passwordTextField.delegate = self;
     self.passwordTextField.delegate = self;
 
+    [self.doneProfileButton setHidden:YES];
+
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
     [self showTextFields];
     [self hideLabels];
-    self.doneButton.hidden = NO;
+    [self.doneProfileButton setHidden:NO];
 }
 
 - (IBAction)onDoneButton:(UIButton *)sender {
@@ -81,7 +85,7 @@
     [self hideTextFields];
     [self showLabels];
 
-    self.doneButton.hidden = YES;
+    [self.doneProfileButton setHidden:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -46,7 +46,6 @@
 {
     CategoryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
     cell.itemName.text = self.foodItems [indexPath.row];
-//    cell.itemDescription.text = [self.categoryList valueForKey:@"itemDescription"][indexPath.row];
     cell.itemPrice.text =[NSString stringWithFormat:@"%@", [self.categoryList valueForKey:@"price"][indexPath.row]];
 
 
