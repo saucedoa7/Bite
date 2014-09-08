@@ -17,6 +17,7 @@
 @property NSMutableArray *restaurantSearchResult;
 @property NSNumber *numberOfTables;
 @property (strong, nonatomic) IBOutlet UIImageView *cellBackground;
+@property (strong, nonatomic) IBOutlet UIImageView *forkImage;
 
 @end
 
@@ -93,6 +94,7 @@
         [self.tableView reloadData];
     }];
     [self.restaurantSearchField resignFirstResponder];
+    [self.forkImage setHidden:YES];
 
 }
 

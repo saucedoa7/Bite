@@ -463,6 +463,10 @@ for the account</string>
                                     <outlet property="delegate" destination="Iw7-8h-Wkt" id="vRM-3L-gzu"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="searchFork" translatesAutoresizingMaskIntoConstraints="NO" id="dSa-tu-Nzd">
+                                <rect key="frame" x="91" y="107" width="112" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -496,6 +500,7 @@ for the account</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="forkImage" destination="dSa-tu-Nzd" id="ram-AI-rml"/>
                         <outlet property="restaurantSearchField" destination="s5R-m2-BZ5" id="WEV-gq-5nq"/>
                         <outlet property="tableView" destination="Fr4-Fh-Ao3" id="0yd-k1-e6d"/>
                     </connections>
@@ -1474,6 +1479,7 @@ for the account</string>
         <image name="placeOrderButton" width="320" height="47"/>
         <image name="profileBackground" width="320" height="489"/>
         <image name="requestPassword" width="222" height="37"/>
+        <image name="searchFork" width="113" height="280"/>
         <image name="signUpButton" width="222" height="37"/>
         <image name="tableOval1" width="180" height="180"/>
         <image name="tableOval2" width="180" height="180"/>
