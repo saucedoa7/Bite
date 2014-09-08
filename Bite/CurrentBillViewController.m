@@ -24,6 +24,7 @@
 @property NSMutableArray *sectionsArray;
 @property NSMutableArray *numberOfTablesMute;
 @property (strong, nonatomic) IBOutlet UILabel *thankYouLabel;
+@property (strong, nonatomic) IBOutlet UIButton *editButton;
 
 @property NSMutableArray *owners;
 @end
@@ -152,14 +153,14 @@
     {
         [super setEditing:NO animated:NO];
         [self.billTableView setEditing:NO animated:NO];
-        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+        [self.editButton setTitle: @"Edit" forState: UIControlStateNormal];
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
     }
     else
     {
         [super setEditing:YES animated:YES];
         [self.billTableView setEditing:YES animated:YES];
-        [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
+        [self.editButton setTitle: @"Done" forState: UIControlStateNormal];
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
     }
 }
