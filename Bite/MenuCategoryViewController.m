@@ -11,8 +11,7 @@
 #import "CategoryListViewController.h"
 
 @interface MenuCategoryViewController () <UITableViewDelegate, UITableViewDataSource>
-@property NSMutableArray *restaurantDetailArray;
-@property NSArray *menuCategory;
+@property NSArray *categories;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -29,14 +28,11 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.restaurantDetailArray = [NSMutableArray new];
 
-    PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Food"];
-    [categoryQuery whereKey:@"restaurant" equalTo:self.resaurantObject];
+    PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Category"];
     [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
-            self.restaurantDetailArray = [objects mutableCopy];
-            self.menuCategory = [self.restaurantDetailArray valueForKey:@"category"] ;
+            self.categories = [objects mutableCopy];
             [self.tableView reloadData];
         }
     }];
@@ -46,13 +42,14 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.menuCategory.count;
+    return self.categories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MenuCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCategoryCellID"];
-    cell.courseName.text = self.menuCategory [indexPath.row];
+    PFObject *category = self.categories[indexPath.row];
+    cell.courseName.text = [category objectForKey:@"name"];
     return cell;
 }
 
@@ -63,7 +60,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     CategoryListViewController *categoryVC = segue.destinationViewController;
-    categoryVC.categorySelected = [self.menuCategory objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    PFObject *category = self.categories[self.tableView.indexPathForSelectedRow.row];
+
+    categoryVC.categorySelected = category;
     categoryVC.tableNumber = self.tableNumber;
 }
 @end
