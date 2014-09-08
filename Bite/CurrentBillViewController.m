@@ -89,6 +89,8 @@
     self.tableBill = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Table"];
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
+    NSLog(@"Restaurant Object %@", self.tableNumberIntVal);
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
         [self createArrays];
@@ -129,12 +131,12 @@
     }
 
     NSMutableArray *array = [self.owners objectAtIndex:indexPath.section];
+
     PFObject *itemOrdered = [[array objectAtIndex:indexPath.row] objectForKey:@"itemOrdered"];
     NSLog(@"itemOrdered %@", itemOrdered);
     [itemOrdered fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.billItem.text = [object objectForKey:@"foodItem"];
         cell.itemPrice.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"price"]];
-
     }];
     return cell;
 }

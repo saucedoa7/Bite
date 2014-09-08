@@ -38,9 +38,7 @@
             self.restaurantDetailArray = [objects mutableCopy];
             self.menuCategory = [self.restaurantDetailArray valueForKey:@"category"] ;
             [self.tableView reloadData];
-            
         }
-
     }];
     [self.tabBarController setTitle:@"Menu"];
 
