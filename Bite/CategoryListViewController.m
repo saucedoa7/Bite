@@ -23,6 +23,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.2 alpha:1];
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,7 +46,7 @@
 {
     CategoryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
     cell.itemName.text = self.foodItems [indexPath.row];
-    cell.itemDescription.text = [self.categoryList valueForKey:@"itemDescription"][indexPath.row];
+//    cell.itemDescription.text = [self.categoryList valueForKey:@"itemDescription"][indexPath.row];
     cell.itemPrice.text =[NSString stringWithFormat:@"%@", [self.categoryList valueForKey:@"price"][indexPath.row]];
 
 

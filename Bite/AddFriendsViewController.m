@@ -31,9 +31,9 @@ FriendsListViewController *friendList;
     AddFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = [friend objectForKey:Username];
+    cell.friendNameLabel.text = [friend objectForKey:Username];
 
-    friendList.friendUsername = cell.textLabel.text;
+    friendList.friendUsername = cell.friendNameLabel.text;
     NSLog(@"%@", friendList.friendUsername);
     return cell;
 }
@@ -47,7 +47,7 @@ FriendsListViewController *friendList;
     AddFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addFriendsCellID"];
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = [friend objectForKey:Username];
+    cell.friendNameLabel.text = [friend objectForKey:Username];
 
     PFUser *currentUser = [PFUser currentUser];
     PFRelation *friendsRelation = [currentUser relationForKey:@"friendsRelation"];

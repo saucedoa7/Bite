@@ -31,6 +31,11 @@
     [super viewDidLoad];
     self.listOfFriends = [NSMutableArray new];
     self.theNewListOfStepperFriends = [NSMutableArray new];
+
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.2 alpha:1];
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+
+    [self.tabBarController setTitle:@"Guests"];
 }
 
 

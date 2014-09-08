@@ -10,7 +10,6 @@
 
 @interface CategoryListTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *itemName;
-@property (strong, nonatomic) IBOutlet UILabel *itemDescription;
 @property (strong, nonatomic) IBOutlet UILabel *itemPrice;
 
 @end
