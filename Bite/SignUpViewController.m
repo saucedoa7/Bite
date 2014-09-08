@@ -44,8 +44,10 @@
     [self.nameTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
 
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.passwordTextField.delegate = self;
+    self.emailTextField.delegate = self;
+    self.nameTextField.delegate = self;
+    self.usernameTextField.delegate = self;
 }
 
 - (IBAction)onSignUpButtonPressed:(id)sender
@@ -57,6 +59,9 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.passwordTextField resignFirstResponder];
+    [self.emailTextField resignFirstResponder];
+    [self.nameTextField resignFirstResponder];
+    [self.usernameTextField resignFirstResponder];
     return YES;
 }
 
