@@ -7,6 +7,7 @@
 //
 
 #import "FriendsListViewController.h"
+#import "ViewFriendsTableViewCell.h"
 
 @interface FriendsListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *friendTableView;
@@ -20,6 +21,7 @@ FriendsListViewController *friendList;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[[self navigationController] navigationBar] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -44,10 +46,10 @@ FriendsListViewController *friendList;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendListCellID"];
+    ViewFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendListCellID"];
     PFObject *friend = [self.friends  objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = [friend objectForKey: @"username"];
+    cell.friendNameLabel.text = [friend objectForKey: @"username"];
     return cell;
 
 }

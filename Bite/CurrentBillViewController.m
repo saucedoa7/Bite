@@ -23,6 +23,7 @@
 @property NSNumber *tableNumberIntVal;
 @property NSMutableArray *sectionsArray;
 @property NSMutableArray *numberOfTablesMute;
+@property (strong, nonatomic) IBOutlet UILabel *thankYouLabel;
 
 @property NSMutableArray *owners;
 @end
@@ -38,6 +39,11 @@
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
     self.tableNumberIntVal = [NSNumber numberWithInt:self.tableNumber];
+    
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.2 alpha:1];
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+    [self.tabBarController setTitle:@"Table Bill"];
+
 
 }
 
@@ -100,6 +106,7 @@
         if (objects) {
             self.restaurantNames = [objects mutableCopy];
             self.nameOfRest = [[self.restaurantNames valueForKey:@"restaurantName"] objectAtIndex:0];
+            self.thankYouLabel.text = [NSString stringWithFormat:@"Thank you for dining at\n %@", self.nameOfRest];
             self.restaurantNameLabel.text = self.nameOfRest;
             [self.billTableView reloadData];
         }

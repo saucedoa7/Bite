@@ -18,6 +18,7 @@
 		E43B72A219B86C25000F932C /* CategoryListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E43B72A119B86C25000F932C /* CategoryListTableViewCell.m */; };
 		E440BD6019ABD56B00D08726 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */; };
 		E46503FC19B864000011A32A /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E46503FB19B864000011A32A /* BillTableViewCell.m */; };
+		E470F32A19BD1DA400B40487 /* ViewFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E470F32919BD1DA400B40487 /* ViewFriendsTableViewCell.m */; };
 		E48F7F7119B58420009474DC /* CheckInToTableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */; };
 		E4943AC119ABCAC2005D6758 /* CheckInToTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC019ABCAC2005D6758 /* CheckInToTableViewController.m */; };
 		E4943AC419ABCADE005D6758 /* TableCheckInCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4943AC319ABCADE005D6758 /* TableCheckInCodeViewController.m */; };
@@ -91,6 +92,8 @@
 		E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		E46503FA19B864000011A32A /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BillTableViewCell.h; path = ../BillTableViewCell.h; sourceTree = "<group>"; };
 		E46503FB19B864000011A32A /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BillTableViewCell.m; path = ../BillTableViewCell.m; sourceTree = "<group>"; };
+		E470F32819BD1DA400B40487 /* ViewFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewFriendsTableViewCell.h; path = ../ViewFriendsTableViewCell.h; sourceTree = "<group>"; };
+		E470F32919BD1DA400B40487 /* ViewFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewFriendsTableViewCell.m; path = ../ViewFriendsTableViewCell.m; sourceTree = "<group>"; };
 		E48F7F6F19B58420009474DC /* CheckInToTableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckInToTableTableViewCell.h; path = ../CheckInToTableTableViewCell.h; sourceTree = "<group>"; };
 		E48F7F7019B58420009474DC /* CheckInToTableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckInToTableTableViewCell.m; path = ../CheckInToTableTableViewCell.m; sourceTree = "<group>"; };
 		E4943ABF19ABCAC2005D6758 /* CheckInToTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInToTableViewController.h; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 		E4265CB119AEAB5300C9D3CE /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E470F32819BD1DA400B40487 /* ViewFriendsTableViewCell.h */,
+				E470F32919BD1DA400B40487 /* ViewFriendsTableViewCell.m */,
 				E43B72A019B86C25000F932C /* CategoryListTableViewCell.h */,
 				E43B72A119B86C25000F932C /* CategoryListTableViewCell.m */,
 				E46503FA19B864000011A32A /* BillTableViewCell.h */,
@@ -328,8 +333,6 @@
 			children = (
 				E440BD5E19ABD56B00D08726 /* ForgotPasswordViewController.h */,
 				E440BD5F19ABD56B00D08726 /* ForgotPasswordViewController.m */,
-				E438359219ABCA2A00AB2940 /* InviteFriendsViewController.h */,
-				E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */,
 				E409994B19ABC750003CB4FF /* FriendsListViewController.h */,
 				E409994C19ABC750003CB4FF /* FriendsListViewController.m */,
 				E4DCCA7A19ABC70300CE7E62 /* AddFriendsViewController.h */,
@@ -343,6 +346,8 @@
 		E4F6127719AFBBA400F0540E /* Menu Categories & Items */ = {
 			isa = PBXGroup;
 			children = (
+				E438359219ABCA2A00AB2940 /* InviteFriendsViewController.h */,
+				E438359319ABCA2A00AB2940 /* InviteFriendsViewController.m */,
 				E4943AC819ABCB5A005D6758 /* MenuCategoryViewController.h */,
 				E4943AC919ABCB5A005D6758 /* MenuCategoryViewController.m */,
 				E4943ACB19ABCB69005D6758 /* CategoryListViewController.h */,
@@ -458,6 +463,7 @@
 				E4DCCA7C19ABC70300CE7E62 /* AddFriendsViewController.m in Sources */,
 				50E445F819AF809800183C88 /* TabBarController.m in Sources */,
 				E4DCCA7319ABC67C00CE7E62 /* LogInViewController.m in Sources */,
+				E470F32A19BD1DA400B40487 /* ViewFriendsTableViewCell.m in Sources */,
 				E438359419ABCA2A00AB2940 /* InviteFriendsViewController.m in Sources */,
 				E4DCCA7619ABC68C00CE7E62 /* SignUpViewController.m in Sources */,
 				E4DCCA3B19ABC08300CE7E62 /* LaunchViewController.m in Sources */,

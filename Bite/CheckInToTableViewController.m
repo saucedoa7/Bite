@@ -26,11 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Select Your Table";
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0.6
-                                                                                                                     green:0.6
-                                                                                                                      blue:0.6
-                                                                                                                     alpha:1] forKey:NSForegroundColorAttributeName];
+    [[[self navigationController] navigationBar] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -26,6 +26,7 @@
 
     [super viewDidLoad];
     [self.navigationController.navigationBar setHidden:NO];
+        [[[self navigationController] navigationBar] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 -(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -37,6 +38,8 @@
     [super viewWillAppear:YES];
 
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+    self.restaurantSearchField.text = nil;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated

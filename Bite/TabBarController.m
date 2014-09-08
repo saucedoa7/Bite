@@ -24,6 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -36,6 +37,7 @@
     CurrentBillViewController *currentBillVC = self.viewControllers[2];
     currentBillVC.tableNumber = self.tableNumber;
     currentBillVC.resaurantObject = self.restaurantObject;
+
 
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
