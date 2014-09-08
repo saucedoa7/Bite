@@ -89,7 +89,7 @@
     self.tableBill = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Table"];
     [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
-    NSLog(@"Restaurant Object %@", self.tableNumberIntVal);
+    [query whereKey:@"restaurantName" equalTo:self.resaurantObject];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];

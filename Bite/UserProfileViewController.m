@@ -30,15 +30,6 @@
 
 @implementation UserProfileViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -76,6 +67,16 @@
 
     self.emailLabel.text = email;
     self.userNameLabel.text = userName;
+
+    if ([userName isEqualToString:@"" ] || [email isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Info" message:@"All fields must be filled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+
+        [alert show];
+    }
+
+    userName = self.userNameTextField.text;
+    password = self.passwordTextField.text;
+    email = self.emailTextField.text;
 
     [[PFUser currentUser] setUsername:userName];
     [[PFUser currentUser] setEmail:email];
