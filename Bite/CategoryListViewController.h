@@ -10,8 +10,8 @@
 
 @interface CategoryListViewController : LaunchViewController
 
-@property PFObject *foodList;
-@property NSString *categorySelected;
+//@property PFObject *foodList;
+@property PFObject *categorySelected;
 @property int tableNumber;
 
 @end
