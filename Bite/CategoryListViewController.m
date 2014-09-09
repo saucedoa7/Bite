@@ -11,6 +11,7 @@
 #import "CategoryListTableViewCell.h"
 
 @interface CategoryListViewController () <UITableViewDataSource, UITableViewDelegate>
+@property NSMutableArray *categoryList;
 @property NSArray *foodItems;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -29,10 +30,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    self.categoryList = [NSMutableArray new];
     PFQuery *foodListQuery = [PFQuery queryWithClassName:@"Food"];
     [foodListQuery whereKey:@"category" equalTo:self.categorySelected];
     [foodListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.foodItems = objects;
+        self.categoryList = [objects mutableCopy];
+        self.foodItems = [self.categoryList valueForKey:@"foodItem"];
         [self.tableView reloadData];
 
     }];
@@ -42,9 +45,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
-    PFObject *foodItem = self.foodItems[indexPath.row];
-    cell.itemName.text = [foodItem objectForKey:@"foodItem"];
-    cell.itemPrice.text = [NSString stringWithFormat:@"%@",[foodItem objectForKey:@"price"]];
+    cell.itemName.text = self.foodItems [indexPath.row];
+//    cell.itemDescription.text = [self.categoryList valueForKey:@"itemDescription"][indexPath.row];
+    cell.itemPrice.text =[NSString stringWithFormat:@"%@", [self.categoryList valueForKey:@"price"][indexPath.row]];
+
 
     return cell;
 }
@@ -66,7 +70,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    PFObject *object = [self.foodItems objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    PFObject *object = [self.categoryList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     FoodDetailsViewController *foodDetailVC = segue.destinationViewController;
     foodDetailVC.foodItemSelected = object;
     foodDetailVC.tableNumber = self.tableNumber;

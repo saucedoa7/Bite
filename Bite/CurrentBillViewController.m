@@ -13,7 +13,6 @@
 
 @interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (weak, nonatomic) IBOutlet UITableView *billTableView;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thankYouLabel;
@@ -27,6 +26,9 @@
 @property NSMutableArray *numberOfTablesMute;
 @property NSMutableArray *prices;
 @property NSMutableArray *owners;
+@property (weak, nonatomic) IBOutlet UILabel *totalPricelabel;
+@property (weak, nonatomic) IBOutlet UILabel *taxLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtotalLabel;
 @property NSMutableArray *foodItems;
 @end
 
@@ -38,8 +40,6 @@
     self.sectionsArray = [NSMutableArray new];
     self.mergeArrays = [NSMutableArray new];
     self.foodItems = [NSMutableArray new];
-
-
 
     NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
     self.tableLabel.text = tableNumberString;
@@ -75,7 +75,6 @@
     self.mergeArrays = IVC.mergeArrays;
 
     [self.sectionsArray removeAllObjects];
-
     [self.sectionsArray addObject:[NSString stringWithFormat:@"Merged Guests: %@", self.mergeArrays]];
 
     [[self billTableView] setDelegate:self];
@@ -92,17 +91,35 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.tableBill = [objects mutableCopy];
         __block int count = self.tableBill.count;
+        __block float total = 0;
         for (PFObject *table in self.tableBill) {
             PFObject *food = [table objectForKey:@"itemOrdered"];
             [food fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                 [self.foodItems addObject:object];
+                NSNumber *sub = [food objectForKey:@"price"];
+                total += sub.floatValue;
                 count--;
                 if (count == 0) {
                     [self createArrays];
                     self.owners[0] = self.foodItems;
                     [self.billTableView reloadData];
+                    self.totalPricelabel.text = [NSString stringWithFormat:@"%.2f",total];
+                    NSLog(@"Total within Query %@", self.totalPricelabel.text);
+
+                    self.taxLabel.text = @"10";
+                    float floatTax = ([self.taxLabel.text floatValue]/100);
+                    float floatTotal = [self.totalPricelabel.text floatValue];
+                    NSLog(@"%.2f", floatTax);
+
+                    float subTotal = (floatTotal * floatTax) + floatTotal;
+                    NSLog(@"Total %.2f", floatTotal);
+                    NSLog(@"Tax %.2f", floatTax);
+                    NSString *stringSubtotal = [NSString stringWithFormat:@"%.2f", subTotal];
+                    self.subtotalLabel.text = stringSubtotal;
+                    NSLog(@"%.2f", subTotal);
                 }
             }];
+
         }
     }];
 
@@ -117,10 +134,6 @@
             [self.billTableView reloadData];
         }
     }];
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
