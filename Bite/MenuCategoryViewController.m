@@ -10,6 +10,7 @@
 #import "MenuCategoryTableViewCell.h"
 #import "CategoryListViewController.h"
 
+
 @interface MenuCategoryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property NSArray *categories;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -37,6 +38,7 @@
         }
     }];
     [self.tabBarController setTitle:@"Menu"];
+
 
 }
 

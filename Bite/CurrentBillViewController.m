@@ -106,7 +106,7 @@
                     self.totalPricelabel.text = [NSString stringWithFormat:@"%.2f",total];
                     NSLog(@"Total within Query %@", self.totalPricelabel.text);
 
-                    self.taxLabel.text = @"10";
+                    self.taxLabel.text = [NSString stringWithFormat:@"%.2f", total * .1];
                     float floatTax = ([self.taxLabel.text floatValue]/100);
                     float floatTotal = [self.totalPricelabel.text floatValue];
                     NSLog(@"%.2f", floatTax);
