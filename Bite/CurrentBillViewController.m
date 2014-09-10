@@ -10,8 +10,9 @@
 #import "CheckInToTableViewController.h"
 #import "InviteFriendsViewController.h"
 #import "BillTableViewCell.h"
+#import <MessageUI/MessageUI.h>
 
-@interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;
 @property (weak, nonatomic) IBOutlet UITableView *billTableView;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *taxLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtotalLabel;
 @property NSMutableArray *foodItems;
+@property NSString *emailString;
 @end
 
 @implementation CurrentBillViewController
@@ -48,22 +50,56 @@
     self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.2 alpha:1];
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     [self.tabBarController setTitle:@"Table Bill"];
+
+
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
 
-    [PFCloud callFunctionInBackground:@"hello"
-                       withParameters:@{}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // result is @"Hello world!"
-                                    }
-                                }];
+- (IBAction)onCallForCheckPressed:(id)sender {
+    NSString *emailTitle = [NSString stringWithFormat:@"Get Check For Table: %d",self.tableNumber];
+
+    NSString *messageBody = @"Could we please get the check for out table. Thank You";
+
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:self.emailString];
+
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+
 }
 
-- (IBAction)onPaidButton:(id)sender {
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    
 }
+
 
 - (void)createArrays 
 {
@@ -82,6 +118,11 @@
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
 
+
+    PFObject *restaurant = [self.resaurantObject objectForKey:@"restaurantPointer"];
+    [restaurant fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        self.emailString = [object objectForKey:@"email"];
+    }];
 
     self.owners = [NSMutableArray new];
     InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
