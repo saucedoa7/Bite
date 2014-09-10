@@ -25,7 +25,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIButton *editProfileButton;
 @property (strong, nonatomic) IBOutlet UIButton *doneProfileButton;
-
 @end
 
 @implementation UserProfileViewController
@@ -37,20 +36,44 @@
     [self hideTextFields];
     [self showPFCurrentUser];
     self.doneButton.hidden = YES;
-    self.nameLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-    self.emailLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-    self.userNameLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-    self.passwordLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-    self.passwordTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-    self.emailTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-    self.userNameTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.nameLabel.textColor = [UIColor colorWithRed:0.6
+                                               green:0.6
+                                                blue:0.6
+                                               alpha:1];
 
+    self.emailLabel.textColor = [UIColor colorWithRed:0.6
+                                                green:0.6
+                                                 blue:0.6
+                                                alpha:1];
+
+    self.userNameLabel.textColor = [UIColor colorWithRed:0.6
+                                                   green:0.6
+                                                    blue:0.6
+                                                   alpha:1];
+
+    self.passwordLabel.textColor = [UIColor colorWithRed:0.6
+                                                   green:0.6
+                                                    blue:0.6
+                                                   alpha:1];
+
+    self.passwordTextField.textColor = [UIColor colorWithRed:0.6
+                                                       green:0.6
+                                                        blue:0.6
+                                                       alpha:1];
+
+    self.emailTextField.textColor = [UIColor colorWithRed:0.6
+                                                    green:0.6
+                                                     blue:0.6
+                                                    alpha:1];
+
+    self.userNameTextField.textColor = [UIColor colorWithRed:0.6
+                                                       green:0.6
+                                                        blue:0.6
+                                                       alpha:1];
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
     self.passwordTextField.delegate = self;
-
     [self.doneProfileButton setHidden:YES];
-
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -69,7 +92,12 @@
     self.userNameLabel.text = userName;
 
     if ([userName isEqualToString:@"" ] || [email isEqualToString:@""]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Info" message:@"All fields must be filled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Info"
+                                                        message:@"All fields must be filled"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
 
         [alert show];
     }
@@ -89,12 +117,28 @@
     [self.doneProfileButton setHidden:YES];
 }
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    CGRect frame = self.view.frame;
+    frame.origin.y = -60;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.35];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.emailTextField resignFirstResponder];
     [self.userNameTextField resignFirstResponder];
     [self.passwordTextField resignFirstResponder];
-    return YES;
 
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.35];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+    return YES;
 }
 
 #pragma mark - Hide/Show Textfields/Labels
@@ -131,7 +175,6 @@
 #pragma mark PFUser
 
 -(void)showPFCurrentUser{
-
     PFUser *currentUser = [PFUser currentUser];
     self.nameLabel.text = currentUser[FullName];
     self.emailLabel.text = currentUser.email;

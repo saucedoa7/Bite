@@ -102,14 +102,4 @@ FriendsListViewController *friendList;
     
 }
 
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if ([segue.identifier isEqualToString:@"viewFriendsSegue"]) {
-//
-//        FriendsListViewController *viewFriendsVC = segue.sourceViewController;
-//        PFUser *friend = [viewFriendsVC.usernames objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-//        viewFriendsVC.friendUsername = [friend objectForKey:@"username"];
-//        NSLog(@"didselect %@", friendList.friendUsername);
-//    }
-//}
-
 @end
