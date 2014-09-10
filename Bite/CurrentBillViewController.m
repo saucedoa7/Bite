@@ -10,7 +10,6 @@
 #import "CheckInToTableViewController.h"
 #import "InviteFriendsViewController.h"
 #import "BillTableViewCell.h"
-#import "SMTPAPI.h"
 
 @interface CurrentBillViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tableLabel;

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5032CDBB19BFAC4C009A3A45 /* SMTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032CDBA19BFAC4C009A3A45 /* SMTPAPI.m */; };
+		5032CDC619C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032CDC019C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.m */; };
+		5032CDC819C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032CDC419C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */; };
 		50E445F819AF809800183C88 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E445F719AF809800183C88 /* TabBarController.m */; };
 		E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E409994C19ABC750003CB4FF /* FriendsListViewController.m */; };
@@ -71,8 +72,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5032CDB919BFAC4C009A3A45 /* SMTPAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTPAPI.h; sourceTree = "<group>"; };
-		5032CDBA19BFAC4C009A3A45 /* SMTPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTPAPI.m; sourceTree = "<group>"; };
+		5032CDBF19C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = TPKeyboardAvoiding/TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		5032CDC019C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = TPKeyboardAvoiding/TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		5032CDC319C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "TPKeyboardAvoiding/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		5032CDC419C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "TPKeyboardAvoiding/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsTableViewCell.h; sourceTree = "<group>"; };
 		50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewCell.m; sourceTree = "<group>"; };
 		50E445F619AF809800183C88 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -190,13 +193,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5032CDB819BFAC1D009A3A45 /* SMTP */ = {
+		5032CDBC19C0C8CF009A3A45 /* ScrollClasses */ = {
 			isa = PBXGroup;
 			children = (
-				5032CDB919BFAC4C009A3A45 /* SMTPAPI.h */,
-				5032CDBA19BFAC4C009A3A45 /* SMTPAPI.m */,
+				5032CDBF19C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.h */,
+				5032CDC019C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.m */,
+				5032CDC319C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				5032CDC419C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
 			);
-			name = SMTP;
+			name = ScrollClasses;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E41F68AE19ABF00600D8A57C /* Log In/Sign Up */ = {
@@ -251,7 +257,6 @@
 		E4DCCA1819ABC08300CE7E62 = {
 			isa = PBXGroup;
 			children = (
-				5032CDB819BFAC1D009A3A45 /* SMTP */,
 				E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */,
 				E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */,
 				E4DCCA3619ABC08300CE7E62 /* Main.storyboard */,
@@ -307,6 +312,7 @@
 				E438358C19ABC79A00AB2940 /* LaunchPageViewController.h */,
 				E438358D19ABC79A00AB2940 /* LaunchPageViewController.m */,
 				E4DCCA3C19ABC08300CE7E62 /* Images.xcassets */,
+				5032CDBC19C0C8CF009A3A45 /* ScrollClasses */,
 				E4DCCA2B19ABC08300CE7E62 /* Supporting Files */,
 			);
 			path = Bite;
@@ -484,18 +490,19 @@
 				E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */,
 				E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */,
 				E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */,
-				5032CDBB19BFAC4C009A3A45 /* SMTPAPI.m in Sources */,
 				E4DCCA7919ABC6A700CE7E62 /* UserProfileViewController.m in Sources */,
 				E4943AC119ABCAC2005D6758 /* CheckInToTableViewController.m in Sources */,
 				E440BD6019ABD56B00D08726 /* ForgotPasswordViewController.m in Sources */,
 				E4DCCA3519ABC08300CE7E62 /* AppDelegate.m in Sources */,
 				E438359119ABC81800AB2940 /* SearchRestaurantViewController.m in Sources */,
+				5032CDC619C0C8E7009A3A45 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				E4943ACA19ABCB5A005D6758 /* MenuCategoryViewController.m in Sources */,
 				E4943AC719ABCB06005D6758 /* GuestsAtTableViewController.m in Sources */,
 				E4EDFA0019ABD3AB00F7E3DF /* CurrentBillViewController.m in Sources */,
 				E48F7F7119B58420009474DC /* CheckInToTableTableViewCell.m in Sources */,
 				E4943AC419ABCADE005D6758 /* TableCheckInCodeViewController.m in Sources */,
 				50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */,
+				5032CDC819C0C8E7009A3A45 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				E4265CB019AE83F100C9D3CE /* MenuCategoryTableViewCell.m in Sources */,
 				E4DCCA3119ABC08300CE7E62 /* main.m in Sources */,
 			);

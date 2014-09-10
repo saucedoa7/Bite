@@ -12,6 +12,7 @@
 @interface TableCheckInCodeViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
 @property BOOL performSegue;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @property NSString *tableCode;
 
@@ -25,13 +26,54 @@
     [super viewDidLoad];
     self.performSegue = NO;
     self.codeTextField.delegate = self;
-    
 }
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardDidShow:)
+//                                                 name:UIKeyboardDidShowNotification
+//                                               object:nil];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardDidHide:)
+//                                                 name:UIKeyboardDidHideNotification
+//                                               object:nil];
+//}
+//
+//
+//
+//- (void)keyboardDidShow:(NSNotification *)notification {
+//    if ([[UIScreen mainScreen] bounds].size.height == 568) {
+//       // [self showAnimation];
+//        [self.view setFrame:CGRectMake(0,-75,320,560)];
+//    } else {
+//       // [self showAnimation];
+//        [self.view setFrame:CGRectMake(0,-165,320,460)];
+//    }
+//}
+//
+//-(void)keyboardDidHide:(NSNotification *)notification {
+//    if ([[UIScreen mainScreen] bounds].size.height == 568) {
+//        [self.view setFrame:CGRectMake(0,20,320,560)];
+//    } else {
+//        [self.view setFrame:CGRectMake(0,20,320,460)];
+//    }
+//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     self.tableCode = [self.restaurantObject objectForKey:@"tableCode"];
+
+    
+}
+
+-(void)showAnimation {
+
+    [self.view addSubview:self.mainView];
+    self.mainView.frame = CGRectMake(0, -75, 320, 560); // somewhere offscreen, in the direction you want it to appear from
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                         self.mainView.frame = CGRectMake(0, -75, 320, 560); // its final location
+                     }];
 }
 
 - (IBAction)onNextButtonPressed:(id)sender {
@@ -45,7 +87,6 @@
     }
     else {
         self.performSegue = YES;
-
     }
 }
 
