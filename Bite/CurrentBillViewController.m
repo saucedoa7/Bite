@@ -55,7 +55,6 @@
 }
 
 
-
 - (IBAction)onCallForCheckPressed:(id)sender {
     NSString *emailTitle = [NSString stringWithFormat:@"Get Check For Table: %d",self.tableNumber];
 
@@ -72,6 +71,7 @@
 
     // Present mail view controller on screen
     [self presentViewController:mc animated:YES completion:NULL];
+
 }
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -101,7 +101,7 @@
 }
 
 
-- (void)createArrays
+- (void)createArrays 
 {
     self.owners = [NSMutableArray new];
     [self.owners addObject:self.tableBill];
@@ -113,6 +113,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    [PFCloud callFunctionInBackground:@"hello"
+                       withParameters:@{}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+
 
     PFObject *restaurant = [self.resaurantObject objectForKey:@"restaurantPointer"];
     [restaurant fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -143,6 +148,7 @@
         __block float total = 0;
         for (PFObject *table in self.tableBill) {
             PFObject *food = [table objectForKey:@"itemOrdered"];
+            self.foodItems = [NSMutableArray new];
             [food fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                 [self.foodItems addObject:object];
                 NSNumber *sub = [food objectForKey:@"price"];
@@ -153,19 +159,14 @@
                     self.owners[0] = self.foodItems;
                     [self.billTableView reloadData];
                     self.totalPricelabel.text = [NSString stringWithFormat:@"%.2f",total];
-                    NSLog(@"Total within Query %@", self.totalPricelabel.text);
 
                     self.taxLabel.text = [NSString stringWithFormat:@"%.2f", total * .1];
                     float floatTax = ([self.taxLabel.text floatValue]/100);
                     float floatTotal = [self.totalPricelabel.text floatValue];
-                    NSLog(@"%.2f", floatTax);
 
                     float subTotal = (floatTotal * floatTax) + floatTotal;
-                    NSLog(@"Total %.2f", floatTotal);
-                    NSLog(@"Tax %.2f", floatTax);
                     NSString *stringSubtotal = [NSString stringWithFormat:@"%.2f", subTotal];
                     self.subtotalLabel.text = stringSubtotal;
-                    NSLog(@"%.2f", subTotal);
                 }
             }];
 
@@ -181,6 +182,9 @@
             self.thankYouLabel.text = [NSString stringWithFormat:@"Thank you for dining at\n %@", self.nameOfRest];
             self.restaurantNameLabel.text = self.nameOfRest;
             [self.billTableView reloadData];
+        }
+    }];
+            // result is @"Hello world!"
         }
     }];
 }
@@ -259,11 +263,11 @@
     }
 
     if (section == 0) {
-        return [NSString stringWithFormat:@"Items ordered %.2f", total];
+        return [NSString stringWithFormat:@"Items ordered - $%.2f", total];
     } else if(section == 1) {
-        return [NSString stringWithFormat:@"Me %.2f", total];
+        return [NSString stringWithFormat:@"Me - $%.2f", total];
     }else {
-        return [NSString stringWithFormat:@"%@ %.2f", [self.mergeArrays objectAtIndex:section-2],total];
+        return [NSString stringWithFormat:@"%@ - $%.2f", [self.mergeArrays objectAtIndex:section-2],total];
     }
 
     [self.billTableView reloadData];
