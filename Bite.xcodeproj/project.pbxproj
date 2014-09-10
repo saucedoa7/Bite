@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5032CDBB19BFAC4C009A3A45 /* SMTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032CDBA19BFAC4C009A3A45 /* SMTPAPI.m */; };
 		50BBC9AD19AD59CE00B1B738 /* AddFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */; };
 		50E445F819AF809800183C88 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E445F719AF809800183C88 /* TabBarController.m */; };
 		E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E409994C19ABC750003CB4FF /* FriendsListViewController.m */; };
@@ -71,8 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5032CDB919BFAC4C009A3A45 /* SMTPAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTPAPI.h; sourceTree = "<group>"; };
-		5032CDBA19BFAC4C009A3A45 /* SMTPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTPAPI.m; sourceTree = "<group>"; };
 		50BBC9AB19AD59CE00B1B738 /* AddFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsTableViewCell.h; sourceTree = "<group>"; };
 		50BBC9AC19AD59CE00B1B738 /* AddFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewCell.m; sourceTree = "<group>"; };
 		50E445F619AF809800183C88 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -190,15 +187,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5032CDB819BFAC1D009A3A45 /* SMTP */ = {
-			isa = PBXGroup;
-			children = (
-				5032CDB919BFAC4C009A3A45 /* SMTPAPI.h */,
-				5032CDBA19BFAC4C009A3A45 /* SMTPAPI.m */,
-			);
-			name = SMTP;
-			sourceTree = "<group>";
-		};
 		E41F68AE19ABF00600D8A57C /* Log In/Sign Up */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,7 +239,6 @@
 		E4DCCA1819ABC08300CE7E62 = {
 			isa = PBXGroup;
 			children = (
-				5032CDB819BFAC1D009A3A45 /* SMTP */,
 				E4DCCA3319ABC08300CE7E62 /* AppDelegate.h */,
 				E4DCCA3419ABC08300CE7E62 /* AppDelegate.m */,
 				E4DCCA3619ABC08300CE7E62 /* Main.storyboard */,
@@ -484,7 +471,6 @@
 				E409994D19ABC750003CB4FF /* FriendsListViewController.m in Sources */,
 				E438358E19ABC79A00AB2940 /* LaunchPageViewController.m in Sources */,
 				E4308B4419ACEEB000B886F1 /* RestaurantSearchResultTableViewCell.m in Sources */,
-				5032CDBB19BFAC4C009A3A45 /* SMTPAPI.m in Sources */,
 				E4DCCA7919ABC6A700CE7E62 /* UserProfileViewController.m in Sources */,
 				E4943AC119ABCAC2005D6758 /* CheckInToTableViewController.m in Sources */,
 				E440BD6019ABD56B00D08726 /* ForgotPasswordViewController.m in Sources */,

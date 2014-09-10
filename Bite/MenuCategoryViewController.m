@@ -37,6 +37,16 @@
             [self.tableView reloadData];
         }
     }];
+
+//    PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Food"];
+//    [categoryQuery whereKey:@"Category" equalTo:self.resaurantObject];
+//    [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (objects) {
+//            self.categories = [objects mutableCopy];
+//            [self.tableView reloadData];
+//        }
+//    }];
+
     [self.tabBarController setTitle:@"Menu"];
 
 
