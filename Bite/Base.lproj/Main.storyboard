@@ -899,7 +899,7 @@ for the account</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04l-ZO-7GW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2441" y="14"/>
+            <point key="canvasLocation" x="2457" y="14"/>
         </scene>
         <!--Category List View Controller-->
         <scene sceneID="xka-mp-AGu">

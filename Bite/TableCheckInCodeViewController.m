@@ -27,36 +27,6 @@
     self.performSegue = NO;
     self.codeTextField.delegate = self;
 }
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardDidShow:)
-//                                                 name:UIKeyboardDidShowNotification
-//                                               object:nil];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardDidHide:)
-//                                                 name:UIKeyboardDidHideNotification
-//                                               object:nil];
-//}
-//
-//
-//
-//- (void)keyboardDidShow:(NSNotification *)notification {
-//    if ([[UIScreen mainScreen] bounds].size.height == 568) {
-//       // [self showAnimation];
-//        [self.view setFrame:CGRectMake(0,-75,320,560)];
-//    } else {
-//       // [self showAnimation];
-//        [self.view setFrame:CGRectMake(0,-165,320,460)];
-//    }
-//}
-//
-//-(void)keyboardDidHide:(NSNotification *)notification {
-//    if ([[UIScreen mainScreen] bounds].size.height == 568) {
-//        [self.view setFrame:CGRectMake(0,20,320,560)];
-//    } else {
-//        [self.view setFrame:CGRectMake(0,20,320,460)];
-//    }
-//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
