@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thankYouLabel;
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UILabel *totalPricelabel;
+@property (weak, nonatomic) IBOutlet UILabel *taxLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtotalLabel;
 @property NSMutableArray *restaurantNames;
 @property NSString *nameOfRest;
 @property NSMutableArray *tableBill;
@@ -27,9 +30,6 @@
 @property NSMutableArray *numberOfTablesMute;
 @property NSMutableArray *prices;
 @property NSMutableArray *owners;
-@property (weak, nonatomic) IBOutlet UILabel *totalPricelabel;
-@property (weak, nonatomic) IBOutlet UILabel *taxLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subtotalLabel;
 @property NSMutableArray *foodItems;
 @property NSString *emailString;
 @end
@@ -93,11 +93,8 @@
         default:
             break;
     }
-
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    
 }
 
 
@@ -106,9 +103,9 @@
     self.owners = [NSMutableArray new];
     [self.owners addObject:self.tableBill];
     [self.owners addObject:[NSMutableArray new]];
-    for (NSString *string in self.mergeArrays) {
-        [self.owners addObject:[NSMutableArray new]];
-    }
+//    for (NSString *string in self.mergeArrays) {
+//        [self.owners addObject:[NSMutableArray new]];
+//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
