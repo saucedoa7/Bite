@@ -9,7 +9,7 @@
 #import "BillTableViewCell.h"
 
 @implementation BillTableViewCell
-
+//
 
 - (void)prepareForReuse
 {
