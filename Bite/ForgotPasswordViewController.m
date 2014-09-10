@@ -25,6 +25,28 @@
 
 
 }
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    CGRect frame = self.view.frame;
+    frame.origin.y = -100; // new y coordinate
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.35];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0; // new y coordinate
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.35];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+    return YES;
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.emailTextField resignFirstResponder];
     return YES;
