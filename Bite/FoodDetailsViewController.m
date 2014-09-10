@@ -7,8 +7,10 @@
 //
 
 #import "FoodDetailsViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface FoodDetailsViewController () <UITextFieldDelegate>
+
+@interface FoodDetailsViewController () <UITextFieldDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (strong, nonatomic) IBOutlet UITextView *itemDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *itemPriceLabel;
@@ -16,6 +18,7 @@
 @property PFObject *foodItemOrdered;
 @property NSNumber *tableNumberIntVal;
 @property (strong, nonatomic) IBOutlet UITextField *specialInstructionsLabel;
+@property NSString *emailString;
 
 
 @end
@@ -45,6 +48,15 @@
         }
     }];
 
+
+
+    PFObject *restaurant = [self.foodItemSelected objectForKey:@"restaurant"];
+    [restaurant fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        self.emailString = [object objectForKey:@"email"];
+        NSLog(@"email %@", self.emailString);
+    }];
+
+
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -62,6 +74,48 @@
     [saveOrder setObject:self.specialInstructionsLabel.text forKey:@"specialInstructions"];
     [saveOrder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     }];
+
+    NSString *emailTitle = [NSString stringWithFormat:@"Item Order For Table: %d",self.tableNumber];
+
+    NSString *messageBody = [NSString stringWithFormat:@"Item Ordered: %@\n Special Instructions: %@", self.itemNameLabel.text, self.specialInstructionsLabel.text];
+
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:self.emailString];
+
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+
 
 }
 
