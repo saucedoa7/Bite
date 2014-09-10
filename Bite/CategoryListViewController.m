@@ -33,6 +33,7 @@
     self.categoryList = [NSMutableArray new];
     PFQuery *foodListQuery = [PFQuery queryWithClassName:@"Food"];
     [foodListQuery whereKey:@"category" equalTo:self.categorySelected];
+    [foodListQuery whereKey:@"restaurant" equalTo:self.restaurant];
     [foodListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.categoryList = [objects mutableCopy];
         self.foodItems = [self.categoryList valueForKey:@"foodItem"];
@@ -46,7 +47,6 @@
 {
     CategoryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
     cell.itemName.text = self.foodItems [indexPath.row];
-//    cell.itemDescription.text = [self.categoryList valueForKey:@"itemDescription"][indexPath.row];
     cell.itemPrice.text =[NSString stringWithFormat:@"%@", [self.categoryList valueForKey:@"price"][indexPath.row]];
 
 
@@ -74,7 +74,6 @@
     FoodDetailsViewController *foodDetailVC = segue.destinationViewController;
     foodDetailVC.foodItemSelected = object;
     foodDetailVC.tableNumber = self.tableNumber;
-
 
 }
 

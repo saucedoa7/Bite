@@ -30,22 +30,35 @@
 {
     [super viewWillAppear:YES];
 
-    PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Category"];
-    [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *food = [PFQuery queryWithClassName:@"Food"];
+    [food whereKey:@"restaurant" equalTo:self.resaurantObject];
+    [food findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
-            self.categories = [objects mutableCopy];
-            [self.tableView reloadData];
+            NSMutableSet *set = [NSMutableSet new];
+            for (PFObject *food in objects) {
+                PFObject *ob = [food objectForKey:@"category"];
+                [set addObject:ob.objectId];
+            }
+            NSMutableArray *arr = [NSMutableArray new];
+            __block int count = 0;
+
+            for (NSString *catID in set) {
+                PFQuery *query = [PFQuery queryWithClassName:@"Category"];
+                [query getObjectInBackgroundWithId:catID block:^(PFObject *object, NSError *error) {
+                    count++;
+                    [arr addObject:object];
+                    if (count == set.count) {
+                        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+                        self.categories = [arr sortedArrayUsingDescriptors:@[sort]];
+                        [self.tableView reloadData];
+                    }
+                }];
+            }
+
+
         }
     }];
 
-//    PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Food"];
-//    [categoryQuery whereKey:@"Category" equalTo:self.resaurantObject];
-//    [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (objects) {
-//            self.categories = [objects mutableCopy];
-//            [self.tableView reloadData];
-//        }
-//    }];
 
     [self.tabBarController setTitle:@"Menu"];
 
@@ -60,8 +73,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MenuCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCategoryCellID"];
-    PFObject *category = self.categories[indexPath.row];
-    cell.courseName.text = [category objectForKey:@"name"];
+    PFObject *cat = self.categories[indexPath.row];
+    cell.courseName.text = [cat objectForKey:@"name"];
     return cell;
 }
 
@@ -72,9 +85,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     CategoryListViewController *categoryVC = segue.destinationViewController;
-    PFObject *category = self.categories[self.tableView.indexPathForSelectedRow.row];
 
-    categoryVC.categorySelected = category;
+    categoryVC.categorySelected = [self.categories objectAtIndex:[self.tableView indexPathForSelectedRow].row];
     categoryVC.tableNumber = self.tableNumber;
+    categoryVC.restaurant = self.resaurantObject;
 }
 @end

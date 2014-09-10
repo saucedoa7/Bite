@@ -12,6 +12,7 @@
 
 //@property PFObject *foodList;
 @property PFObject *categorySelected;
+@property PFObject *restaurant;
 @property int tableNumber;
 
 @end
