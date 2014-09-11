@@ -35,9 +35,7 @@
     self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.2 alpha:1];
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
 
-
 }
-
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
@@ -135,7 +133,7 @@
                 self.selectedGuestcounter--;
             }
         }
-            self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
+        self.numberOfGuestLabel.text = [NSString stringWithFormat:@"%d", (int)self.selectedGuestcounter + (int)self.stepperGuestcounter];
         NSLog(@"number of guest label 2 %@", self.numberOfGuestLabel.text);
 
     }

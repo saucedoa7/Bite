@@ -19,13 +19,9 @@
 @property NSNumber *tableNumberIntVal;
 @property (strong, nonatomic) IBOutlet UITextField *specialInstructionsLabel;
 @property NSString *emailString;
-
-
 @end
 
 @implementation FoodDetailsViewController
-
-
 
 - (void)viewDidLoad
 {
@@ -48,8 +44,6 @@
         }
     }];
 
-
-
     PFObject *restaurant = [self.foodItemSelected objectForKey:@"restaurant"];
     [restaurant fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         self.emailString = [object objectForKey:@"email"];
@@ -57,10 +51,9 @@
     }];
 }
 
-
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     CGRect frame = self.view.frame;
-    frame.origin.y = -130; // new y coordinate
+    frame.origin.y = -130;
 
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration: 0.35];
@@ -71,7 +64,7 @@
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     CGRect frame = self.view.frame;
-    frame.origin.y = 0; // new y coordinate
+    frame.origin.y = 0;
 
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration: 0.35];
@@ -136,11 +129,5 @@
 
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
-
-
 }
-
-
-
-
 @end

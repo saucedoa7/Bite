@@ -54,7 +54,6 @@
 
 }
 
-
 - (IBAction)onCallForCheckPressed:(id)sender {
     NSString *emailTitle = [NSString stringWithFormat:@"Get Check For Table: %d",self.tableNumber];
 
@@ -98,14 +97,14 @@
 }
 
 
-- (void)createArrays 
+- (void)createArrays
 {
     self.owners = [NSMutableArray new];
     [self.owners addObject:self.tableBill];
     [self.owners addObject:[NSMutableArray new]];
-//    for (NSString *string in self.mergeArrays) {
-//        [self.owners addObject:[NSMutableArray new]];
-//    }
+    for (NSString *string in self.mergeArrays) {
+        [self.owners addObject:[NSMutableArray new]];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -115,75 +114,73 @@
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
 
+                                        PFObject *restaurant = [self.resaurantObject objectForKey:@"restaurantPointer"];
+                                        [restaurant fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                                            self.emailString = [object objectForKey:@"email"];
+                                        }];
 
-    PFObject *restaurant = [self.resaurantObject objectForKey:@"restaurantPointer"];
-    [restaurant fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        self.emailString = [object objectForKey:@"email"];
-    }];
+                                        self.owners = [NSMutableArray new];
+                                        InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+                                        self.mergeArrays = IVC.mergeArrays;
 
-    self.owners = [NSMutableArray new];
-    InviteFriendsViewController *IVC = (InviteFriendsViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-    self.mergeArrays = IVC.mergeArrays;
+                                        [self.sectionsArray removeAllObjects];
+                                        [self.sectionsArray addObject:[NSString stringWithFormat:@"Merged Guests: %@", self.mergeArrays]];
 
-    [self.sectionsArray removeAllObjects];
-    [self.sectionsArray addObject:[NSString stringWithFormat:@"Merged Guests: %@", self.mergeArrays]];
+                                        [[self billTableView] setDelegate:self];
+                                        [[self billTableView] setDataSource:self];
 
-    [[self billTableView] setDelegate:self];
-    [[self billTableView] setDataSource:self];
+                                        NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
+                                        self.tableLabel.text = tableNumberString;
 
-    NSString *tableNumberString  = [NSString stringWithFormat:@"Table: %d", self.tableNumber];
-    self.tableLabel.text = tableNumberString;
+                                        self.tableBill = [NSMutableArray new];
+                                        PFQuery *query = [PFQuery queryWithClassName:@"Table"];
+                                        [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
+                                        [query whereKey:@"restaurantName" equalTo:self.resaurantObject];
 
-    self.tableBill = [NSMutableArray new];
-    PFQuery *query = [PFQuery queryWithClassName:@"Table"];
-    [query whereKey:@"tableNumber" equalTo:self.tableNumberIntVal];
-    [query whereKey:@"restaurantName" equalTo:self.resaurantObject];
+                                        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                            self.tableBill = [objects mutableCopy];
+                                            __block int count = self.tableBill.count;
+                                            __block float total = 0;
+                                            for (PFObject *table in self.tableBill) {
+                                                PFObject *food = [table objectForKey:@"itemOrdered"];
+                                                self.foodItems = [NSMutableArray new];
+                                                [food fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                                                    [self.foodItems addObject:object];
+                                                    NSNumber *sub = [food objectForKey:@"price"];
+                                                    total += sub.floatValue;
+                                                    count--;
+                                                    if (count == 0) {
+                                                        [self createArrays];
+                                                        self.owners[0] = self.foodItems;
+                                                        [self.billTableView reloadData];
+                                                        self.totalPricelabel.text = [NSString stringWithFormat:@"%.2f",total];
 
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.tableBill = [objects mutableCopy];
-        __block int count = self.tableBill.count;
-        __block float total = 0;
-        for (PFObject *table in self.tableBill) {
-            PFObject *food = [table objectForKey:@"itemOrdered"];
-            self.foodItems = [NSMutableArray new];
-            [food fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                [self.foodItems addObject:object];
-                NSNumber *sub = [food objectForKey:@"price"];
-                total += sub.floatValue;
-                count--;
-                if (count == 0) {
-                    [self createArrays];
-                    self.owners[0] = self.foodItems;
-                    [self.billTableView reloadData];
-                    self.totalPricelabel.text = [NSString stringWithFormat:@"%.2f",total];
+                                                        self.taxLabel.text = [NSString stringWithFormat:@"%.2f", total * .1];
+                                                        float floatTax = ([self.taxLabel.text floatValue]/100);
+                                                        float floatTotal = [self.totalPricelabel.text floatValue];
 
-                    self.taxLabel.text = [NSString stringWithFormat:@"%.2f", total * .1];
-                    float floatTax = ([self.taxLabel.text floatValue]/100);
-                    float floatTotal = [self.totalPricelabel.text floatValue];
+                                                        float subTotal = (floatTotal * floatTax) + floatTotal;
+                                                        NSString *stringSubtotal = [NSString stringWithFormat:@"%.2f", subTotal];
+                                                        self.subtotalLabel.text = stringSubtotal;
+                                                    }
+                                                }];
 
-                    float subTotal = (floatTotal * floatTax) + floatTotal;
-                    NSString *stringSubtotal = [NSString stringWithFormat:@"%.2f", subTotal];
-                    self.subtotalLabel.text = stringSubtotal;
-                }
-            }];
+                                            }
+                                        }];
 
-        }
-    }];
-
-    PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
-    [restaurantNameQuery whereKey:@"restaurantPointer" equalTo:self.resaurantObject];
-    [restaurantNameQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects) {
-            self.restaurantNames = [objects mutableCopy];
-            self.nameOfRest = [[self.restaurantNames valueForKey:@"restaurantName"] objectAtIndex:0];
-            self.thankYouLabel.text = [NSString stringWithFormat:@"Thank you for dining at\n %@", self.nameOfRest];
-            self.restaurantNameLabel.text = self.nameOfRest;
-            [self.billTableView reloadData];
-        }
-    }];
-            // result is @"Hello world!"
-        }
-    }];
+                                        PFQuery *restaurantNameQuery = [PFQuery queryWithClassName:@"Restaurant"];
+                                        [restaurantNameQuery whereKey:@"restaurantPointer" equalTo:self.resaurantObject];
+                                        [restaurantNameQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                            if (objects) {
+                                                self.restaurantNames = [objects mutableCopy];
+                                                self.nameOfRest = [[self.restaurantNames valueForKey:@"restaurantName"] objectAtIndex:0];
+                                                self.thankYouLabel.text = [NSString stringWithFormat:@"Thank you for dining at\n %@", self.nameOfRest];
+                                                self.restaurantNameLabel.text = self.nameOfRest;
+                                                [self.billTableView reloadData];
+                                            }
+                                        }];
+                                    }
+                                }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -206,9 +203,9 @@
     PFObject *itemOrdered = [array objectAtIndex:indexPath.row];
     cell.billItem.text = [itemOrdered objectForKey:@"foodItem"];
     cell.itemPrice.text = [NSString stringWithFormat:@"%@", [itemOrdered objectForKey:@"price"]];
-
-
-
+    
+    
+    
     return cell;
 }
 
@@ -250,15 +247,15 @@
 #pragma mark Add Section
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-
+    
     __block float total = 0;
-
+    
     NSArray *array = self.owners[section];
     for (PFObject *item in array) {
         NSNumber *price = [item objectForKey:@"price"];
         total += price.floatValue;
     }
-
+    
     if (section == 0) {
         return [NSString stringWithFormat:@"Items ordered - $%.2f", total];
     } else if(section == 1) {
@@ -266,7 +263,7 @@
     }else {
         return [NSString stringWithFormat:@"%@ - $%.2f", [self.mergeArrays objectAtIndex:section-2],total];
     }
-
+    
     [self.billTableView reloadData];
     return @"";
 }

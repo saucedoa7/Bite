@@ -87,7 +87,6 @@ FriendsListViewController *friendList;
         [self.tableView reloadData];
     }];
 
-
     [self.searchFriends resignFirstResponder];
 
 }

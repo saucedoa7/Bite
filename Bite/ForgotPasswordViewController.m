@@ -20,10 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.emailTextField.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
-     [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.emailTextField setValue:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     self.emailTextField.delegate = self;
-
-
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -63,7 +61,4 @@
         [PFUser requestPasswordResetForEmailInBackground:email];
     }
 }
-
-
-
 @end

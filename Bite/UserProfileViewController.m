@@ -92,13 +92,12 @@
     self.userNameLabel.text = userName;
 
     if ([userName isEqualToString:@"" ] || [email isEqualToString:@""]){
-        
+
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Info"
                                                         message:@"All fields must be filled"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
-
         [alert show];
     }
 
@@ -184,6 +183,6 @@
 
 -(IBAction)unwindToProfile:(UIStoryboardSegue *)sender
 {
-
+    
 }
 @end

@@ -13,10 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
 @property BOOL performSegue;
 @property (strong, nonatomic) IBOutlet UIView *mainView;
-
 @property NSString *tableCode;
-
-
 @end
 
 @implementation TableCheckInCodeViewController
@@ -32,8 +29,6 @@
 {
     [super viewWillAppear:YES];
     self.tableCode = [self.restaurantObject objectForKey:@"tableCode"];
-
-    
 }
 
 -(void)showAnimation {
@@ -92,7 +87,5 @@
     TabBarController *tabVC = segue.destinationViewController;
     tabVC.restaurantObject = self.restaurantObject;
     tabVC.tableNumber = self.tableNumber;
-    
 }
-
 @end

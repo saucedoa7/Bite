@@ -14,7 +14,6 @@
 @interface MenuCategoryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property NSArray *categories;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
 @implementation MenuCategoryViewController
@@ -54,8 +53,6 @@
                     }
                 }];
             }
-
-
         }
     }];
 

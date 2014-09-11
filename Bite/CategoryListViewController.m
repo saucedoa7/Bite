@@ -19,7 +19,6 @@
 
 @implementation CategoryListViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,9 +37,7 @@
         self.categoryList = [objects mutableCopy];
         self.foodItems = [self.categoryList valueForKey:@"foodItem"];
         [self.tableView reloadData];
-
     }];
-
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,8 +45,6 @@
     CategoryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCellID"];
     cell.itemName.text = self.foodItems [indexPath.row];
     cell.itemPrice.text =[NSString stringWithFormat:@"%@", [self.categoryList valueForKey:@"price"][indexPath.row]];
-
-
     return cell;
 }
 
@@ -65,7 +60,7 @@
 
 - (IBAction)unwindToCategoryVC:(UIStoryboardSegue *)sender
 {
-    
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -76,7 +71,4 @@
     foodDetailVC.tableNumber = self.tableNumber;
 
 }
-
-
-
 @end

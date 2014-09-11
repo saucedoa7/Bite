@@ -15,8 +15,6 @@
 @interface LogInViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-
-
 @end
 
 @implementation LogInViewController
@@ -56,7 +54,7 @@
 {
     [self.passwordTextField resignFirstResponder];
     [self.usernameTextField resignFirstResponder];
-    
+
     CGRect frame = self.view.frame;
     frame.origin.y = 0; // new y coordinate
 
@@ -64,9 +62,6 @@
     [UIView setAnimationDuration: 0.35];
     self.view.frame = frame;
     [UIView commitAnimations];
-    return YES;
-
-
     return YES;
 }
 
@@ -96,7 +91,4 @@
         }];
     }
 }
-
-
-
 @end

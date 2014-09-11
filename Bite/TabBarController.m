@@ -11,20 +11,15 @@
 #import "CurrentBillViewController.h"
 
 @interface TabBarController ()
-
 @end
 
 @implementation TabBarController
-
 @synthesize tableNumber;
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,9 +33,6 @@
     currentBillVC.tableNumber = self.tableNumber;
     currentBillVC.resaurantObject = self.restaurantObject;
     self.navigationItem.hidesBackButton = YES;
-
-
-
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
@@ -52,7 +44,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 
-//    MenuCategoryViewController *categoryVC = segue.destinationViewController;
+    // MenuCategoryViewController *categoryVC = segue.destinationViewController;
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 
@@ -62,9 +54,5 @@
     CurrentBillViewController *currentBillVC = segue.destinationViewController;
     currentBillVC.resaurantObject = self.restaurantObject;
     currentBillVC.tableNumber = self.tableNumber;
-
-
-
 }
-
 @end
